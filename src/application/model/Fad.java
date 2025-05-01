@@ -15,7 +15,7 @@ public class Fad {
     private double fadStørrelse;
     private LocalDate påfyldningsDato;
     private int antalGangeBrugt;
-
+//hej
     public Fad(int nummer, String fadType, int fadStørrelse, int antalGangeBrugt) {
         this.nummer = nummer;
         this.fadType = fadType;
