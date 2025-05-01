@@ -1,16 +1,17 @@
 package gui;
 
 import application.controller.Controller;
+import javafx.geometry.HPos;
+import javafx.geometry.Pos;
+import javafx.geometry.VPos;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
-import javafx.stage.Modality;
+import javafx.scene.layout.RowConstraints;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
-import org.w3c.dom.Text;
 
 public class OpretFadVindue extends Stage {
     private TextField fadNummerTxtField = new TextField();
@@ -33,9 +34,9 @@ public class OpretFadVindue extends Stage {
     }
 
     private void initContent(GridPane pane) {
-
-        pane.setPrefHeight(600);
-        pane.setPrefWidth(400);
+        pane.setAlignment(Pos.TOP_CENTER);
+        pane.setPrefHeight(200);
+        pane.setPrefWidth(300);
 
         Label fadNummerLabel = new Label("Fadnummer: ");
         fadNummerTxtField.setPromptText("Indtast nummer for fadet");
@@ -53,25 +54,25 @@ public class OpretFadVindue extends Stage {
         pane.add(fadStørrelseLabel, 0, 2);
 
         Label antalGangeBrugtLabel = new Label("Antal gange brugt: ");
-        antalGangeBrugtTxtField.setPromptText("Indtast antal gange fadet er brugt");
+        antalGangeBrugtTxtField.setPromptText("Antal gange brugt");
         pane.add(antalGangeBrugtTxtField, 1, 3);
         pane.add(antalGangeBrugtLabel, 0, 3);
 
 
         Button opretBtn = new Button("Opret Fad");
         opretBtn.setOnMouseClicked(event -> {
-//            Controller.opretFad(Integer.parseInt(fadNummerTxtField.getText()), fadTypeTxtField.getText(), Integer.parseInt(fadStørrelseTxtField.getText()), Integer.parseInt(antalGangeBrugtTxtField.getText()));
-//            Alert succesAlert = new Alert(Alert.AlertType.CONFIRMATION);
-//            succesAlert.setTitle("Fad oprettet!");
-//            succesAlert.setHeaderText("Dit fad er nu oprettet");
-//            succesAlert.show();
+            //            Controller.opretFad(Integer.parseInt(fadNummerTxtField.getText()), fadTypeTxtField.getText(), Integer.parseInt(fadStørrelseTxtField.getText()), Integer.parseInt(antalGangeBrugtTxtField.getText()));
+            //            Alert succesAlert = new Alert(Alert.AlertType.CONFIRMATION);
+            //            succesAlert.setTitle("Fad oprettet!");
+            //            succesAlert.setHeaderText("Dit fad er nu oprettet");
+            //            succesAlert.show();
 
-//            if (fadNummerTxtField.getText().isEmpty() || fadTypeTxtField.getText().isEmpty() || fadStørrelseTxtField.getText().isEmpty() || antalGangeBrugtTxtField.getText().isEmpty()) {
-//                Alert fejlAlert = new Alert(Alert.AlertType.ERROR);
-//                fejlAlert.setTitle("Invalid information");
-//                fejlAlert.setHeaderText("Alle felter skal udfyldes");
-//                fejlAlert.show();
-//            }
+            //            if (fadNummerTxtField.getText().isEmpty() || fadTypeTxtField.getText().isEmpty() || fadStørrelseTxtField.getText().isEmpty() || antalGangeBrugtTxtField.getText().isEmpty()) {
+            //                Alert fejlAlert = new Alert(Alert.AlertType.ERROR);
+            //                fejlAlert.setTitle("Invalid information");
+            //                fejlAlert.setHeaderText("Alle felter skal udfyldes");
+            //                fejlAlert.show();
+            //            }
 
             try {
                 Controller.opretFad(Integer.parseInt(fadNummerTxtField.getText()), fadTypeTxtField.getText(), Integer.parseInt(fadStørrelseTxtField.getText()), Integer.parseInt(antalGangeBrugtTxtField.getText()));
@@ -80,7 +81,7 @@ public class OpretFadVindue extends Stage {
                 succesAlert.setHeaderText("Dit fad er nu oprettet");
                 succesAlert.show();
             } catch (NumberFormatException e) {
-                if (fadNummerTxtField.getText().isEmpty() || fadTypeTxtField.getText().isEmpty() || fadStørrelseTxtField.getText().isEmpty() || antalGangeBrugtTxtField.getText().isEmpty()){
+                if (fadNummerTxtField.getText().isEmpty() || fadTypeTxtField.getText().isEmpty() || fadStørrelseTxtField.getText().isEmpty() || antalGangeBrugtTxtField.getText().isEmpty()) {
                     Alert fejlAlert = new Alert(Alert.AlertType.ERROR);
                     fejlAlert.setTitle("Invalid information");
                     fejlAlert.setHeaderText("Alle felter skal udfyldes");
@@ -95,14 +96,17 @@ public class OpretFadVindue extends Stage {
             }
 
         });
-        pane.add(opretBtn, 1, 5);
+
+        pane.add(opretBtn, 1, 6);
+        GridPane.setHalignment(opretBtn, HPos.RIGHT);
 
 
         Button annullerBtn = new Button("Annuller");
         annullerBtn.setOnMouseClicked(event -> {
             this.close();
         });
-        pane.add(annullerBtn, 0, 5);
+        pane.add(annullerBtn, 0, 6);
+        GridPane.setHalignment(annullerBtn, HPos.LEFT);
 
 
     }
