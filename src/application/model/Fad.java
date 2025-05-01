@@ -1,6 +1,8 @@
 package application.model;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,20 +13,20 @@ public class Fad {
     private int nummer;
     private String fadType;
     private double fadStørrelse;
-    private LocalDateTime påfyldningsDato;
+    private LocalDate påfyldningsDato;
     private int antalGangeBrugt;
-
-    public Fad(int nummer, String fadType, int fadStørrelse, LocalDateTime påfyldningsDato, int antalGangeBrugt) {
+//hej
+    public Fad(int nummer, String fadType, int fadStørrelse, int antalGangeBrugt) {
         this.nummer = nummer;
         this.fadType = fadType;
         this.fadStørrelse = fadStørrelse;
-        this.påfyldningsDato = påfyldningsDato;
         this.antalGangeBrugt = antalGangeBrugt;
     }
 
     private void tilføjDestillat(Destillat destillat) {
         if (!destillater.contains(destillat)) {
             destillater.add(destillat);
+            this.påfyldningsDato = LocalDate.now();
         }
         else
             throw new IllegalArgumentException("Dette fad indeholder allerede dette destillat");
