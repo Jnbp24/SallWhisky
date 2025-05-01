@@ -1,14 +1,20 @@
 package gui;
 
-import application.controller.Controller;
 import javafx.application.Application;
+import javafx.geometry.HPos;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.geometry.VPos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.DialogPane;
 import javafx.scene.control.Label;
-import javafx.scene.control.TabPane;
+import javafx.scene.control.Separator;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.RowConstraints;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 public class MainVindue extends Application {
@@ -25,25 +31,40 @@ public class MainVindue extends Application {
 
 
     private void initContent(GridPane pane) {
-
+        pane.setAlignment(Pos.TOP_CENTER);
         pane.setPrefWidth(400);
         pane.setPrefHeight(600);
 
+//        pane.setGridLinesVisible(true);
 
-        Label sallWhiskyHeaderLabel = new Label("Sall Whisky Distillery");
-        sallWhiskyHeaderLabel.setAlignment(Pos.CENTER);
-        pane.add(sallWhiskyHeaderLabel, 3, 0);
+//        Label sallWhiskyHeaderLabel = new Label("Sall Whisky Distillery");
+//        sallWhiskyHeaderLabel.setAlignment(Pos.CENTER);
+//        sallWhiskyHeaderLabel.setFont(Font.font("Dialog", FontWeight.BOLD, 20));
+//        pane.add(sallWhiskyHeaderLabel, 1, 0,2,1);
 
+        //Finder resources folderen, derefter findes billeder folderen for så at finde png'en
+        Image SallImage = new Image(getClass().getResourceAsStream("/billeder/SallLogo.png"));
+        ImageView SallImageView = new ImageView(SallImage);
+        SallImageView.setFitWidth(250);
+        SallImageView.setFitHeight(250);
+        SallImageView.setPreserveRatio(true);
+
+        pane.add(SallImageView, 1, 1,2,2);
 
         Button opretFadBtn = new Button("Opret Fad");
-        pane.add(opretFadBtn, 0, 2);
+        pane.add(opretFadBtn, 1,3,2,1);
+        GridPane.setHalignment(opretFadBtn,HPos.CENTER);
+        GridPane.setValignment(opretFadBtn,VPos.CENTER);
+
         opretFadBtn.setOnMouseClicked(event -> {
 
             OpretFadVindue fadVindue = new OpretFadVindue("Opret Fad");
             fadVindue.show();
 
-            //Controller.opretFad();
         });
+
+
+
     }
 
 }
