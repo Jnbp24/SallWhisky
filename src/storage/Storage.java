@@ -7,12 +7,12 @@ import application.model.Flaske;
 import java.util.ArrayList;
 
 public class Storage {
-    private ArrayList<Fad> fade = new ArrayList<>();
-    private ArrayList<Batch> batches = new ArrayList<>();
-    private ArrayList<Flaske> flasker = new ArrayList<>();
+    private static ArrayList<Fad> fade = new ArrayList<>();
+    private static ArrayList<Batch> batches = new ArrayList<>();
+    private static ArrayList<Flaske> flasker = new ArrayList<>();
 
 
-    private void tilføjFad(Fad fad) {
+    public static void tilføjFad(Fad fad) {
         if (!fade.contains(fad)) {
             fade.add(fad);
         }
@@ -20,7 +20,7 @@ public class Storage {
             throw new IllegalArgumentException("Dette fad er allerede tilføjet!");
     }
 
-    private void tilføjBatch(Batch batch) {
+    public static void tilføjBatch(Batch batch) {
         if (!batches.contains(batch)) {
             batches.add(batch);
         }
@@ -28,7 +28,7 @@ public class Storage {
             throw new IllegalArgumentException("Dette fad er allerede tilføjet!");
     }
 
-    private void tilføjFlaske(Flaske flaske) {
+    public static void tilføjFlaske(Flaske flaske) {
         if (!flasker.contains(flaske)) {
             flasker.add(flaske);
         }
