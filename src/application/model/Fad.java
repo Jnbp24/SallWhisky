@@ -8,14 +8,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Fad {
-    private ArrayList<Destillat> destillater = new ArrayList<>();
-    private static ArrayList<Fad> tapklarFade = new ArrayList<>();
+
     private int nummer;
     private String fadType;
     private double fadStørrelse;
-    private LocalDate påfyldningsDato;
     private int antalGangeBrugt;
-//hej
+
     public Fad(int nummer, String fadType, int fadStørrelse, int antalGangeBrugt) {
         this.nummer = nummer;
         this.fadType = fadType;
@@ -23,25 +21,31 @@ public class Fad {
         this.antalGangeBrugt = antalGangeBrugt;
     }
 
-    private void tilføjDestillat(Destillat destillat) {
-        if (!destillater.contains(destillat)) {
-            destillater.add(destillat);
-            this.påfyldningsDato = LocalDate.now();
-        }
-        else
-            throw new IllegalArgumentException("Dette fad indeholder allerede dette destillat");
-    }
 
-    public boolean erTapKlar() {
-        return ChronoUnit.YEARS.between(påfyldningsDato, LocalDateTime.now()) >= 3;
-    }
 
-    public static ArrayList<Fad> findTapKlarFad(ArrayList<Fad> fade) {
-        for (Fad fad : fade) {
-            if (fad.erTapKlar()) {
-                tapklarFade.add(fad);
-            }
-        }
-        return tapklarFade;
-    }
+
+
+
+//
+//    private void tilføjDestillat(Destillat destillat) {
+//        if (!destillater.contains(destillat)) {
+//            destillater.add(destillat);
+//            this.påfyldningsDato = LocalDate.now();
+//        }
+//        else
+//            throw new IllegalArgumentException("Dette fad indeholder allerede dette destillat");
+//    }
+//
+//    public boolean erTapKlar() {
+//        return ChronoUnit.YEARS.between(påfyldningsDato, LocalDateTime.now()) >= 3;
+//    }
+//
+//    public static ArrayList<Fad> findTapKlarFad(ArrayList<Fad> fade) {
+//        for (Fad fad : fade) {
+//            if (fad.erTapKlar()) {
+//                tapklarFade.add(fad);
+//            }
+//        }
+//        return tapklarFade;
+//    }
 }
