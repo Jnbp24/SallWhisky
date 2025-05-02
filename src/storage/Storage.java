@@ -1,6 +1,7 @@
 package storage;
 
 import application.model.Batch;
+import application.model.Destillat;
 import application.model.Fad;
 import application.model.Flaske;
 
@@ -10,6 +11,7 @@ public class Storage {
     private static ArrayList<Fad> fade = new ArrayList<>();
     private static ArrayList<Batch> batches = new ArrayList<>();
     private static ArrayList<Flaske> flasker = new ArrayList<>();
+    private static ArrayList<Destillat> destillater = new ArrayList<>();
 
 
     public static void tilføjFad(Fad fad) {
@@ -31,6 +33,13 @@ public class Storage {
     public static void tilføjFlaske(Flaske flaske) {
         if (!flasker.contains(flaske)) {
             flasker.add(flaske);
+        }
+        else
+            throw new IllegalArgumentException("Dette fad er allerede tilføjet!");
+    }
+    public static void tilføjDestillat (Destillat destillat) {
+        if (!destillater.contains(destillat)) {
+            destillater.add(destillat);
         }
         else
             throw new IllegalArgumentException("Dette fad er allerede tilføjet!");

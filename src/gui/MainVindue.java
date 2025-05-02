@@ -37,10 +37,6 @@ public class MainVindue extends Application {
 
 //        pane.setGridLinesVisible(true);
 
-//        Label sallWhiskyHeaderLabel = new Label("Sall Whisky Distillery");
-//        sallWhiskyHeaderLabel.setAlignment(Pos.CENTER);
-//        sallWhiskyHeaderLabel.setFont(Font.font("Dialog", FontWeight.BOLD, 20));
-//        pane.add(sallWhiskyHeaderLabel, 1, 0,2,1);
 
         //Finder resources folderen, derefter findes billeder folderen for så at finde png'en
         Image SallImage = new Image(getClass().getResourceAsStream("/billeder/SallLogo.png"));
@@ -61,6 +57,17 @@ public class MainVindue extends Application {
             OpretFadVindue fadVindue = new OpretFadVindue("Opret Fad");
             fadVindue.show();
 
+        });
+
+
+        Button opretDestillatBtn = new Button("Opret Destillat");
+        pane.add(opretDestillatBtn,1,4,2,1);
+        GridPane.setHalignment(opretDestillatBtn,HPos.CENTER);
+        GridPane.setValignment(opretDestillatBtn,VPos.CENTER);
+
+        opretDestillatBtn.setOnMouseClicked(event -> {
+            OpretDestillatVindue destillatVindue = new OpretDestillatVindue("Opret Destillat");
+            destillatVindue.show();
         });
 
 

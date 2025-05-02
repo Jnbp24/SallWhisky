@@ -21,8 +21,7 @@ public class OpretFadVindue extends Stage {
 
 
     public OpretFadVindue(String title) {
-        //this.initStyle(StageStyle.UTILITY);
-        //this.initModality(Modality.APPLICATION_MODAL);
+
         this.setResizable(false);
         this.setTitle(title);
 
@@ -61,19 +60,6 @@ public class OpretFadVindue extends Stage {
 
         Button opretBtn = new Button("Opret Fad");
         opretBtn.setOnMouseClicked(event -> {
-            //            Controller.opretFad(Integer.parseInt(fadNummerTxtField.getText()), fadTypeTxtField.getText(), Integer.parseInt(fadStørrelseTxtField.getText()), Integer.parseInt(antalGangeBrugtTxtField.getText()));
-            //            Alert succesAlert = new Alert(Alert.AlertType.CONFIRMATION);
-            //            succesAlert.setTitle("Fad oprettet!");
-            //            succesAlert.setHeaderText("Dit fad er nu oprettet");
-            //            succesAlert.show();
-
-            //            if (fadNummerTxtField.getText().isEmpty() || fadTypeTxtField.getText().isEmpty() || fadStørrelseTxtField.getText().isEmpty() || antalGangeBrugtTxtField.getText().isEmpty()) {
-            //                Alert fejlAlert = new Alert(Alert.AlertType.ERROR);
-            //                fejlAlert.setTitle("Invalid information");
-            //                fejlAlert.setHeaderText("Alle felter skal udfyldes");
-            //                fejlAlert.show();
-            //            }
-
             try {
                 Controller.opretFad(Integer.parseInt(fadNummerTxtField.getText()), fadTypeTxtField.getText(), Integer.parseInt(fadStørrelseTxtField.getText()), Integer.parseInt(antalGangeBrugtTxtField.getText()));
                 Alert succesAlert = new Alert(Alert.AlertType.CONFIRMATION);
