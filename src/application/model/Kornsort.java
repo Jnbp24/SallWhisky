@@ -1,10 +1,16 @@
 package application.model;
 
-public class Kornsort extends Råvarer{
+public class Kornsort extends Råvarer {
     private Ristethed ristethed;
 
 
-    public Kornsort(String navn, String lokation) {
-        super(navn, lokation);
+    public Kornsort(String navn, String lokation, int mængde, Ristethed ristethed) {
+        super(navn, lokation, mængde);
+        this.ristethed = ristethed;
+    }
+
+    @Override
+    public String toString() {
+        return "Navn: " + super.getNavn();
     }
 }

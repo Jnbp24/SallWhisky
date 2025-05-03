@@ -2,19 +2,13 @@ package gui;
 
 import javafx.application.Application;
 import javafx.geometry.HPos;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.geometry.VPos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.Separator;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.RowConstraints;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 public class MainVindue extends Application {
@@ -70,6 +64,27 @@ public class MainVindue extends Application {
             destillatVindue.show();
         });
 
+
+        Button opretVandBtn = new Button("Opret Vand");
+        pane.add(opretVandBtn,1,5,2,1);
+        GridPane.setHalignment(opretVandBtn,HPos.CENTER);
+        GridPane.setValignment(opretVandBtn,VPos.CENTER);
+
+        opretVandBtn.setOnMouseClicked(event -> {
+            OpretVandVindue vandVindue = new OpretVandVindue("Opret Råvare");
+            vandVindue.show();;
+        });
+
+
+        Button opretKornBtn = new Button("Opret Korn");
+        pane.add(opretKornBtn,1,6,2,1);
+        GridPane.setHalignment(opretKornBtn,HPos.CENTER);
+        GridPane.setValignment(opretKornBtn,VPos.CENTER);
+
+        opretKornBtn.setOnMouseClicked(event -> {
+            OpretKornVindue kornVindue = new OpretKornVindue("Opret Korn");
+            kornVindue.show();
+        });
 
 
     }

@@ -1,9 +1,12 @@
 package application.model;
 
-public class Vand extends Råvarer{
+public class Vand extends Råvarer {
+    public Vand(String navn, String lokation, int mængde) {
+        super(navn, lokation, mængde);
+    }
 
- //Vandets navn skal forstås som en by
-    public Vand(String navn, String lokation) {
-        super(navn, lokation);
+    @Override
+    public String toString() {
+        return "Navn: " + super.getNavn();
     }
 }
