@@ -15,5 +15,7 @@ public class Destillat {
         this.brugtTørv = brugtTørv;
     }
 
-
+    public Råvarer getKornsort() {
+        return kornsort;
+    }
 }
