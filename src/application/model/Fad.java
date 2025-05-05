@@ -11,7 +11,7 @@ public class Fad {
 
     private int nummer;
     private String fadType;
-    private double fadStørrelse;
+    private int fadStørrelse;
     private int antalGangeBrugt;
     private Destillat destillat;
 
