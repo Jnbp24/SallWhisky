@@ -27,6 +27,11 @@ public class Controller {
         Storage.tilføjVand(vand);
     }
 
+    public static void opretBatch(){
+    }
+
+
+
 
     public static ArrayList<Kornsort> getKornList(){
         return Storage.getKornsorter();
