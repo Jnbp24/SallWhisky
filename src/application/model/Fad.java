@@ -13,6 +13,7 @@ public class Fad {
     private String fadType;
     private double fadStørrelse;
     private int antalGangeBrugt;
+    private Destillat destillat;
 
     public Fad(int nummer, String fadType, int fadStørrelse, int antalGangeBrugt) {
         this.nummer = nummer;
@@ -21,12 +22,15 @@ public class Fad {
         this.antalGangeBrugt = antalGangeBrugt;
     }
 
+    public Destillat getDestillat() {
+        return destillat;
+    }
 
+    public String getFadType() {
+        return fadType;
+    }
 
-
-
-
-//
+    //
 //    private void tilføjDestillat(Destillat destillat) {
 //        if (!destillater.contains(destillat)) {
 //            destillater.add(destillat);
