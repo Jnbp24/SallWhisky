@@ -39,5 +39,8 @@ public class Controller {
     public static ArrayList<Vand> getVandTypeList(){
         return Storage.getVandtyper();
     }
+    public static ArrayList<Fad> getFadList(){
+        return Storage.getFade();
+    }
 }
 
