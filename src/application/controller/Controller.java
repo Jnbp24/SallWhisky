@@ -34,8 +34,5 @@ public class Controller {
         return Storage.getVandtyper();
     }
 
-    public static Destillat getDestillater() {
-        return null;
-    }
 }
 
