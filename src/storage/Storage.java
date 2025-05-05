@@ -1,9 +1,6 @@
 package storage;
 
-import application.model.Batch;
-import application.model.Destillat;
-import application.model.Fad;
-import application.model.Flaske;
+import application.model.*;
 
 import java.util.ArrayList;
 
@@ -12,6 +9,8 @@ public class Storage {
     private static ArrayList<Batch> batches = new ArrayList<>();
     private static ArrayList<Flaske> flasker = new ArrayList<>();
     private static ArrayList<Destillat> destillater = new ArrayList<>();
+    private static ArrayList<Kornsort> kornsorter = new ArrayList<>();
+    private static ArrayList<Vand> vandtyper = new ArrayList<>();
 
 
     public static void tilføjFad(Fad fad) {
@@ -43,5 +42,29 @@ public class Storage {
         }
         else
             throw new IllegalArgumentException("Dette fad er allerede tilføjet!");
+    }
+
+    public static void tilføjKornsort(Kornsort kornsort) {
+        if (!kornsorter.contains(kornsort)) {
+            kornsorter.add(kornsort);
+        }
+        else
+            throw new IllegalArgumentException("Dette fad er allerede tilføjet!");
+    }
+
+    public static void tilføjVand(Vand vand) {
+        if (!vandtyper.contains(vand)) {
+            vandtyper.add(vand);
+        }
+        else
+            throw new IllegalArgumentException("Dette fad er allerede tilføjet!");
+    }
+
+    public static ArrayList<Kornsort> getKornsorter() {
+        return kornsorter;
+    }
+
+    public static ArrayList<Vand> getVandtyper() {
+        return vandtyper;
     }
 }
