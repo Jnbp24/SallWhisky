@@ -1,14 +1,12 @@
 package gui;
 
 import application.controller.Controller;
+import application.model.Destillat;
 import javafx.geometry.HPos;
 import javafx.geometry.Pos;
 import javafx.geometry.VPos;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
 import javafx.stage.Stage;
@@ -56,6 +54,7 @@ public class OpretFadVindue extends Stage {
         antalGangeBrugtTxtField.setPromptText("Antal gange brugt");
         pane.add(antalGangeBrugtTxtField, 1, 3);
         pane.add(antalGangeBrugtLabel, 0, 3);
+
 
 
         Button opretBtn = new Button("Opret Fad");

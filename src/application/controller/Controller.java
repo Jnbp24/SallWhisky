@@ -27,12 +27,15 @@ public class Controller {
         Storage.tilføjVand(vand);
     }
 
-
     public static ArrayList<Kornsort> getKornList(){
         return Storage.getKornsorter();
     }
     public static ArrayList<Vand> getVandTypeList(){
         return Storage.getVandtyper();
+    }
+
+    public static Destillat getDestillater() {
+        return null;
     }
 }
 

@@ -13,7 +13,8 @@ public class Fad {
     private String fadType;
     private double fadStørrelse;
     private int antalGangeBrugt;
-    private Destillat destillat;
+    private ArrayList<Destillat> destillater = new ArrayList<>();
+    private LocalDate påfyldningsdato;
 
     public Fad(int nummer, String fadType, int fadStørrelse, int antalGangeBrugt) {
         this.nummer = nummer;
@@ -22,34 +23,27 @@ public class Fad {
         this.antalGangeBrugt = antalGangeBrugt;
     }
 
-    public Destillat getDestillat() {
-        return destillat;
+    public void tilføjDestillat(Destillat destillat){
+        if(!destillater.contains(destillat)){
+            destillater.add(destillat);
+            this.påfyldningsdato = LocalDate.now();
+        }
+        else{
+            throw new IllegalArgumentException("Dette fad indeholder allerede dette destillat");
+        }
+    }
+
+    public ArrayList<Destillat> getDestillater(){
+        return destillater;
+    }
+    public LocalDate getPåfyldningsdato(){
+        return påfyldningsdato;
     }
 
     public String getFadType() {
         return fadType;
     }
 
-    //
-//    private void tilføjDestillat(Destillat destillat) {
-//        if (!destillater.contains(destillat)) {
-//            destillater.add(destillat);
-//            this.påfyldningsDato = LocalDate.now();
-//        }
-//        else
-//            throw new IllegalArgumentException("Dette fad indeholder allerede dette destillat");
-//    }
-//
-//    public boolean erTapKlar() {
-//        return ChronoUnit.YEARS.between(påfyldningsDato, LocalDateTime.now()) >= 3;
-//    }
-//
-//    public static ArrayList<Fad> findTapKlarFad(ArrayList<Fad> fade) {
-//        for (Fad fad : fade) {
-//            if (fad.erTapKlar()) {
-//                tapklarFade.add(fad);
-//            }
-//        }
-//        return tapklarFade;
-//    }
+
+
 }

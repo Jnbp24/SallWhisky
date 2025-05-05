@@ -61,10 +61,10 @@ public class Storage {
     }
 
     public static ArrayList<Kornsort> getKornsorter() {
-        return kornsorter;
+        return new ArrayList<>(kornsorter);
     }
 
     public static ArrayList<Vand> getVandtyper() {
-        return vandtyper;
+        return new ArrayList<>(vandtyper);
     }
 }
