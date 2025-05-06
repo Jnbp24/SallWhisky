@@ -71,4 +71,8 @@ public class Storage {
     public static ArrayList<Fad> getFade(){
         return new ArrayList<>(fade);
     }
+
+    public static ArrayList<Destillat> getDestillater() {
+        return new ArrayList<>(destillater);
+    }
 }

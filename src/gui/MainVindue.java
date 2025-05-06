@@ -103,7 +103,8 @@ public class MainVindue extends Application {
         pane.add(tilføjDestillatBtn, 1, 7);
 
         tilføjDestillatBtn.setOnMouseClicked(event -> {
-
+            TilføjDestillatVindue tilføjDestillatVindue = new TilføjDestillatVindue("Tilføj Destillat", fadListView.getSelectionModel().getSelectedItem());
+            tilføjDestillatVindue.show();
         });
 
     }
