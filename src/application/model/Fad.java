@@ -13,7 +13,7 @@ public class Fad {
     private String fadType;
     private double fadStørrelse;
     private int antalGangeBrugt;
-    private ArrayList<Destillat> destillater;
+    private ArrayList<Destillat> destillater = new ArrayList<>();
     private LocalDate påfyldningsDato;
 
     public Fad(int nummer, String fadType, double fadStørrelse, int antalGangeBrugt) {

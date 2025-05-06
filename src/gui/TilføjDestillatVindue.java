@@ -3,18 +3,25 @@ package gui;
 import application.controller.Controller;
 import application.model.Destillat;
 import application.model.Fad;
-import javafx.geometry.HPos;
+import application.model.Påfyldning;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class TilføjDestillatVindue extends Stage {
 private ListView<Destillat> destillatListView = new ListView<>();
-private TextField påfyldtMængde = new TextField();
-private TextField mængdeFraDestillat = new TextField();
+private TextField resterendeMængdeTextfield = new TextField();
+private TextField mængdeFraDestillatTextfield = new TextField();
 private Fad fad;
+private Label resterendeMængdeLbl = new Label("Resterende liter");
+private Label fyldPåLbl = new Label("Fyld på");
+
+private Påfyldning påfyldning;
 
     public TilføjDestillatVindue(String title, Fad fad) {
 
@@ -25,34 +32,67 @@ private Fad fad;
         this.initContent(pane);
         Scene scene = new Scene(pane);
         this.setScene(scene);
-        pane.add(new Label(String.valueOf(fad.getFadStørrelse())),0,2);
         this.fad = fad;
+        resterendeMængdeTextfield.setText(String.valueOf(fad.getFadStørrelse()));
+        mængdeFraDestillatTextfield.setText("0");
     }
 
     private void initContent(GridPane pane) {
         pane.setAlignment(Pos.TOP_CENTER);
-        pane.setPrefHeight(500);
-        pane.setPrefWidth(300);
+//        pane.setPrefHeight(500);
+//        pane.setPrefWidth(300);
+        pane.setPadding(new Insets(35));
+        pane.setVgap(20);
 
 
         pane.add(new Label("Destillater"),0,0);
         pane.add(destillatListView, 0,1);
         destillatListView.getItems().setAll(Controller.getDestillater());
 
-
-        pane.add(påfyldtMængde,1,0);
-        pane.add(mængdeFraDestillat, 1,1);
+//        pane.add(resterendeMængdeLbl, 2,0);
+//        pane.add(resterendeMængdeTextfield,2,1);
+//
+//        pane.add(fyldPåLbl, 2,2);
+//        pane.add(mængdeFraDestillatTextfield, 2,3);
 
         Button tilføjBtn = new Button("Tilføj");
+//        pane.add(tilføjBtn, 2,4);
         tilføjBtn.setOnMouseClicked(event -> {
-            påfyldtMængde.setText(String.valueOf(Double.parseDouble(påfyldtMængde.getText()) + Controller.tilføjDestillat(fad, destillatListView.getSelectionModel().getSelectedItem(),Double.parseDouble(mængdeFraDestillat.getText()))));
+
+            try {
+                påfyldning = Controller.tilføjDestillat(fad, destillatListView.getSelectionModel().getSelectedItem(), Double.parseDouble(mængdeFraDestillatTextfield.getText()));
+                double difference = Double.parseDouble(resterendeMængdeTextfield.getText()) - Double.parseDouble(mængdeFraDestillatTextfield.getText());
+                resterendeMængdeTextfield.setText(String.valueOf(difference));
+            } catch (IllegalArgumentException e) {
+                Alert fejlAlert = new Alert(Alert.AlertType.ERROR);
+                fejlAlert.setTitle("Invalid information");
+                fejlAlert.setHeaderText("Mængde overskrider resterende volume");
+                fejlAlert.show();
+            }
         });
 
         Button plusBtn = new Button("+");
-        plusBtn.setOnMouseClicked(event -> mængdeFraDestillat.setText(String.valueOf(Integer.parseInt(mængdeFraDestillat.getText()) + 1)));
+//        pane.add(plusBtn, 3,3);
+        plusBtn.setOnMouseClicked(event -> mængdeFraDestillatTextfield.setText(String.valueOf(Integer.parseInt(mængdeFraDestillatTextfield.getText()) + 1)));
 
         Button minusBtn = new Button("-");
-        minusBtn.setOnMouseClicked(event -> mængdeFraDestillat.setText(String.valueOf(Integer.parseInt(mængdeFraDestillat.getText())- 1)));
+//        pane.add(minusBtn, 1,3);
+        minusBtn.setOnMouseClicked(event -> mængdeFraDestillatTextfield.setText(String.valueOf(Integer.parseInt(mængdeFraDestillatTextfield.getText())- 1)));
 
+        Button accepterBtn = new Button("Accepter");
+        pane.add(accepterBtn, 0,2);
+        accepterBtn.setOnMouseClicked(event -> {
+            Controller.færdiggørPåfyldning(påfyldning);
+            this.close();
+        });
+
+        resterendeMængdeTextfield.setPrefWidth(5);
+        mængdeFraDestillatTextfield.setPrefWidth(35);
+
+        HBox hBox = new HBox(minusBtn, mængdeFraDestillatTextfield, plusBtn);
+        hBox.setPadding(new Insets(35));
+        VBox vBox = new VBox(resterendeMængdeLbl, resterendeMængdeTextfield, fyldPåLbl, hBox, tilføjBtn);
+        vBox.setPadding(new Insets(35));
+        pane.add(vBox, 1,1);
     }
 }

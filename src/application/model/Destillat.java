@@ -28,4 +28,8 @@ public class Destillat {
     public double getMængdeLiter() {
         return mængdeLiter;
     }
+
+    public void setMængdeLiter(double mængdeLiter) {
+        this.mængdeLiter = mængdeLiter;
+    }
 }

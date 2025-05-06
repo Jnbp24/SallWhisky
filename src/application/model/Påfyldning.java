@@ -12,18 +12,18 @@ public class Påfyldning {
         resterendeVolume = fad.getFadStørrelse();
     }
 
-    public double tilføjDestillat(Destillat destillat, double mængdeFraDestillat) {
+    public void tilføjDestillat(Destillat destillat, double mængdeFraDestillat) {
         if (mængdeFraDestillat <= destillat.getMængdeLiter()) {
             if (resterendeVolume - destillat.getVand().getMængde() >= 0) {
                 destillater.add(destillat);
                 resterendeVolume -= destillat.getVand().getMængde();
+                destillat.setMængdeLiter(destillat.getMængdeLiter() - mængdeFraDestillat);
             } else {
                 throw new IllegalArgumentException("Ikke nok plads i fadet");
             }
         }else {
             throw new IllegalArgumentException("Ikke nok væske i destillatet");
         }
-        return mængdeFraDestillat;
     }
 
     public double fjernDestillat(Destillat destillat) {
