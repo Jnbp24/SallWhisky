@@ -27,6 +27,11 @@ public class Controller {
         Storage.tilføjVand(vand);
     }
 
+    public static double tilføjDestillat(Fad fad, Destillat destillat, double mængde){
+        Påfyldning påfyldning = new Påfyldning(fad);
+        return påfyldning.tilføjDestillat(destillat, mængde);
+    }
+
     public static void opretBatch(){
     }
 
@@ -41,6 +46,9 @@ public class Controller {
     }
     public static ArrayList<Fad> getFadList(){
         return Storage.getFade();
+    }
+    public static ArrayList<Destillat> getDestillater(){
+        return Storage.getDestillater();
     }
 }
 

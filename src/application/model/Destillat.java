@@ -6,6 +6,7 @@ public class Destillat {
     private Råvarer kornsort;
     private Råvarer vand;
     private boolean brugtTørv;
+    private double mængdeLiter;
 
     public Destillat(String nmNummer, double alkoholProcent, Råvarer kornsort, Råvarer vand, boolean brugtTørv) {
         this.nmNummer = nmNummer;
@@ -13,6 +14,7 @@ public class Destillat {
         this.kornsort = kornsort;
         this.vand = vand;
         this.brugtTørv = brugtTørv;
+        mængdeLiter = vand.getMængde();
     }
 
     public Råvarer getKornsort() {
@@ -21,5 +23,9 @@ public class Destillat {
 
     public Råvarer getVand() {
         return vand;
+    }
+
+    public double getMængdeLiter() {
+        return mængdeLiter;
     }
 }
