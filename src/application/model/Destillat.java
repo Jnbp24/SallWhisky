@@ -17,6 +17,7 @@ public class Destillat {
         mængdeLiter = vand.getMængde();
     }
 
+
     public Råvarer getKornsort() {
         return kornsort;
     }
