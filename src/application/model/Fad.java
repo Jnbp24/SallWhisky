@@ -23,6 +23,7 @@ public class Fad {
         this.antalGangeBrugt = antalGangeBrugt;
     }
 
+
     public ArrayList<Destillat> getDestillater() {
         return destillater;
     }
