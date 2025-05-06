@@ -11,9 +11,10 @@ public class Fad {
 
     private int nummer;
     private String fadType;
-    private int fadStørrelse;
+    private double fadStørrelse;
     private int antalGangeBrugt;
-    private Destillat destillat;
+    private ArrayList<Destillat> destillater;
+    private LocalDate påfyldningsDato;
 
     public Fad(int nummer, String fadType, int fadStørrelse, int antalGangeBrugt) {
         this.nummer = nummer;
@@ -22,8 +23,8 @@ public class Fad {
         this.antalGangeBrugt = antalGangeBrugt;
     }
 
-    public Destillat getDestillat() {
-        return destillat;
+    public ArrayList<Destillat> getDestillater() {
+        return destillater;
     }
 
     public String getFadType() {
@@ -31,15 +32,25 @@ public class Fad {
     }
 
     //
-//    private void tilføjDestillat(Destillat destillat) {
-//        if (!destillater.contains(destillat)) {
-//            destillater.add(destillat);
-//            this.påfyldningsDato = LocalDate.now();
-//        }
-//        else
-//            throw new IllegalArgumentException("Dette fad indeholder allerede dette destillat");
-//    }
-//
+    public void tilføjDestillat(Destillat destillat) {
+        if (!destillater.contains(destillat)) {
+            destillater.add(destillat);
+            this.påfyldningsDato = LocalDate.now();
+        }
+        else
+            throw new IllegalArgumentException("Dette fad indeholder allerede dette destillat");
+    }
+
+    public double getFadStørrelse() {
+        return fadStørrelse;
+    }
+
+    @Override
+    public String toString() {
+        return "Fad: " + nummer;
+    }
+
+    //
 //    public boolean erTapKlar() {
 //        return ChronoUnit.YEARS.between(påfyldningsDato, LocalDateTime.now()) >= 3;
 //    }

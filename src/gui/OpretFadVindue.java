@@ -65,6 +65,7 @@ public class OpretFadVindue extends Stage {
                 Alert succesAlert = new Alert(Alert.AlertType.CONFIRMATION);
                 succesAlert.setTitle("Fad oprettet!");
                 succesAlert.setHeaderText("Dit fad er nu oprettet");
+                MainVindue.updateFadList();
                 succesAlert.show();
             } catch (NumberFormatException e) {
                 if (fadNummerTxtField.getText().isEmpty() || fadTypeTxtField.getText().isEmpty() || fadStørrelseTxtField.getText().isEmpty() || antalGangeBrugtTxtField.getText().isEmpty()) {

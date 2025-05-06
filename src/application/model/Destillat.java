@@ -18,4 +18,8 @@ public class Destillat {
     public Råvarer getKornsort() {
         return kornsort;
     }
+
+    public Råvarer getVand() {
+        return vand;
+    }
 }

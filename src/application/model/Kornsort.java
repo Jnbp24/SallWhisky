@@ -4,7 +4,7 @@ public class Kornsort extends Råvarer {
     private Ristethed ristethed;
 
 
-    public Kornsort(String navn, String lokation, int mængde, Ristethed ristethed) {
+    public Kornsort(String navn, String lokation, double mængde, Ristethed ristethed) {
         super(navn, lokation, mængde);
         this.ristethed = ristethed;
     }

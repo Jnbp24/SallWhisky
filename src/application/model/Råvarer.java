@@ -4,9 +4,9 @@ public abstract class Råvarer {
 
     private String navn;
     private String lokation;
-    private int mængde;
+    private double mængde;
 
-    public Råvarer(String navn, String lokation, int mængde) {
+    public Råvarer(String navn, String lokation, double mængde) {
         this.navn = navn;
         this.lokation = lokation;
         this.mængde = mængde;
@@ -20,7 +20,7 @@ public abstract class Råvarer {
         return lokation;
     }
 
-    public int getMængde() {
+    public double getMængde() {
         return mængde;
     }
 }

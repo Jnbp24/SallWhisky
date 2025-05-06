@@ -2,8 +2,6 @@ package gui;
 
 import application.controller.Controller;
 import application.model.Kornsort;
-import application.model.Ristethed;
-import application.model.Råvarer;
 import application.model.Vand;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -12,7 +10,6 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class OpretDestillatVindue extends Stage {
@@ -36,7 +33,7 @@ public class OpretDestillatVindue extends Stage {
         Scene scene = new Scene(pane);
         this.setScene(scene);
 
-        loadKornogVandListe();
+        loadKornOgVandListe();
     }
 
     private void initContent(GridPane pane) {
@@ -134,7 +131,7 @@ public class OpretDestillatVindue extends Stage {
 
     }
 
-    private void loadKornogVandListe() {
+    private void loadKornOgVandListe() {
         kornsortList.setAll(Controller.getKornList());
         vandtypeList.setAll(Controller.getVandTypeList());
 
