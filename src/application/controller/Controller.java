@@ -27,9 +27,14 @@ public class Controller {
         Storage.tilføjVand(vand);
     }
 
-    public static double tilføjDestillat(Fad fad, Destillat destillat, double mængde){
+    public static Påfyldning tilføjDestillat(Fad fad, Destillat destillat, double mængde){
         Påfyldning påfyldning = new Påfyldning(fad);
-        return påfyldning.tilføjDestillat(destillat, mængde);
+        påfyldning.tilføjDestillat(destillat, mængde);
+        return påfyldning;
+    }
+
+    public static void færdiggørPåfyldning(Påfyldning påfyldning){
+        påfyldning.færdiggørPåfyldning();
     }
 
     public static void opretBatch(){
