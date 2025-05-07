@@ -17,4 +17,5 @@ public class Batch {
         this.batchNavn = batchNavn;
         this.fortyndelseLiter = fortyndelseLiter;
     }
+    
 }

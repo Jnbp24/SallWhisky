@@ -32,7 +32,6 @@ public class Fad {
         return fadType;
     }
 
-    //
     public void tilføjDestillat(Destillat destillat) {
         if (!destillater.contains(destillat)) {
             destillater.add(destillat);
@@ -51,17 +50,5 @@ public class Fad {
         return "Fad: " + nummer;
     }
 
-    //
-//    public boolean erTapKlar() {
-//        return ChronoUnit.YEARS.between(påfyldningsDato, LocalDateTime.now()) >= 3;
-//    }
-//
-//    public static ArrayList<Fad> findTapKlarFad(ArrayList<Fad> fade) {
-//        for (Fad fad : fade) {
-//            if (fad.erTapKlar()) {
-//                tapklarFade.add(fad);
-//            }
-//        }
-//        return tapklarFade;
-//    }
+
 }
