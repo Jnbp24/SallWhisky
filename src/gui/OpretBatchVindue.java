@@ -2,6 +2,7 @@ package gui;
 
 import application.controller.Controller;
 import application.model.Fad;
+import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -11,12 +12,16 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import storage.Storage;
 
+import javax.swing.*;
+import java.util.ArrayList;
+
 public class OpretBatchVindue extends Stage {
     private ListView<Fad> fadListView = new ListView<>();
     private TextField fadNavnTextField = new TextField();
     private TextField batchNavnTxtField = new TextField();
     private TextField batchNummerTxtField = new TextField();
     private TextField fortyndelseTxtField = new TextField();
+
 
     public OpretBatchVindue(String title) {
 
@@ -85,8 +90,7 @@ public class OpretBatchVindue extends Stage {
                     fejlAlert.setTitle("Invalid information");
                     fejlAlert.setHeaderText("Alle felter skal udfyldes");
                     fejlAlert.show();
-                }
-                else {
+                } else {
                     Alert fejlAlert = new Alert(Alert.AlertType.ERROR);
                     fejlAlert.setTitle("Invalid information");
                     fejlAlert.setHeaderText("Ugyldig information indtastet");
@@ -101,12 +105,16 @@ public class OpretBatchVindue extends Stage {
         listBox.setSpacing(5);
         pane.add(listBox, 0, 0);
 
+        Label estimatLabel = new Label("Antal flaske estimat: ");
+        TextField estimatTxtfield = new TextField();
+        pane.add(estimatTxtfield, 2, 3);
+        estimatTxtfield.setEditable(false);
+
 
         VBox tapningVBox = new VBox(fortyndelseLabel, fortyndelseBox, lavTapningBtn);
-        VBox informationBox = new VBox(fadNavnLabel, fadNavnTextField, batchNavn, batchNavnTxtField, batchNummer, batchNummerTxtField, tapningVBox);
+        VBox informationBox = new VBox(fadNavnLabel, fadNavnTextField, batchNavn, batchNavnTxtField, batchNummer, batchNummerTxtField, tapningVBox, estimatLabel, estimatTxtfield);
         informationBox.setSpacing(7.5);
         pane.add(informationBox, 2, 0);
-
 
     }
 }
