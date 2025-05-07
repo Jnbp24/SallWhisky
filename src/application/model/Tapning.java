@@ -9,9 +9,11 @@ public class Tapning {
         this.fad = fad;
     }
 
+    public double udregnFlaskeEstimat(double fortyndelsesLiter, double flaskeStørrelse) {
+        return (fad.getMængdePåfyldt() + fortyndelsesLiter) / flaskeStørrelse;
+    }
 
-
-    public Batch opretBatch(Fad fad, String batchNavn, int batchNummer, double fortyndelsesLiter){
+    public Batch opretBatch(Fad fad, String batchNavn, int batchNummer, double fortyndelsesLiter) {
         ArrayList<Råvarer> kornsorter = new ArrayList<>();
         for (Destillat destillat : fad.getDestillater()) {
             kornsorter.add(destillat.getKornsort());

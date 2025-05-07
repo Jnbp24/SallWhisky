@@ -6,6 +6,7 @@ public class Påfyldning {
     private double resterendeVolume;
     private Fad fad;
     private ArrayList<Destillat> destillater = new ArrayList<>();
+    private double mængdeLiterFraAlleDestillater = 0;
 
     public Påfyldning(Fad fad) {
         this.fad = fad;
@@ -18,6 +19,7 @@ public class Påfyldning {
                 destillater.add(destillat);
                 resterendeVolume -= destillat.getVand().getMængde();
                 destillat.setMængdeLiter(destillat.getMængdeLiter() - mængdeFraDestillat);
+                mængdeLiterFraAlleDestillater += mængdeFraDestillat;
             } else {
                 throw new IllegalArgumentException("Ikke nok plads i fadet");
             }
@@ -39,6 +41,7 @@ public class Påfyldning {
             for (Destillat destillat : destillater) {
                 fad.tilføjDestillat(destillat);
             }
+            fad.setMængdePåfyldt(mængdeLiterFraAlleDestillater);
         }
     }
 }
