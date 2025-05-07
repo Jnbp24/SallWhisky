@@ -37,7 +37,7 @@ public class MainVindue extends Application {
         pane.setHgap(75);
         pane.setVgap(35);
 
-        pane.setGridLinesVisible(true);
+//        pane.setGridLinesVisible(true);
 
 
         //Finder resources folderen, derefter findes billeder folderen for så at finde png'en
@@ -86,9 +86,16 @@ public class MainVindue extends Application {
 
 
         Button opretKornBtn = new Button("Opret Korn");
-        pane.add(opretKornBtn, 1, 6);
-//        GridPane.setHalignment(opretKornBtn, HPos.CENTER);
-//        GridPane.setValignment(opretKornBtn, VPos.CENTER);
+        pane.add(opretKornBtn, 2, 5);
+
+        Button opretBatchBtn = new Button("Opret batch");
+        pane.add(opretBatchBtn,2,3);
+        opretBatchBtn.setOnMouseClicked(event -> {
+            OpretBatchVindue batchVindue= new OpretBatchVindue("Opret Batch");
+            batchVindue.show();
+        });
+
+
 
         opretKornBtn.setOnMouseClicked(event -> {
             OpretKornVindue kornVindue = new OpretKornVindue("Opret Korn");

@@ -11,11 +11,12 @@ public class Tapning {
 
 
 
-    public void opretBatch(Fad fad, String batchNavn, int batchNummer, double fortyndelsesLiter){
+    public Batch opretBatch(Fad fad, String batchNavn, int batchNummer, double fortyndelsesLiter){
         ArrayList<Råvarer> kornsorter = new ArrayList<>();
         for (Destillat destillat : fad.getDestillater()) {
             kornsorter.add(destillat.getKornsort());
         }
-        Batch batch = new Batch(kornsorter, fad.getFadType(), batchNummer, batchNavn, fortyndelsesLiter);
+        return new Batch(kornsorter, fad.getFadType(), batchNummer, batchNavn, fortyndelsesLiter);
+
     }
 }
