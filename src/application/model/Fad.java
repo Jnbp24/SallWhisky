@@ -16,6 +16,7 @@ public class Fad implements Information{
     private ArrayList<Destillat> destillater = new ArrayList<>();
     private LocalDate påfyldningsDato;
     private double mængdePåfyldt;
+    private String påfyldtAf;
 
     public Fad(int nummer, String fadType, double fadStørrelse, int antalGangeBrugt) {
         this.nummer = nummer;
@@ -75,5 +76,9 @@ public class Fad implements Information{
 
     public void setMængdePåfyldt(double mængdePåfyldt) {
         this.mængdePåfyldt = mængdePåfyldt;
+    }
+
+    public void setPåfyldtAf(String påfyldtAf) {
+        this.påfyldtAf = påfyldtAf;
     }
 }

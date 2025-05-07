@@ -16,8 +16,9 @@ class TapningTest {
     void udregnFlaskeEstimat() {
         Fad fad = new Fad(2, "Sherry", 20, 2);
         Destillat destillat = new Destillat("NM10", 60, new Kornsort("s", "s", 23, Ristethed.IKKE_RISTET), new Vand("nanv", "avnd", 5), true);
+        Medarbejder medarbejder = new Medarbejder(1, "Sammi");
         Påfyldning påfyldning = Controller.tilføjDestillat(fad, destillat, 5);
-        Controller.færdiggørPåfyldning(påfyldning);
+        Controller.færdiggørPåfyldning(påfyldning, medarbejder);
         Tapning tapning = new Tapning(fad);
         double actual = tapning.udregnFlaskeEstimat(10, 10);
 
