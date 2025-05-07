@@ -1,7 +1,7 @@
 package gui;
 
 import application.controller.Controller;
-import application.model.Fad;
+import application.model.*;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -17,6 +17,7 @@ public class MainVindue extends Application {
     public void start(Stage stage) throws Exception {
         stage.setTitle("Sall Whisky");
         GridPane pane = new GridPane();
+        initStorage();
         this.initContent(pane);
 
 
@@ -129,6 +130,21 @@ public class MainVindue extends Application {
 
     public static void updateFadList() {
         fadListView.getItems().setAll(Controller.getFadList());
+    }
+
+    public static void initStorage(){
+        Controller.opretMedarbejder(1, "Sammi");
+        Controller.opretMedarbejder(2, "Sara");
+        Controller.opretMedarbejder(3, "Jonas");
+
+        Fad fad1 = Controller.opretFad(1,"eg", 20,0);
+        Fad fad2 =Controller.opretFad(2,"bøg", 10,0);
+
+        Kornsort kornsort = Controller.opretKornsort("byg", "århus", 10, Ristethed.IKKE_RISTET);
+
+        Vand vand = Controller.opretVand("Kildevand", "Århus", 20);
+
+        Destillat destillat = Controller.opretDestillat("NM10", 45, kornsort, vand, false);
     }
 
 }

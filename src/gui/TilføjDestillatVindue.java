@@ -3,6 +3,7 @@ package gui;
 import application.controller.Controller;
 import application.model.Destillat;
 import application.model.Fad;
+import application.model.Medarbejder;
 import application.model.Påfyldning;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -20,6 +21,7 @@ private TextField mængdeFraDestillatTextfield = new TextField();
 private Fad fad;
 private Label resterendeMængdeLbl = new Label("Resterende liter");
 private Label fyldPåLbl = new Label("Fyld på");
+private ListView<Medarbejder> medarbejderListView = new ListView<>();
 
 private Påfyldning påfyldning;
 
@@ -48,6 +50,10 @@ private Påfyldning påfyldning;
         pane.add(new Label("Destillater"),0,0);
         pane.add(destillatListView, 0,1);
         destillatListView.getItems().setAll(Controller.getDestillater());
+
+        pane.add(new Label("Vælg medarbejder til påfyldning"),2,0);
+        pane.add(medarbejderListView, 2,1);
+        medarbejderListView.getItems().setAll(Controller.getMedarbejdere());
 
 //        pane.add(resterendeMængdeLbl, 2,0);
 //        pane.add(resterendeMængdeTextfield,2,1);
@@ -82,7 +88,7 @@ private Påfyldning påfyldning;
         Button accepterBtn = new Button("Accepter");
         pane.add(accepterBtn, 0,2);
         accepterBtn.setOnMouseClicked(event -> {
-            Controller.færdiggørPåfyldning(påfyldning);
+            Controller.færdiggørPåfyldning(påfyldning, medarbejderListView.getSelectionModel().getSelectedItem());
             this.close();
         });
 

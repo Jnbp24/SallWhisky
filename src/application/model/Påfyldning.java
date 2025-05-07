@@ -36,12 +36,13 @@ public class Påfyldning {
         return resterendeVolume;
     }
 
-    public void færdiggørPåfyldning() {
+    public void færdiggørPåfyldning(Medarbejder medarbejder) {
         if (!destillater.isEmpty()) {
             for (Destillat destillat : destillater) {
                 fad.tilføjDestillat(destillat);
             }
             fad.setMængdePåfyldt(mængdeLiterFraAlleDestillater);
+            fad.setPåfyldtAf(medarbejder.getNavn());
         }
     }
 }

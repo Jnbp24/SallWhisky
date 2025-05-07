@@ -7,24 +7,28 @@ import java.util.ArrayList;
 
 public class Controller {
 
-    public static void opretFad(int nummer, String fadtype, int fadStørrelse, int AntalGangeBrugt) {
+    public static Fad opretFad(int nummer, String fadtype, int fadStørrelse, int AntalGangeBrugt) {
         Fad fad = new Fad(nummer, fadtype, fadStørrelse, AntalGangeBrugt);
         Storage.tilføjFad(fad);
+        return fad;
     }
 
-    public static void opretDestillat(String nmNummer, double alkoholProcent, Kornsort kornsort, Vand vand, boolean brugtTørv) {
+    public static Destillat opretDestillat(String nmNummer, double alkoholProcent, Kornsort kornsort, Vand vand, boolean brugtTørv) {
         Destillat destillat = new Destillat(nmNummer, alkoholProcent, kornsort, vand, brugtTørv);
         Storage.tilføjDestillat(destillat);
+        return destillat;
     }
 
-    public static void opretKornsort(String navn, String lokation, int mængde, Ristethed ristethed) {
+    public static Kornsort opretKornsort(String navn, String lokation, int mængde, Ristethed ristethed) {
         Kornsort kornsort = new Kornsort(navn, lokation, mængde, ristethed);
         Storage.tilføjKornsort(kornsort);
+        return kornsort;
     }
 
-    public static void opretVand(String navn, String lokation, int mængde) {
+    public static Vand opretVand(String navn, String lokation, int mængde) {
         Vand vand = new Vand(navn, lokation, mængde);
         Storage.tilføjVand(vand);
+        return vand;
     }
 
     public static Påfyldning tilføjDestillat(Fad fad, Destillat destillat, double mængde) {
@@ -33,13 +37,19 @@ public class Controller {
         return påfyldning;
     }
 
-    public static void færdiggørPåfyldning(Påfyldning påfyldning) {
-        påfyldning.færdiggørPåfyldning();
+    public static void færdiggørPåfyldning(Påfyldning påfyldning, Medarbejder medarbejder) {
+        påfyldning.færdiggørPåfyldning(medarbejder);
     }
 
     public static void opretBatch(Fad fad, String batchNavn, int batchNummer, double fortyndelsesLiter) {
         Tapning batch = new Tapning(fad);
         Storage.tilføjBatch(batch.opretBatch(fad, batchNavn, batchNummer, fortyndelsesLiter));
+    }
+
+    public static Medarbejder opretMedarbejder(int nummer, String navn){
+        Medarbejder medarbejder = new Medarbejder(nummer, navn);
+        Storage.tilføjMedarbejder(medarbejder);
+        return medarbejder;
     }
 
 
@@ -64,5 +74,7 @@ public class Controller {
     public static ArrayList<Destillat> getDestillater() {
         return Storage.getDestillater();
     }
+
+    public static ArrayList<Medarbejder> getMedarbejdere(){return Storage.getMedarbejderer();}
 }
 
