@@ -43,6 +43,12 @@ public class Controller {
     }
 
 
+
+
+
+
+
+
     public static ArrayList<Kornsort> getKornList() {
         return Storage.getKornsorter();
     }

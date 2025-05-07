@@ -7,7 +7,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Fad {
+public class Fad implements Information{
 
     private int nummer;
     private String fadType;
@@ -25,13 +25,6 @@ public class Fad {
     }
 
 
-    public ArrayList<Destillat> getDestillater() {
-        return destillater;
-    }
-
-    public String getFadType() {
-        return fadType;
-    }
 
     public void tilføjDestillat(Destillat destillat) {
         if (!destillater.contains(destillat)) {
@@ -42,8 +35,33 @@ public class Fad {
             throw new IllegalArgumentException("Dette fad indeholder allerede dette destillat");
     }
 
+    public ArrayList<Destillat> getDestillater() {
+        return destillater;
+    }
+
+    public String getFadType() {
+        return fadType;
+    }
     public double getFadStørrelse() {
         return fadStørrelse;
+    }
+
+    @Override
+    public String getId() {
+        return "F" + nummer;
+    }
+
+    @Override
+    public String getDescription() {
+        return "Fadtype: " + fadType;
+    }
+
+    public LocalDate getPåfyldningsDato() {
+        return påfyldningsDato;
+    }
+
+    public int getAntalGangeBrugt() {
+        return antalGangeBrugt;
     }
 
     @Override
