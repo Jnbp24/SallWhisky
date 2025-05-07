@@ -15,6 +15,7 @@ public class Fad {
     private int antalGangeBrugt;
     private ArrayList<Destillat> destillater = new ArrayList<>();
     private LocalDate påfyldningsDato;
+    private double mængdePåfyldt;
 
     public Fad(int nummer, String fadType, double fadStørrelse, int antalGangeBrugt) {
         this.nummer = nummer;
@@ -50,5 +51,11 @@ public class Fad {
         return "Fad: " + nummer;
     }
 
+    public double getMængdePåfyldt() {
+        return mængdePåfyldt;
+    }
 
+    public void setMængdePåfyldt(double mængdePåfyldt) {
+        this.mængdePåfyldt = mængdePåfyldt;
+    }
 }
