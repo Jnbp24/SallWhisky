@@ -1,6 +1,6 @@
 package application.model;
 
-public class Destillat {
+public class Destillat implements Information {
     private String nmNummer;
     private double alkoholProcent;
     private Råvarer kornsort;
@@ -32,5 +32,15 @@ public class Destillat {
 
     public void setMængdeLiter(double mængdeLiter) {
         this.mængdeLiter = mængdeLiter;
+    }
+
+    @Override
+    public String getId() {
+        return nmNummer;
+    }
+
+    @Override
+    public String getDescription() {
+        return "Alkohol Procent: " + alkoholProcent + "%";
     }
 }

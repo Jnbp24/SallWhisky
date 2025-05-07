@@ -2,14 +2,9 @@ package gui;
 
 import application.controller.Controller;
 import application.model.Fad;
-import application.model.Kornsort;
 import javafx.application.Application;
-import javafx.geometry.HPos;
-import javafx.geometry.Pos;
-import javafx.geometry.VPos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
@@ -24,6 +19,7 @@ public class MainVindue extends Application {
         GridPane pane = new GridPane();
         this.initContent(pane);
 
+
         Scene scene = new Scene(pane);
         stage.setScene(scene);
         stage.show();
@@ -31,13 +27,25 @@ public class MainVindue extends Application {
 
 
     private void initContent(GridPane pane) {
-//        pane.setAlignment(Pos.TOP_CENTER);
-        pane.setPrefWidth(1260);
-        pane.setPrefHeight(800);
-        pane.setHgap(75);
-        pane.setVgap(35);
+        //        pane.setAlignment(Pos.TOP_CENTER);
+        GridPane mainTabContent = new GridPane();
+        mainTabContent.setPrefWidth(1260);
+        mainTabContent.setPrefHeight(800);
+        mainTabContent.setHgap(75);
+        mainTabContent.setVgap(35);
+        //        pane.setGridLinesVisible(true);
 
-//        pane.setGridLinesVisible(true);
+        TabPane tabPane = new TabPane();
+
+        Tab mainTab = new Tab("Hovedmenu");
+        mainTab.setClosable(false);
+        mainTabContent.setPrefWidth(1260);
+        mainTabContent.setPrefHeight(800);
+        mainTabContent.setHgap(75);
+        mainTabContent.setVgap(35);
+
+
+        mainTabContent.add(tabPane, 0, 0, 3, 1);
 
 
         //Finder resources folderen, derefter findes billeder folderen for så at finde png'en
@@ -46,13 +54,11 @@ public class MainVindue extends Application {
         SallImageView.setFitWidth(250);
         SallImageView.setFitHeight(250);
         SallImageView.setPreserveRatio(true);
+        mainTabContent.add(SallImageView, 1, 1, 2, 2);
 
-        pane.add(SallImageView, 1, 1, 2, 2);
 
         Button opretFadBtn = new Button("Opret Fad");
-        pane.add(opretFadBtn, 1, 3);
-//        GridPane.setHalignment(opretFadBtn, HPos.CENTER);
-//        GridPane.setValignment(opretFadBtn, VPos.CENTER);
+        mainTabContent.add(opretFadBtn, 1, 3);
 
         opretFadBtn.setOnMouseClicked(event -> {
 
@@ -63,9 +69,7 @@ public class MainVindue extends Application {
 
 
         Button opretDestillatBtn = new Button("Opret Destillat");
-        pane.add(opretDestillatBtn, 1, 4);
-//        GridPane.setHalignment(opretDestillatBtn, HPos.CENTER);
-//        GridPane.setValignment(opretDestillatBtn, VPos.CENTER);
+        mainTabContent.add(opretDestillatBtn, 1, 4);
 
         opretDestillatBtn.setOnMouseClicked(event -> {
             OpretDestillatVindue destillatVindue = new OpretDestillatVindue("Opret Destillat");
@@ -74,9 +78,7 @@ public class MainVindue extends Application {
 
 
         Button opretVandBtn = new Button("Opret Vand");
-        pane.add(opretVandBtn, 1, 5);
-//        GridPane.setHalignment(opretVandBtn, HPos.CENTER);
-//        GridPane.setValignment(opretVandBtn, VPos.CENTER);
+        mainTabContent.add(opretVandBtn, 1, 5);
 
         opretVandBtn.setOnMouseClicked(event -> {
             OpretVandVindue vandVindue = new OpretVandVindue("Opret Råvare");
@@ -86,15 +88,14 @@ public class MainVindue extends Application {
 
 
         Button opretKornBtn = new Button("Opret Korn");
-        pane.add(opretKornBtn, 2, 5);
+        mainTabContent.add(opretKornBtn, 2, 5);
 
         Button opretBatchBtn = new Button("Opret batch");
-        pane.add(opretBatchBtn,2,3);
+        mainTabContent.add(opretBatchBtn, 2, 3);
         opretBatchBtn.setOnMouseClicked(event -> {
-            OpretBatchVindue batchVindue= new OpretBatchVindue("Opret Batch");
+            OpretBatchVindue batchVindue = new OpretBatchVindue("Opret Batch");
             batchVindue.show();
         });
-
 
 
         opretKornBtn.setOnMouseClicked(event -> {
@@ -102,19 +103,29 @@ public class MainVindue extends Application {
             kornVindue.show();
         });
 
-        pane.add(fadListView, 0, 8);
-//        GridPane.setHalignment(fadListView, HPos.LEFT);
+        mainTabContent.add(fadListView, 0, 8);
         updateFadList();
 
         Button tilføjDestillatBtn = new Button("Tilføj Destillat");
-        pane.add(tilføjDestillatBtn, 1, 7);
+        mainTabContent.add(tilføjDestillatBtn, 1, 7);
 
         tilføjDestillatBtn.setOnMouseClicked(event -> {
             TilføjDestillatVindue tilføjDestillatVindue = new TilføjDestillatVindue("Tilføj Destillat", fadListView.getSelectionModel().getSelectedItem());
             tilføjDestillatVindue.show();
         });
 
+        mainTab.setContent(mainTabContent);
+        tabPane.getTabs().add(mainTab);
+
+        OpretBatchInfo batchInfoTab = new OpretBatchInfo("Batch og Fad historik");
+        Tab batchTab = new Tab("Batch info", batchInfoTab.getScene().getRoot());
+        batchTab.setClosable(false);
+        tabPane.getTabs().add(batchTab);
+        pane.add(tabPane, 0, 0, 3, 1);
+
+
     }
+
 
     public static void updateFadList() {
         fadListView.getItems().setAll(Controller.getFadList());

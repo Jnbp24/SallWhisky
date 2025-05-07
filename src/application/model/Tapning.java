@@ -19,4 +19,8 @@ public class Tapning {
         return new Batch(kornsorter, fad.getFadType(), batchNummer, batchNavn, fortyndelsesLiter);
 
     }
+
+    public Fad getFad() {
+        return fad;
+    }
 }
