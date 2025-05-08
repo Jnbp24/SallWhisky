@@ -14,13 +14,19 @@ public class Tapning {
         return (fad.getMængdePåfyldt() + fortyndelsesLiter) / flaskeStørrelse;
     }
 
-    public Batch opretBatch(Fad fad, String batchNavn, int batchNummer, double fortyndelsesLiter) {
+    public Batch opretBatch(Fad fad, String batchNavn, int batchNummer, double fortyndelsesLiter, double flaskeStørrelse) {
         ArrayList<Råvarer> kornsorter = new ArrayList<>();
         for (Destillat destillat : fad.getDestillater()) {
             kornsorter.add(destillat.getKornsort());
         }
-        return new Batch(kornsorter, fad.getType(), batchNummer, batchNavn, fortyndelsesLiter);
+        int antalFlasker = (int) udregnFlaskeEstimat(fortyndelsesLiter, flaskeStørrelse);
+        Batch batch = new Batch(kornsorter, fad.getType(), batchNummer, batchNavn, fortyndelsesLiter);
 
+        for (int i = 0; i < antalFlasker; i++) {
+            Flaske flaske = new Flaske(flaskeStørrelse, batchNavn, i + 1);
+            batch.tilføjFlaske(flaske);
+        }
+        return batch;
     }
 
     public Fad getFad() {

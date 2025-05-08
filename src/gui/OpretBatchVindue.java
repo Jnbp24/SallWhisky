@@ -3,6 +3,7 @@ package gui;
 import application.controller.Controller;
 import application.model.Fad;
 import application.model.Information;
+import application.model.Tapning;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -22,9 +23,12 @@ public class OpretBatchVindue extends Stage {
     private TextField fadNavnTextField = new TextField();
     private TextField batchNavnTxtField = new TextField();
     private TextField batchNummerTxtField = new TextField();
-    private TextField fortyndelseTxtField = new TextField();
+    private TextField fortyndelseTxtField = new TextField("0");
     private TableView<Information> informationTableView = new TableView<>();
-    private ObservableList<String> flaskerListe = FXCollections.observableArrayList();
+    private ObservableList<Double> flaskerListe = FXCollections.observableArrayList();
+    private TextField estimatTxtfield = new TextField();
+    private ComboBox flaskeCombobox;
+    private Tapning tapning;
 
 
     public OpretBatchVindue(String title) {
@@ -52,6 +56,8 @@ public class OpretBatchVindue extends Stage {
 
         fadListView.setOnMouseClicked(event -> {
             fadNavnTextField.setText(String.valueOf(fadListView.getSelectionModel().getSelectedItem()));
+            tapning = new Tapning(fadListView.getSelectionModel().getSelectedItem());
+            updaterFlaskeestimat();
         });
 
         Label fadNavnLabel = new Label("Fad: ");
@@ -65,44 +71,38 @@ public class OpretBatchVindue extends Stage {
         Label batchNummer = new Label("Batch Nummer: ");
         batchNummerTxtField.setPromptText("Indtast nummer på batch");
 
+        flaskerListe.add(1.0);
+        flaskerListe.add(1.5);
+        flaskerListe.add(2.0);
+
+        flaskeCombobox = new ComboBox<>(flaskerListe);
+        flaskeCombobox.setPromptText("Vælg flaskestørrelse: ");
+        flaskeCombobox.setValue(1.0);
+
         Button minusBtn = new Button("-");
         minusBtn.setOnMouseClicked(event -> {
-            try {
-                int værdi = Integer.parseInt(fortyndelseTxtField.getText());
-                fortyndelseTxtField.setText((String.valueOf(værdi - 1)));
-            } catch (NumberFormatException e) {
-                Alert udfyldBoxAlert = new Alert(Alert.AlertType.ERROR);
-                udfyldBoxAlert.setTitle("Indsæt fortyndelsesliter.");
-                udfyldBoxAlert.setHeaderText("Indtast et gyldigt tal.");
-                udfyldBoxAlert.show();
+            if (Integer.parseInt(fortyndelseTxtField.getText()) - 1 >= 0){
+                fortyndelseTxtField.setText(String.valueOf(Integer.parseInt(fortyndelseTxtField.getText()) - 1));
+                updaterFlaskeestimat();
             }
         });
+
         fortyndelseTxtField.setPrefWidth(40);
         Button plusBtn = new Button("+");
         plusBtn.setOnMouseClicked(event -> {
-            try {
-                int værdi = Integer.parseInt(fortyndelseTxtField.getText());
-                fortyndelseTxtField.setText((String.valueOf(værdi + 1)));
-            } catch (NumberFormatException e) {
-                Alert udfyldBoxAlert = new Alert(Alert.AlertType.ERROR);
-                udfyldBoxAlert.setTitle("Indsæt fortyndelsesliter.");
-                udfyldBoxAlert.setHeaderText("Indtast et gyldigt tal.");
-                udfyldBoxAlert.show();
-            }
+            fortyndelseTxtField.setText(String.valueOf(Integer.parseInt(fortyndelseTxtField.getText()) + 1));
+            updaterFlaskeestimat();
         });
 
-
-//        fortyndelseTxtField.setText(String.valueOf(Integer.parseInt(fortyndelseTxtField.getText()) + 1)));
-
+        flaskeCombobox.setOnAction(event -> updaterFlaskeestimat());
 
         Label fortyndelseLabel = new Label("Fortyndelse i liter: ");
-
 
         Button lavTapningBtn = new Button("Foretag tapning");
         lavTapningBtn.setOnMouseClicked(event -> {
 
             try {
-                Controller.opretBatch(fadListView.getSelectionModel().getSelectedItem(), batchNavnTxtField.getText(), Integer.parseInt(batchNummerTxtField.getText()), Double.parseDouble(fortyndelseTxtField.getText()));
+                Controller.opretBatch(fadListView.getSelectionModel().getSelectedItem(), batchNavnTxtField.getText(), Integer.parseInt(batchNummerTxtField.getText()), Double.parseDouble(fortyndelseTxtField.getText()), flaskerListe.get(flaskeCombobox.getSelectionModel().getSelectedIndex()));
                 informationTableView.refresh();
                 Alert succesAlert = new Alert(Alert.AlertType.CONFIRMATION);
                 succesAlert.setTitle("Batch oprettet!");
@@ -131,22 +131,17 @@ public class OpretBatchVindue extends Stage {
         pane.add(listBox, 0, 0);
 
         Label estimatLabel = new Label("Antal flaske estimat: ");
-        TextField estimatTxtfield = new TextField();
         pane.add(estimatTxtfield, 2, 3);
         estimatTxtfield.setEditable(false);
-
-        flaskerListe.add("1L flaske");
-        flaskerListe.add("1.5L flaske");
-        flaskerListe.add("2L flaske");
-
-        ComboBox flaskeCombobox = new ComboBox<>(flaskerListe);
-        flaskeCombobox.setPromptText("Vælg flaskestørrelse: ");
-
 
         VBox tapningVBox = new VBox(fortyndelseLabel, fortyndelseBox);
         VBox informationBox = new VBox(fadNavnLabel, fadNavnTextField, batchNavn, batchNavnTxtField, batchNummer, batchNummerTxtField, tapningVBox, estimatLabel, estimatTxtfield, flaskeCombobox, lavTapningBtn);
         informationBox.setSpacing(7.5);
         pane.add(informationBox, 2, 0);
+    }
+
+    public void updaterFlaskeestimat(){
+        estimatTxtfield.setText(String.valueOf(Controller.udregnFlaskeestimat(tapning, Double.parseDouble(fortyndelseTxtField.getText()), flaskerListe.get(flaskeCombobox.getSelectionModel().getSelectedIndex()))));
     }
 }
 

@@ -10,6 +10,7 @@ public class Batch implements Information {
     private String batchNavn;
     private double fortyndelseLiter;
     private Tapning tapning;
+    private ArrayList<Flaske> flasker = new ArrayList<>();
 
     public Batch(ArrayList<Råvarer> kornsorter, String fadtype, int batchNummer, String batchNavn, double fortyndelseLiter) {
         this.kornsorter = kornsorter;
@@ -19,6 +20,13 @@ public class Batch implements Information {
         this.fortyndelseLiter = fortyndelseLiter;
     }
 
+    public int getBatchNummer() {
+        return batchNummer;
+    }
+
+    public String getBatchNavn() {
+        return batchNavn;
+    }
 
     @Override
     public String getId() {
@@ -28,5 +36,11 @@ public class Batch implements Information {
     @Override
     public String getBeskrivelse() {
         return "Batch navn: " + batchNavn;
+    }
+
+    public void tilføjFlaske(Flaske flaske){
+        if (!flasker.contains(flaske)){
+            flasker.add(flaske);
+        }
     }
 }

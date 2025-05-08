@@ -1,13 +1,13 @@
 package application.model;
 
 public class Flaske {
-    private int flaskeStørrelseILiter;
+    private double flaskeStørrelseILiter;
     private int flaskeID;
-    private Batch batch;
+    private String batchNavn;
 
-
-
-
-
-
+    public Flaske(double flaskeStørrelseILiter,String batchNavn, int flaskeID) {
+        this.flaskeStørrelseILiter = flaskeStørrelseILiter;
+        this.flaskeID = flaskeID;
+        this.batchNavn = batchNavn;
+    }
 }

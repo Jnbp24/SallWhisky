@@ -41,15 +41,19 @@ public class Controller {
         påfyldning.færdiggørPåfyldning(medarbejder);
     }
 
-    public static void opretBatch(Fad fad, String batchNavn, int batchNummer, double fortyndelsesLiter) {
+    public static void opretBatch(Fad fad, String batchNavn, int batchNummer, double fortyndelsesLiter, double flaskeStørrelse) {
         Tapning batch = new Tapning(fad);
-        Storage.tilføjBatch(batch.opretBatch(fad, batchNavn, batchNummer, fortyndelsesLiter));
+        Storage.tilføjBatch(batch.opretBatch(fad, batchNavn, batchNummer, fortyndelsesLiter, flaskeStørrelse));
     }
 
     public static Medarbejder opretMedarbejder(int nummer, String navn){
         Medarbejder medarbejder = new Medarbejder(nummer, navn);
         Storage.tilføjMedarbejder(medarbejder);
         return medarbejder;
+    }
+
+    public static double udregnFlaskeestimat(Tapning tapning, double fortyndelsesLiter, double flaskeStørrelse){
+        return tapning.udregnFlaskeEstimat(fortyndelsesLiter, flaskeStørrelse);
     }
 
 
