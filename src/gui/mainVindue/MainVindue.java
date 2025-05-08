@@ -1,30 +1,33 @@
 package gui.mainVindue;
 
-import application.controller.Controller;
 import application.model.*;
-import gui.Knapper;
+import gui.elements.Billeder;
+import gui.elements.Knapper;
 import gui.Tabs.BatchTab;
 import gui.Tabs.DestillatTab;
 import gui.Tabs.FadTab;
 import javafx.application.Application;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.GridPane;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import storage.Storage;
 
 public class MainVindue extends Application {
-    private static ListView<Fad> fadListView = new ListView<>();
 
     @Override
     public void start(Stage stage) throws Exception {
         stage.setTitle("Sall Whisky");
         GridPane pane = new GridPane();
+        pane.setPrefSize(600, 600);
+
+
         this.initContent(pane);
         this.initStorage();
-        updateFadList();
 
 
         Scene scene = new Scene(pane);
@@ -61,36 +64,57 @@ public class MainVindue extends Application {
     private GridPane mainTabContent() {
 
         GridPane mainTabContent = new GridPane();
-        mainTabContent.setPrefWidth(1260);
-        mainTabContent.setPrefHeight(800);
-        mainTabContent.setHgap(75);
-        mainTabContent.setVgap(35);
+        mainTabContent.setVgap(20);
+        mainTabContent.setHgap(20);
+
+        Label overskriftLabel = new Label("Lager styrings system");
+        overskriftLabel.setFont(Font.font("Dialog", 35));
+        overskriftLabel.setTextFill(Color.BLACK);
+
+        HBox headerHbox = new HBox();
+        headerHbox.setStyle("-fx-background-color: orange;" + "-fx-padding: 10; " + "-fx-border-color: black; " + "-fx-border-width: 3; " + "-fx-border-radius: 0; " + "-fx-background-radius: 0;");
+        headerHbox.setAlignment(Pos.CENTER);
+
+        ImageView headerBillede = new Billeder().opretBillede("/billeder/SallLogo.png", 150, 150);
+        HBox venstreOverskriftBox = new HBox(headerBillede);
+        venstreOverskriftBox.setAlignment(Pos.CENTER_LEFT);
+
+        HBox centerOverskriftBox = new HBox(overskriftLabel);
+        centerOverskriftBox.setAlignment(Pos.CENTER);
+        HBox.setHgrow(centerOverskriftBox, Priority.ALWAYS);
+
+        headerHbox.getChildren().addAll(venstreOverskriftBox, centerOverskriftBox);
+        GridPane.setHgrow(headerHbox, Priority.ALWAYS);
+        headerHbox.setMaxWidth(Double.MAX_VALUE);
+        mainTabContent.add(headerHbox, 0, 1);
+
+        //        VBox forsideBilleder = new VBox();
+        //        ImageView glødBillede = new Billeder().opretBillede("/billeder/GlødWhisky.png",150,150);
+        //
+        //        forsideBilleder.getChildren().addAll(glødBillede);
+        //        mainTabContent.add(forsideBilleder,0,2);
+
+        Label lagerbeholdningsLabel = new Label("Her kan du se den nuværende lagerbeholdning");
+        Label lagerhistorikLabel = new Label("Her kan du se en historik over hvad der tidligere har været på lager");
 
 
-        Image SallImage = new Image(getClass().getResourceAsStream("/billeder/SallLogo.png"));
-        ImageView SallImageView = new ImageView(SallImage);
-        SallImageView.setFitWidth(250);
-        SallImageView.setFitHeight(250);
-        SallImageView.setPreserveRatio(true);
-        mainTabContent.add(SallImageView, 1, 1, 2, 2);
+        VBox lagerbeholdningBox = new VBox();
+        lagerbeholdningBox.getChildren().addAll(Knapper.OpretLagerbeholdningButton(), lagerbeholdningsLabel);
+        lagerbeholdningBox.setAlignment(Pos.CENTER);
+        lagerbeholdningBox.setSpacing(10);
 
+        VBox lagerhistorikBox = new VBox();
+        lagerhistorikBox.getChildren().addAll(Knapper.OpretLagerHistorikButton(), lagerhistorikLabel);
+        lagerhistorikBox.setAlignment(Pos.CENTER);
+        lagerhistorikBox.setSpacing(10);
 
-        mainTabContent.add(Knapper.OpretFadButton(), 1, 3);
-        mainTabContent.add(Knapper.OpretDestillatButton(), 1, 4);
-        mainTabContent.add(Knapper.OpretVandButton(), 1, 5);
-        mainTabContent.add(Knapper.OpretKornButton(), 2, 5);
-        mainTabContent.add(Knapper.OpretBatchButton(), 2, 3);
-        mainTabContent.add(Knapper.TilføjDestillatButton(fadListView), 1, 7);
-
-
-        mainTabContent.add(fadListView, 0, 4);
-        updateFadList();
+        VBox forsideKnapper = new VBox();
+        forsideKnapper.getChildren().addAll(lagerbeholdningBox, lagerhistorikBox);
+        forsideKnapper.setAlignment(Pos.CENTER);
+        forsideKnapper.setSpacing(45);
+        mainTabContent.add(forsideKnapper, 0, 2);
 
         return mainTabContent;
-    }
-
-    public static void updateFadList() {
-        fadListView.getItems().setAll(Controller.getFadList());
     }
 
     public static void initStorage() {

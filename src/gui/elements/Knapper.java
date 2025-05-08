@@ -1,7 +1,8 @@
-package gui;
+package gui.elements;
 
 import application.model.Fad;
 import gui.OpretVinduer.*;
+import gui.TilføjDestillatVindue;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 
@@ -59,5 +60,15 @@ public class Knapper {
             tilføjDestillatVindue.show();
         });
         return tilføjDestillatBtn;
+    }
+
+    public static Button OpretLagerbeholdningButton() {
+        Button lagerbeholdningBtn = new Button("Lager beholdning");
+        return lagerbeholdningBtn;
+    }
+
+    public static Button OpretLagerHistorikButton() {
+        Button seHistorikBtn = new Button("Lager historik");
+        return seHistorikBtn;
     }
 }

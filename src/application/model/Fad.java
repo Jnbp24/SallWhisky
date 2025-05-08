@@ -35,6 +35,10 @@ public class Fad implements Information {
             throw new IllegalArgumentException("Dette fad indeholder allerede dette destillat");
     }
 
+    public int getNummer() {
+        return nummer;
+    }
+
     public ArrayList<Destillat> getDestillater() {
         return destillater;
     }
@@ -67,6 +71,7 @@ public class Fad implements Information {
     public void setPåfyldtAf(String påfyldtAf) {
         this.påfyldtAf = påfyldtAf;
     }
+
     @Override
     public String getId() {
         return "F" + nummer;

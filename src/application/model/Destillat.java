@@ -41,6 +41,18 @@ public class Destillat implements Information {
         return "Nej";
     }
 
+    public String getNmNummer() {
+        return nmNummer;
+    }
+
+    public double getAlkoholProcent() {
+        return alkoholProcent;
+    }
+
+    public boolean isBrugtTørv() {
+        return brugtTørv;
+    }
+
     @Override
     public String getId() {
         return nmNummer;
