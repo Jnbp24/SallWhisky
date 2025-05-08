@@ -3,6 +3,7 @@ package gui;
 import application.controller.Controller;
 import application.model.Fad;
 import application.model.Information;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -23,6 +24,7 @@ public class OpretBatchVindue extends Stage {
     private TextField batchNummerTxtField = new TextField();
     private TextField fortyndelseTxtField = new TextField();
     private TableView<Information> informationTableView = new TableView<>();
+    private ObservableList<String> flaskerListe = FXCollections.observableArrayList();
 
 
     public OpretBatchVindue(String title) {
@@ -65,16 +67,36 @@ public class OpretBatchVindue extends Stage {
 
         Button minusBtn = new Button("-");
         minusBtn.setOnMouseClicked(event -> {
-            if (Integer.parseInt(fortyndelseTxtField.getText()) - 1 >= 0) {
-                fortyndelseTxtField.setText(String.valueOf(Integer.parseInt(fortyndelseTxtField.getText()) - 1));
+            try {
+                int værdi = Integer.parseInt(fortyndelseTxtField.getText());
+                fortyndelseTxtField.setText((String.valueOf(værdi - 1)));
+            } catch (NumberFormatException e) {
+                Alert udfyldBoxAlert = new Alert(Alert.AlertType.ERROR);
+                udfyldBoxAlert.setTitle("Indsæt fortyndelsesliter.");
+                udfyldBoxAlert.setHeaderText("Indtast et gyldigt tal.");
+                udfyldBoxAlert.show();
             }
         });
         fortyndelseTxtField.setPrefWidth(40);
         Button plusBtn = new Button("+");
-        plusBtn.setOnMouseClicked(event -> fortyndelseTxtField.setText(String.valueOf(Integer.parseInt(fortyndelseTxtField.getText()) + 1)));
+        plusBtn.setOnMouseClicked(event -> {
+            try {
+                int værdi = Integer.parseInt(fortyndelseTxtField.getText());
+                fortyndelseTxtField.setText((String.valueOf(værdi + 1)));
+            } catch (NumberFormatException e) {
+                Alert udfyldBoxAlert = new Alert(Alert.AlertType.ERROR);
+                udfyldBoxAlert.setTitle("Indsæt fortyndelsesliter.");
+                udfyldBoxAlert.setHeaderText("Indtast et gyldigt tal.");
+                udfyldBoxAlert.show();
+            }
+        });
+
+
+//        fortyndelseTxtField.setText(String.valueOf(Integer.parseInt(fortyndelseTxtField.getText()) + 1)));
 
 
         Label fortyndelseLabel = new Label("Fortyndelse i liter: ");
+
 
         Button lavTapningBtn = new Button("Foretag tapning");
         lavTapningBtn.setOnMouseClicked(event -> {
@@ -113,11 +135,18 @@ public class OpretBatchVindue extends Stage {
         pane.add(estimatTxtfield, 2, 3);
         estimatTxtfield.setEditable(false);
 
+        flaskerListe.add("1L flaske");
+        flaskerListe.add("1.5L flaske");
+        flaskerListe.add("2L flaske");
 
-        VBox tapningVBox = new VBox(fortyndelseLabel, fortyndelseBox, lavTapningBtn);
-        VBox informationBox = new VBox(fadNavnLabel, fadNavnTextField, batchNavn, batchNavnTxtField, batchNummer, batchNummerTxtField, tapningVBox, estimatLabel, estimatTxtfield);
+        ComboBox flaskeCombobox = new ComboBox<>(flaskerListe);
+        flaskeCombobox.setPromptText("Vælg flaskestørrelse: ");
+
+
+        VBox tapningVBox = new VBox(fortyndelseLabel, fortyndelseBox);
+        VBox informationBox = new VBox(fadNavnLabel, fadNavnTextField, batchNavn, batchNavnTxtField, batchNummer, batchNummerTxtField, tapningVBox, estimatLabel, estimatTxtfield, flaskeCombobox, lavTapningBtn);
         informationBox.setSpacing(7.5);
         pane.add(informationBox, 2, 0);
-
     }
 }
+

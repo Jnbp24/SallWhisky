@@ -182,8 +182,8 @@ public class MainVindue extends Application {
 
 
 
-        påfyldning1.færdiggørPåfyldning();
-        påfyldning2.færdiggørPåfyldning();
+//        påfyldning1.færdiggørPåfyldning();
+//        påfyldning2.færdiggørPåfyldning();
 
     }
 }
