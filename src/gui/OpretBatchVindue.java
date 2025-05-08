@@ -2,6 +2,7 @@ package gui;
 
 import application.controller.Controller;
 import application.model.Fad;
+import application.model.Information;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -21,6 +22,7 @@ public class OpretBatchVindue extends Stage {
     private TextField batchNavnTxtField = new TextField();
     private TextField batchNummerTxtField = new TextField();
     private TextField fortyndelseTxtField = new TextField();
+    private TableView<Information> informationTableView = new TableView<>();
 
 
     public OpretBatchVindue(String title) {
@@ -79,6 +81,7 @@ public class OpretBatchVindue extends Stage {
 
             try {
                 Controller.opretBatch(fadListView.getSelectionModel().getSelectedItem(), batchNavnTxtField.getText(), Integer.parseInt(batchNummerTxtField.getText()), Double.parseDouble(fortyndelseTxtField.getText()));
+                informationTableView.refresh();
                 Alert succesAlert = new Alert(Alert.AlertType.CONFIRMATION);
                 succesAlert.setTitle("Batch oprettet!");
                 succesAlert.setHeaderText("Batch er er nu oprettet");

@@ -26,7 +26,7 @@ public class Batch implements Information {
     }
 
     @Override
-    public String getDescription() {
+    public String getBeskrivelse() {
         return "Batch navn: " + batchNavn;
     }
 }
