@@ -44,8 +44,6 @@ private Påfyldning påfyldning;
 
     private void initContent(GridPane pane) {
         pane.setAlignment(Pos.TOP_CENTER);
-//        pane.setPrefHeight(500);
-//        pane.setPrefWidth(300);
         pane.setPadding(new Insets(35));
         pane.setVgap(20);
 
@@ -58,11 +56,7 @@ private Påfyldning påfyldning;
         pane.add(medarbejderListView, 2,1);
         medarbejderListView.getItems().setAll(Controller.getMedarbejdere());
 
-//        pane.add(resterendeMængdeLbl, 2,0);
-//        pane.add(resterendeMængdeTextfield,2,1);
 //
-//        pane.add(fyldPåLbl, 2,2);
-//        pane.add(mængdeFraDestillatTextfield, 2,3);
 
         Button tilføjBtn = new Button("Tilføj");
 //        pane.add(tilføjBtn, 2,4);
