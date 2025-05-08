@@ -7,6 +7,6 @@ public class Vand extends Råvarer {
 
     @Override
     public String toString() {
-        return "Navn: " + super.getNavn();
+        return super.getNavn();
     }
 }

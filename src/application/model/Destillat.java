@@ -34,13 +34,26 @@ public class Destillat implements Information {
         this.mængdeLiter = mængdeLiter;
     }
 
+    public String getTørv() {
+        if (brugtTørv) {
+            return "Ja";
+        }
+        return "Nej";
+    }
+
     @Override
     public String getId() {
         return nmNummer;
     }
 
     @Override
-    public String getDescription() {
+    public String getBeskrivelse() {
         return "Alkohol Procent: " + alkoholProcent + "%";
+    }
+
+    @Override
+    public String toString() {
+        return "Destillat: " + getId() + "\n" + "Kornsort: " + kornsort + "\n" + "Vand: " + getVand() +
+                       "\n" + getBeskrivelse() + "\n" + "Tørv: " + getTørv() + "\n" + vand.getMængde();
     }
 }
