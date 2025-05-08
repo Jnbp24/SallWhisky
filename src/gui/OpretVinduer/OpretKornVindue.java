@@ -1,4 +1,4 @@
-package gui;
+package gui.OpretVinduer;
 
 import application.controller.Controller;
 import application.model.Ristethed;
