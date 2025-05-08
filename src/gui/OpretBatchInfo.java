@@ -4,6 +4,8 @@ import application.model.Batch;
 import application.model.Fad;
 import application.model.Information;
 import application.model.Råvarer;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.geometry.HPos;
 import javafx.scene.Scene;
 import javafx.scene.control.Tab;
@@ -13,6 +15,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import storage.Storage;
 
 import java.time.LocalDate;
 
@@ -74,11 +77,13 @@ public class OpretBatchInfo extends Stage {
         GridPane.setHalignment(batchTableView,HPos.LEFT);
 
 
-
+        ObservableList<Fad> fadliste = FXCollections.observableArrayList(Storage.getFade());
         fadTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         fadTableView.getColumns().addAll(fadNummerKol,antalGangeBrugtKol,fadStørrelseKol,påfyldningsDatoKol, newMakeKol,alkoholProcentKol, mængdeLiterKol, kornsortKol);
         fadTableView.setPrefWidth(500);
+
         GridPane.setHalignment(fadTableView,HPos.RIGHT);
+        fadTableView.setItems(fadliste);
 
 
 
