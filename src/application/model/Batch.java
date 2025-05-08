@@ -19,6 +19,13 @@ public class Batch implements Information {
         this.fortyndelseLiter = fortyndelseLiter;
     }
 
+    public int getBatchNummer() {
+        return batchNummer;
+    }
+
+    public String getBatchNavn() {
+        return batchNavn;
+    }
 
     @Override
     public String getId() {

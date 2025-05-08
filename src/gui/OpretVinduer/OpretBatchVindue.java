@@ -1,9 +1,8 @@
-package gui;
+package gui.OpretVinduer;
 
 import application.controller.Controller;
 import application.model.Fad;
 import application.model.Information;
-import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -12,9 +11,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import storage.Storage;
-
-import javax.swing.*;
-import java.util.ArrayList;
 
 public class OpretBatchVindue extends Stage {
     private ListView<Fad> fadListView = new ListView<>();
