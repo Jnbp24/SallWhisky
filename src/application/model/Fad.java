@@ -61,8 +61,7 @@ public class Fad implements Information {
         return antalGangeBrugt;
     }
 
-
-    public String getType() {
+       public String getType() {
         return fadType;
     }
     public double getMængdePåfyldt() {
@@ -73,13 +72,13 @@ public class Fad implements Information {
         this.mængdePåfyldt = mængdePåfyldt;
     }
 
+    public void setPåfyldtAf(String påfyldtAf) {
+        this.påfyldtAf = påfyldtAf;
+    }
+
     @Override
     public String toString() {
         return getId() + "\n" + "Fadtype: " + getBeskrivelse() + "\n" + "Fadstørrelse: " + getFadStørrelse() + " L" + "\n" + "Antal gange brugt: " + antalGangeBrugt + "\n" + getMængdePåfyldt() + " L";
     }
 
-
-    public void setPåfyldtAf(String påfyldtAf) {
-        this.påfyldtAf = påfyldtAf;
-    }
 }
