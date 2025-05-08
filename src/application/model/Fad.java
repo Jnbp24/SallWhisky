@@ -7,7 +7,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Fad implements Information{
+public class Fad implements Information {
 
     private int nummer;
     private String fadType;
@@ -26,7 +26,6 @@ public class Fad implements Information{
     }
 
 
-
     public void tilføjDestillat(Destillat destillat) {
         if (!destillater.contains(destillat)) {
             destillater.add(destillat);
@@ -40,9 +39,6 @@ public class Fad implements Information{
         return destillater;
     }
 
-    public String getFadType() {
-        return fadType;
-    }
     public double getFadStørrelse() {
         return fadStørrelse;
     }
@@ -53,8 +49,8 @@ public class Fad implements Information{
     }
 
     @Override
-    public String getDescription() {
-        return "Fadtype: " + fadType;
+    public String getBeskrivelse() {
+        return fadType;
     }
 
     public LocalDate getPåfyldningsDato() {
@@ -65,11 +61,10 @@ public class Fad implements Information{
         return antalGangeBrugt;
     }
 
-    @Override
-    public String toString() {
-        return "Fad: " + nummer;
-    }
 
+    public String getType() {
+        return fadType;
+    }
     public double getMængdePåfyldt() {
         return mængdePåfyldt;
     }
@@ -77,6 +72,12 @@ public class Fad implements Information{
     public void setMængdePåfyldt(double mængdePåfyldt) {
         this.mængdePåfyldt = mængdePåfyldt;
     }
+
+    @Override
+    public String toString() {
+        return getId() + "\n" + "Fadtype: " + getBeskrivelse() + "\n" + "Fadstørrelse: " + getFadStørrelse() + " L" + "\n" + "Antal gange brugt: " + antalGangeBrugt + "\n" + getMængdePåfyldt() + " L";
+    }
+
 
     public void setPåfyldtAf(String påfyldtAf) {
         this.påfyldtAf = påfyldtAf;

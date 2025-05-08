@@ -9,7 +9,8 @@ public class Tapning {
         this.fad = fad;
     }
 
-    public double udregnFlaskeEstimat(double fortyndelsesLiter, double flaskeStørrelse) {
+    public double udregnFlaskeEstimat(double fortyndelsesLiter, double flaskeStørrelse)
+    {
         return (fad.getMængdePåfyldt() + fortyndelsesLiter) / flaskeStørrelse;
     }
 
@@ -18,7 +19,7 @@ public class Tapning {
         for (Destillat destillat : fad.getDestillater()) {
             kornsorter.add(destillat.getKornsort());
         }
-        return new Batch(kornsorter, fad.getFadType(), batchNummer, batchNavn, fortyndelsesLiter);
+        return new Batch(kornsorter, fad.getType(), batchNummer, batchNavn, fortyndelsesLiter);
 
     }
 
