@@ -43,15 +43,6 @@ public class Fad implements Information {
         return fadStørrelse;
     }
 
-    @Override
-    public String getId() {
-        return "F" + nummer;
-    }
-
-    @Override
-    public String getBeskrivelse() {
-        return fadType;
-    }
 
     public LocalDate getPåfyldningsDato() {
         return påfyldningsDato;
@@ -61,9 +52,10 @@ public class Fad implements Information {
         return antalGangeBrugt;
     }
 
-       public String getType() {
+    public String getType() {
         return fadType;
     }
+
     public double getMængdePåfyldt() {
         return mængdePåfyldt;
     }
@@ -74,6 +66,15 @@ public class Fad implements Information {
 
     public void setPåfyldtAf(String påfyldtAf) {
         this.påfyldtAf = påfyldtAf;
+    }
+    @Override
+    public String getId() {
+        return "F" + nummer;
+    }
+
+    @Override
+    public String getBeskrivelse() {
+        return fadType;
     }
 
     @Override

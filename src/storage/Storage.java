@@ -88,4 +88,8 @@ public class Storage {
     public static ArrayList<Medarbejder> getMedarbejderer() {
         return new ArrayList<>(medarbejderer);
     }
+
+    public static ArrayList<Batch> getBatches() {
+        return new ArrayList<>(batches);
+    }
 }

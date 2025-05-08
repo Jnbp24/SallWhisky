@@ -1,16 +1,16 @@
-package gui;
+package gui.OpretVinduer;
 
 import application.controller.Controller;
+import gui.Tabs.FadTab;
+import gui.mainVindue.MainVindue;
 import javafx.geometry.HPos;
 import javafx.geometry.Pos;
-import javafx.geometry.VPos;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.RowConstraints;
 import javafx.stage.Stage;
 
 public class OpretFadVindue extends Stage {
@@ -33,6 +33,8 @@ public class OpretFadVindue extends Stage {
     }
 
     private void initContent(GridPane pane) {
+        FadTab fadTab = new FadTab();
+
         pane.setAlignment(Pos.TOP_CENTER);
         pane.setPrefHeight(200);
         pane.setPrefWidth(300);
@@ -62,10 +64,10 @@ public class OpretFadVindue extends Stage {
         opretBtn.setOnMouseClicked(event -> {
             try {
                 Controller.opretFad(Integer.parseInt(fadNummerTxtField.getText()), fadTypeTxtField.getText(), Integer.parseInt(fadStørrelseTxtField.getText()), Integer.parseInt(antalGangeBrugtTxtField.getText()));
+                fadTab.updateFadList();
                 Alert succesAlert = new Alert(Alert.AlertType.CONFIRMATION);
                 succesAlert.setTitle("Fad oprettet!");
                 succesAlert.setHeaderText("Dit fad er nu oprettet");
-                MainVindue.updateFadList();
                 succesAlert.show();
             } catch (NumberFormatException e) {
                 if (fadNummerTxtField.getText().isEmpty() || fadTypeTxtField.getText().isEmpty() || fadStørrelseTxtField.getText().isEmpty() || antalGangeBrugtTxtField.getText().isEmpty()) {

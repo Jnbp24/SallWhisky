@@ -1,7 +1,11 @@
-package gui;
+package gui.mainVindue;
 
 import application.controller.Controller;
 import application.model.*;
+import gui.Knapper;
+import gui.Tabs.BatchTab;
+import gui.Tabs.DestillatTab;
+import gui.Tabs.FadTab;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -10,8 +14,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import storage.Storage;
-
-import java.util.ArrayList;
 
 public class MainVindue extends Application {
     private static ListView<Fad> fadListView = new ListView<>();
@@ -32,28 +34,39 @@ public class MainVindue extends Application {
 
 
     private void initContent(GridPane pane) {
-        //        pane.setAlignment(Pos.TOP_CENTER);
+        TabPane tabPane = new TabPane();
+
+        Tab mainTab = new Tab("Hovedmenu");
+        Tab fadtab = new Tab("Fad");
+        Tab batchTab = new Tab("Batch");
+        Tab destillatTab = new Tab("Destillat");
+
+        mainTab.setClosable(false);
+        fadtab.setClosable(false);
+        fadtab.setClosable(false);
+        batchTab.setClosable(false);
+        destillatTab.setClosable(false);
+
+        mainTab.setContent(mainTabContent());
+        fadtab.setContent(new FadTab().initContent());
+        batchTab.setContent(new BatchTab().initContent());
+        destillatTab.setContent(new DestillatTab().initContent());
+
+        tabPane.getTabs().addAll(mainTab, fadtab, batchTab, destillatTab);
+        pane.add(tabPane, 0, 0);
+
+    }
+
+
+    private GridPane mainTabContent() {
+
         GridPane mainTabContent = new GridPane();
         mainTabContent.setPrefWidth(1260);
         mainTabContent.setPrefHeight(800);
         mainTabContent.setHgap(75);
         mainTabContent.setVgap(35);
-        //        pane.setGridLinesVisible(true);
-
-        TabPane tabPane = new TabPane();
-
-        Tab mainTab = new Tab("Hovedmenu");
-        mainTab.setClosable(false);
-        mainTabContent.setPrefWidth(1260);
-        mainTabContent.setPrefHeight(800);
-        mainTabContent.setHgap(75);
-        mainTabContent.setVgap(35);
 
 
-        mainTabContent.add(tabPane, 0, 0, 3, 1);
-
-
-        //Finder resources folderen, derefter findes billeder folderen for så at finde png'en
         Image SallImage = new Image(getClass().getResourceAsStream("/billeder/SallLogo.png"));
         ImageView SallImageView = new ImageView(SallImage);
         SallImageView.setFitWidth(250);
@@ -62,86 +75,35 @@ public class MainVindue extends Application {
         mainTabContent.add(SallImageView, 1, 1, 2, 2);
 
 
-        Button opretFadBtn = new Button("Opret Fad");
-        mainTabContent.add(opretFadBtn, 1, 3);
-
-        opretFadBtn.setOnMouseClicked(event -> {
-
-            OpretFadVindue fadVindue = new OpretFadVindue("Opret Fad");
-            fadVindue.show();
-
-        });
+        mainTabContent.add(Knapper.OpretFadButton(), 1, 3);
+        mainTabContent.add(Knapper.OpretDestillatButton(), 1, 4);
+        mainTabContent.add(Knapper.OpretVandButton(), 1, 5);
+        mainTabContent.add(Knapper.OpretKornButton(), 2, 5);
+        mainTabContent.add(Knapper.OpretBatchButton(), 2, 3);
+        mainTabContent.add(Knapper.TilføjDestillatButton(fadListView), 1, 7);
 
 
-        Button opretDestillatBtn = new Button("Opret Destillat");
-        mainTabContent.add(opretDestillatBtn, 1, 4);
-
-        opretDestillatBtn.setOnMouseClicked(event -> {
-            OpretDestillatVindue destillatVindue = new OpretDestillatVindue("Opret Destillat");
-            destillatVindue.show();
-        });
-
-
-        Button opretVandBtn = new Button("Opret Vand");
-        mainTabContent.add(opretVandBtn, 1, 5);
-
-        opretVandBtn.setOnMouseClicked(event -> {
-            OpretVandVindue vandVindue = new OpretVandVindue("Opret Råvare");
-            vandVindue.show();
-            ;
-        });
-
-
-        Button opretKornBtn = new Button("Opret Korn");
-        mainTabContent.add(opretKornBtn, 2, 5);
-
-        Button opretBatchBtn = new Button("Opret batch");
-        mainTabContent.add(opretBatchBtn, 2, 3);
-        opretBatchBtn.setOnMouseClicked(event -> {
-            OpretBatchVindue batchVindue = new OpretBatchVindue("Opret Batch");
-            batchVindue.show();
-        });
-
-
-        opretKornBtn.setOnMouseClicked(event -> {
-            OpretKornVindue kornVindue = new OpretKornVindue("Opret Korn");
-            kornVindue.show();
-        });
-
-        mainTabContent.add(fadListView, 0, 8);
+        mainTabContent.add(fadListView, 0, 4);
         updateFadList();
 
-        Button tilføjDestillatBtn = new Button("Tilføj Destillat");
-        mainTabContent.add(tilføjDestillatBtn, 1, 7);
-
-        tilføjDestillatBtn.setOnMouseClicked(event -> {
-            TilføjDestillatVindue tilføjDestillatVindue = new TilføjDestillatVindue("Tilføj Destillat", fadListView.getSelectionModel().getSelectedItem());
-            tilføjDestillatVindue.show();
-        });
-
-        mainTab.setContent(mainTabContent);
-        tabPane.getTabs().add(mainTab);
-
-        OpretBatchInfo batchInfoTab = new OpretBatchInfo("Batch og Fad historik");
-        Tab batchTab = new Tab("Batch info", batchInfoTab.getScene().getRoot());
-        batchTab.setClosable(false);
-        tabPane.getTabs().add(batchTab);
-        pane.add(tabPane, 0, 0, 3, 1);
-
-
+        return mainTabContent;
     }
 
     public static void updateFadList() {
         fadListView.getItems().setAll(Controller.getFadList());
     }
 
-    private void initStorage() {
+    public static void initStorage() {
 
         Fad fad1 = new Fad(1, "Eg", 200.0, 0);
         Fad fad2 = new Fad(2, "Sherry", 300.0, 3);
         Fad fad3 = new Fad(3, "Bourbon", 200.0, 1);
         Fad fad4 = new Fad(4, "Ex-Bourbon", 135.0, 2);
         Fad fad5 = new Fad(5, "Eg", 150.0, 2);
+
+        Medarbejder medarbejder1 = new Medarbejder(1, "Snaever");
+        Medarbejder medarbejder2 = new Medarbejder(2, "Lars");
+        Medarbejder medarbejder3 = new Medarbejder(3, "Hans");
 
 
         Storage.tilføjFad(fad1);
@@ -181,10 +143,12 @@ public class MainVindue extends Application {
         påfyldning2.tilføjDestillat(destillat3, 35);
 
 
+        påfyldning1.færdiggørPåfyldning(medarbejder1);
+        påfyldning2.færdiggørPåfyldning(medarbejder2);
 
-//        påfyldning1.færdiggørPåfyldning();
-//        påfyldning2.færdiggørPåfyldning();
 
     }
+
+
 }
 
