@@ -28,6 +28,17 @@ public class Batch {
         return batchNavn;
     }
 
+    public ArrayList<Råvarer> getKornsorter() {
+        return kornsorter;
+    }
+
+    public String getFadtype() {
+        return fadtype;
+    }
+
+    public double getFortyndelseLiter() {
+        return fortyndelseLiter;
+    }
 
     public void tilføjFlaske(Flaske flaske) {
         if (!flasker.contains(flaske)) {

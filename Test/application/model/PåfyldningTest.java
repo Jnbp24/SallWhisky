@@ -31,6 +31,17 @@ class PåfyldningTest {
 
     }
 
+    @org.junit.jupiter.api.Test
+    void færdiggørPåfyldning() {
+        Fad fad = new Fad(1, "Eg", 50.0, 2);
+        Destillat destillat = new Destillat("NM1", 63.5, new Kornsort("korn", "kornmark", 10, Ristethed.IKKE_RISTET), new Vand("vand", "vandmark", 10), true);
+        Medarbejder medarbejder = new Medarbejder(1, "Sammi");
+        Påfyldning påfyldning = Controller.tilføjDestillat(fad, destillat, 10);
+        Controller.færdiggørPåfyldning(påfyldning, medarbejder);
+
+        assertEquals(20, fad.getMængdePåfyldt());
+    }
+
 //    @org.junit.jupiter.api.Test
 //    void fjernDestillat() {
 //        Fad fad2 = new Fad(2, "Sherry", 20.0, 1);
@@ -43,7 +54,4 @@ class PåfyldningTest {
 //
 //    }
 
-    @org.junit.jupiter.api.Test
-    void færdiggørPåfyldning() {
-    }
 }

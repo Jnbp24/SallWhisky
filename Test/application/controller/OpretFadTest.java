@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
+
 class OpretFadTest {
 
     private Fad fad;
@@ -37,7 +38,7 @@ class OpretFadTest {
 
     @Test
     void testGetId() {
-        assertEquals("F1", fad.getId(), "Fad-ID skal være korrekt formatteret");
+        assertEquals("F1", fad.getNummer(), "Fad-ID skal være korrekt formatteret");
     }
 
 }

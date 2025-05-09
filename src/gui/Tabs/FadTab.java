@@ -1,6 +1,7 @@
 package gui.Tabs;
 
 import application.controller.Controller;
+import application.model.Destillat;
 import application.model.Fad;
 import gui.elements.InfoBox;
 import gui.elements.Knapper;
@@ -25,6 +26,7 @@ public class FadTab {
         GridPane fadTabContent = new GridPane();
         fadTabContent.setAlignment(Pos.CENTER);
         fadTabContent.setVgap(10);
+        fadTabContent.setHgap(20);
 
         Label FadListeLabel = new Label("Liste af oprettede fade - Tryk på et fad for at tilføje et destillat");
         Label visHistorikLabel = new Label("Tryk på et fad for at se indholdet");
@@ -37,28 +39,45 @@ public class FadTab {
         HBox Knapbox = new HBox(200);
         Knapbox.getChildren().addAll(Knapper.OpretFadButton(), Knapper.TilføjDestillatButton(fadListView));
 
+        VBox listebox = new VBox(10);
+        listebox.getChildren().addAll(Knapbox, labelBox, fadListView);
 
-        fadTabContent.add(Knapbox, 0, 0);
-        fadTabContent.add(labelBox, 0, 1);
-        fadTabContent.add(fadListView, 0, 2);
+
+        fadTabContent.add(listebox, 0, 0);
         fadListView.setItems(fadObservable);
         updateFadList();
 
 
         VBox historikInfo = new VBox(10);
+        Label historikLabel = new Label("Fad historik");
+        InfoBox fadNummerInfo = new InfoBox("Vælg et fad..");
         InfoBox fadTypeInfo = new InfoBox("Vælg et fad..");
         InfoBox kapacitetInfo = new InfoBox("Vælg et fad..");
+        InfoBox antalGangeBrugtInfo = new InfoBox("Vælg et fad..");
+        InfoBox destillaterInfo = new InfoBox("Vælg et fad..");
+        InfoBox medarbejderInfo = new InfoBox("Vælg et fad..");
+
 
         fadListView.setOnMouseClicked(event -> {
             Fad valgtFad = fadListView.getSelectionModel().getSelectedItem();
             if (valgtFad != null) {
+
+                fadNummerInfo.opdaterIndhold("Fadnummer: " + valgtFad.getNummer());
                 fadTypeInfo.opdaterIndhold("Fadtype: " + valgtFad.getType());
                 kapacitetInfo.opdaterIndhold("Fadstørrelse: " + valgtFad.getFadStørrelse() + " liter");
+                antalGangeBrugtInfo.opdaterIndhold("Antal gange brugt: " + valgtFad.getAntalGangeBrugt());
+                StringBuilder destillatBuilderInfo = new StringBuilder("\n");
+                for (Destillat destillat : valgtFad.getDestillater()) {
+                    destillatBuilderInfo.append(destillat.getNmNummer()).append("\n");
+                }
+                destillaterInfo.opdaterIndhold("New make nummer i fad: " + destillatBuilderInfo.toString());
+
+
             }
         });
 
 
-        historikInfo.getChildren().addAll(fadTypeInfo, kapacitetInfo);
+        historikInfo.getChildren().addAll(historikLabel, fadNummerInfo, fadTypeInfo, kapacitetInfo, antalGangeBrugtInfo, destillaterInfo);
         fadTabContent.add(historikInfo, 1, 0);
         return fadTabContent;
     }

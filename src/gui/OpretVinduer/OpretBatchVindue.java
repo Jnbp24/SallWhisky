@@ -48,16 +48,15 @@ public class OpretBatchVindue extends Stage {
         Label vælgFadLabel = new Label("Vælg et fad der ønskes tappet:");
         fadListView.getItems().setAll(Storage.getFade());
         fadListView.setPrefHeight(300);
+        Label valgtFadLabel = new Label();
 
         fadListView.setOnMouseClicked(event -> {
-            fadNavnTextField.setText(String.valueOf(fadListView.getSelectionModel().getSelectedItem()));
+            valgtFadLabel.setText(String.valueOf(fadListView.getSelectionModel().getSelectedItem()));
             tapning = new Tapning(fadListView.getSelectionModel().getSelectedItem());
             updaterFlaskeestimat();
         });
 
-        Label fadNavnLabel = new Label("Fad: ");
-        fadNavnTextField.setPromptText("Fad navn: ");
-        fadNavnTextField.setEditable(false);
+        Label fadNavnLabel = new Label("Fad: " + valgtFadLabel);
 
 
         Label batchNavn = new Label("Batch navn: ");
@@ -76,7 +75,7 @@ public class OpretBatchVindue extends Stage {
 
         Button minusBtn = new Button("-");
         minusBtn.setOnMouseClicked(event -> {
-            if (Integer.parseInt(fortyndelseTxtField.getText()) - 1 >= 0){
+            if (Integer.parseInt(fortyndelseTxtField.getText()) - 1 >= 0) {
                 fortyndelseTxtField.setText(String.valueOf(Integer.parseInt(fortyndelseTxtField.getText()) - 1));
                 updaterFlaskeestimat();
             }
@@ -109,7 +108,8 @@ public class OpretBatchVindue extends Stage {
                     fejlAlert.setTitle("Invalid information");
                     fejlAlert.setHeaderText("Alle felter skal udfyldes");
                     fejlAlert.show();
-                } else {
+                }
+                else {
                     Alert fejlAlert = new Alert(Alert.AlertType.ERROR);
                     fejlAlert.setTitle("Invalid information");
                     fejlAlert.setHeaderText("Ugyldig information indtastet");
@@ -129,12 +129,12 @@ public class OpretBatchVindue extends Stage {
         estimatTxtfield.setEditable(false);
 
         VBox tapningVBox = new VBox(fortyndelseLabel, fortyndelseBox);
-        VBox informationBox = new VBox(fadNavnLabel, fadNavnTextField, batchNavn, batchNavnTxtField, batchNummer, batchNummerTxtField, tapningVBox, estimatLabel, estimatTxtfield, flaskeCombobox, lavTapningBtn);
+        VBox informationBox = new VBox(fadNavnLabel, valgtFadLabel, batchNavn, batchNavnTxtField, batchNummer, batchNummerTxtField, tapningVBox, estimatLabel, estimatTxtfield, flaskeCombobox, lavTapningBtn);
         informationBox.setSpacing(7.5);
         pane.add(informationBox, 2, 0);
     }
 
-    public void updaterFlaskeestimat(){
+    public void updaterFlaskeestimat() {
         estimatTxtfield.setText(String.valueOf(Controller.udregnFlaskeestimat(tapning, Double.parseDouble(fortyndelseTxtField.getText()), flaskerListe.get(flaskeCombobox.getSelectionModel().getSelectedIndex()))));
     }
 }
