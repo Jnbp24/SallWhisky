@@ -52,7 +52,7 @@ public class FadTab {
         fadListView.setOnMouseClicked(event -> {
             Fad valgtFad = fadListView.getSelectionModel().getSelectedItem();
             if (valgtFad != null) {
-                fadTypeInfo.opdaterIndhold("Fadtype: " + valgtFad.getBeskrivelse());
+                fadTypeInfo.opdaterIndhold("Fadtype: " + valgtFad.getType());
                 kapacitetInfo.opdaterIndhold("Fadstørrelse: " + valgtFad.getFadStørrelse() + " liter");
             }
         });
