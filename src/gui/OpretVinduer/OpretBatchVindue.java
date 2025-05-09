@@ -2,7 +2,6 @@ package gui.OpretVinduer;
 
 import application.controller.Controller;
 import application.model.Fad;
-import application.model.Information;
 import application.model.Tapning;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -21,7 +20,6 @@ public class OpretBatchVindue extends Stage {
     private TextField batchNavnTxtField = new TextField();
     private TextField batchNummerTxtField = new TextField();
     private TextField fortyndelseTxtField = new TextField("0");
-    private TableView<Information> informationTableView = new TableView<>();
     private ObservableList<Double> flaskerListe = FXCollections.observableArrayList();
     private TextField estimatTxtfield = new TextField();
     private ComboBox flaskeCombobox;
@@ -100,7 +98,6 @@ public class OpretBatchVindue extends Stage {
 
             try {
                 Controller.opretBatch(fadListView.getSelectionModel().getSelectedItem(), batchNavnTxtField.getText(), Integer.parseInt(batchNummerTxtField.getText()), Double.parseDouble(fortyndelseTxtField.getText()), flaskerListe.get(flaskeCombobox.getSelectionModel().getSelectedIndex()));
-                informationTableView.refresh();
                 Alert succesAlert = new Alert(Alert.AlertType.CONFIRMATION);
                 succesAlert.setTitle("Batch oprettet!");
                 succesAlert.setHeaderText("Batch er er nu oprettet");

@@ -7,7 +7,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Fad implements Information {
+public class Fad{
 
     private int nummer;
     private String fadType;
@@ -72,19 +72,10 @@ public class Fad implements Information {
         this.påfyldtAf = påfyldtAf;
     }
 
-    @Override
-    public String getId() {
-        return "F" + nummer;
-    }
-
-    @Override
-    public String getBeskrivelse() {
-        return fadType;
-    }
 
     @Override
     public String toString() {
-        return getId() + "\n" + "Fadtype: " + getBeskrivelse() + "\n" + "Fadstørrelse: " + getFadStørrelse() + " L" + "\n" + "Antal gange brugt: " + antalGangeBrugt + "\n" + getMængdePåfyldt() + " L";
+        return "F" + nummer + "\n" + "Fadtype: " + getType() + "\n" + "Fadstørrelse: " + getFadStørrelse() + " L" + "\n" + "Antal gange brugt: " + antalGangeBrugt + "\n" + getMængdePåfyldt() + " L";
     }
 
 }
