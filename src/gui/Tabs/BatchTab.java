@@ -1,6 +1,8 @@
 package gui.Tabs;
 
 import application.model.Batch;
+import application.model.Destillat;
+import application.model.Råvarer;
 import gui.elements.InfoBox;
 import gui.elements.Knapper;
 import javafx.collections.FXCollections;
@@ -23,7 +25,8 @@ public class BatchTab {
         VBox batchBox = new VBox(15);
         batchTabContent.setPrefWidth(1260);
         batchTabContent.setPrefHeight(800);
-        batchTabContent.setVgap(10);
+        batchTabContent.setVgap(20);
+        batchTabContent.setHgap(25);
 
         Label batchListeLabel = new Label("Liste af oprettede batches");
         Label visHistorikLabel = new Label("Tryk på en batch for at se indholdet");
@@ -38,20 +41,32 @@ public class BatchTab {
 
         batchTabContent.add(batchBox, 0, 0);
 
-        VBox historikInfo = new VBox(10);
+        VBox historikInfo = new VBox(25);
+        Label historikLabel = new Label("Batch historik");
         InfoBox batchNummerInfo = new InfoBox("Vælg en batch..");
         InfoBox batchNavnInfo = new InfoBox("Vælg en batch..");
+        InfoBox fadTypeInfo = new InfoBox("Vælg en batch..");
+        InfoBox kornsortInfo = new InfoBox("Vælg en batch..");
+        InfoBox fortyndelseInfo = new InfoBox("Vælg en batch..");
+
 
         batchListView.setOnMouseClicked(event -> {
             Batch valgtBatch = batchListView.getSelectionModel().getSelectedItem();
             if (valgtBatch != null) {
-                batchNummerInfo.opdaterIndhold(String.valueOf(valgtBatch.getBatchNummer()));
-                batchNavnInfo.opdaterIndhold(valgtBatch.getBatchNavn());
+                batchNummerInfo.opdaterIndhold("Batch nummer: " + valgtBatch.getBatchNummer());
+                batchNavnInfo.opdaterIndhold("Batch navn: " + valgtBatch.getBatchNavn());
+                fortyndelseInfo.opdaterIndhold("Fortyndelse: " + valgtBatch.getFortyndelseLiter() + "L");
+                fadTypeInfo.opdaterIndhold("Fadtype: " + valgtBatch.getFadtype());
+                StringBuilder kornsortBuilderInfo = new StringBuilder("\n");
+                for (Råvarer råvarer : valgtBatch.getKornsorter()) {
+                    kornsortBuilderInfo.append(råvarer.getNavn()).append("\n");
+                }
+                kornsortInfo.opdaterIndhold("Kornsort i batch: " + kornsortBuilderInfo);
             }
         });
 
 
-        historikInfo.getChildren().addAll(batchNummerInfo);
+        historikInfo.getChildren().addAll(historikLabel, batchNummerInfo, batchNavnInfo, fortyndelseInfo, fadTypeInfo, kornsortInfo);
         batchTabContent.add(historikInfo, 1, 0);
 
 
