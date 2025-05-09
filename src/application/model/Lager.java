@@ -8,25 +8,23 @@ public class Lager {
     private String id;
     private ArrayList<Lagerplads> pladser = new ArrayList<>();
 
-    public Lager(String id, ArrayList<Lagerplads> pladser) {
+    public Lager(String id) {
         this.id = id;
-        this.pladser = pladser;
-
 //        for (int i = 0; i < antalPladser/3; i++) {
 //            char c = 'a';
 //            c +=i;
 //            for (int j = 0; j < 3; j++) {
-//                tilføjLagerplads(String.valueOf(c), j);
+//                opretLagerplads(String.valueOf(c), j);
 //            }
 //
 //        }
     }
     
-    public void tilføjLagerplads(String reol, int hylde){
+    public void opretLagerplads(String reol, int hylde){
         for (Lagerplads lagerplads : pladser) {
             if (lagerplads.getReol().equals(reol)){
                 if (lagerplads.getHylde() == hylde){
-                    return;
+                    throw new IllegalArgumentException("Plads findes allerede");
                 }
             }
         }
@@ -50,5 +48,10 @@ public class Lager {
             }
         }
         return fade;
+    }
+
+    @Override
+    public String toString() {
+        return id;
     }
 }

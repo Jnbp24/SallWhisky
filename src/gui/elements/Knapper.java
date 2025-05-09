@@ -1,6 +1,8 @@
 package gui.elements;
 
 import application.model.Fad;
+import gui.LagerVinduer.LagerbeholdningVindue;
+import gui.LagerVinduer.LagerhistorikVindue;
 import gui.OpretVinduer.*;
 import gui.TilføjDestillatVindue;
 import javafx.scene.control.Button;
@@ -64,11 +66,19 @@ public class Knapper {
 
     public static Button OpretLagerbeholdningButton() {
         Button lagerbeholdningBtn = new Button("Lager beholdning");
+        lagerbeholdningBtn.setOnMouseClicked(event -> {
+            LagerbeholdningVindue lagerbeholdningVindue = new LagerbeholdningVindue("Lagerbeholdning");
+            lagerbeholdningVindue.show();
+        });
         return lagerbeholdningBtn;
     }
 
     public static Button OpretLagerHistorikButton() {
         Button seHistorikBtn = new Button("Lager historik");
+        seHistorikBtn.setOnMouseClicked(event -> {
+            LagerhistorikVindue lagerhistorikVindue = new LagerhistorikVindue("Lagerhistorik");
+            lagerhistorikVindue.show();
+        });
         return seHistorikBtn;
     }
 }

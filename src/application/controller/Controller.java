@@ -56,7 +56,31 @@ public class Controller {
         return tapning.udregnFlaskeEstimat(fortyndelsesLiter, flaskeStørrelse);
     }
 
+    public static Lager opretLager(String id){
+        Lager lager = new Lager(id);
+        Storage.tilføjLager(lager);
+        return lager;
+    }
 
+    public static void opretLagerplads(Lager lager, String reol, int hylde){
+        lager.opretLagerplads(reol, hylde);
+    }
+
+    public static Lagerplads findFad(Lager lager, int fadNummer){
+        return lager.findFad(fadNummer);
+    }
+
+    public static ArrayList<Fad> findTapklar(Lager lager){
+        return lager.findTapklar();
+    }
+
+    public static void tilføjFadTilLagerplads(Fad fad, Lagerplads lagerplads){
+        lagerplads.placerFad(fad);
+    }
+
+    public static void fjernFadFraLagerplads(Lagerplads lagerplads){
+        lagerplads.fjernFad();
+    }
 
 
 
@@ -80,5 +104,7 @@ public class Controller {
     }
 
     public static ArrayList<Medarbejder> getMedarbejdere(){return Storage.getMedarbejderer();}
+
+    public static ArrayList<Lager> getLagerer(){return Storage.getLagerer();}
 }
 
