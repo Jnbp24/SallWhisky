@@ -1,6 +1,6 @@
 package application.model;
 
-public class Destillat implements Information {
+public class Destillat {
     private String nmNummer;
     private double alkoholProcent;
     private Råvarer kornsort;
@@ -41,19 +41,20 @@ public class Destillat implements Information {
         return "Nej";
     }
 
-    @Override
-    public String getId() {
+    public String getNmNummer() {
         return nmNummer;
     }
 
-    @Override
-    public String getBeskrivelse() {
-        return "Alkohol Procent: " + alkoholProcent + "%";
+    public double getAlkoholProcent() {
+        return alkoholProcent;
+    }
+
+    public boolean isBrugtTørv() {
+        return brugtTørv;
     }
 
     @Override
     public String toString() {
-        return "Destillat: " + getId() + "\n" + "Kornsort: " + kornsort + "\n" + "Vand: " + getVand() +
-                       "\n" + getBeskrivelse() + "\n" + "Tørv: " + getTørv() + "\n" + vand.getMængde();
+        return "Destillat: " + "NM" + nmNummer + "\n" + "Kornsort: " + kornsort + "\n" + "Vand: " + getVand() + "\n" + "Alkohol procent: " + getAlkoholProcent() + "%" + "\n" + "Tørv: " + getTørv() + "\n" + vand.getMængde();
     }
 }

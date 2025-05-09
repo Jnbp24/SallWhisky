@@ -9,6 +9,10 @@ public class Kornsort extends Råvarer {
         this.ristethed = ristethed;
     }
 
+    public Ristethed getRistethed() {
+        return ristethed;
+    }
+
     @Override
     public String toString() {
         return super.getNavn();

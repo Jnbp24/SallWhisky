@@ -3,7 +3,7 @@ package application.model;
 
 import java.util.ArrayList;
 
-public class Batch implements Information {
+public class Batch {
     private ArrayList<Råvarer> kornsorter;
     private String fadtype;
     private int batchNummer;
@@ -28,19 +28,15 @@ public class Batch implements Information {
         return batchNavn;
     }
 
-    @Override
-    public String getId() {
-        return "Batch-" + batchNummer;
-    }
 
-    @Override
-    public String getBeskrivelse() {
-        return "Batch navn: " + batchNavn;
-    }
-
-    public void tilføjFlaske(Flaske flaske){
-        if (!flasker.contains(flaske)){
+    public void tilføjFlaske(Flaske flaske) {
+        if (!flasker.contains(flaske)) {
             flasker.add(flaske);
         }
+    }
+
+    @Override
+    public String toString() {
+        return "Batchnummer: " + "B" + batchNummer + "\n " + " Batchnavn: " + batchNavn;
     }
 }
