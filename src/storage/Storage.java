@@ -12,6 +12,7 @@ public class Storage {
     private static ArrayList<Kornsort> kornsorter = new ArrayList<>();
     private static ArrayList<Vand> vandtyper = new ArrayList<>();
     private static ArrayList<Medarbejder> medarbejderer = new ArrayList<>();
+    private static ArrayList<Lager> lagerer = new ArrayList<>();
 
 
     public static void tilføjFad(Fad fad) {
@@ -69,6 +70,14 @@ public class Storage {
             throw new IllegalArgumentException("Denne medarbejder er allerede tilføjet!");
     }
 
+    public static void tilføjLager(Lager lager){
+        if (!lagerer.contains(lager)){
+            lagerer.add(lager);
+        }
+        else
+            throw new IllegalArgumentException("Dette lager er allerede tilføjet");
+    }
+
     public static ArrayList<Kornsort> getKornsorter() {
         return new ArrayList<>(kornsorter);
     }
@@ -91,5 +100,9 @@ public class Storage {
 
     public static ArrayList<Batch> getBatches() {
         return new ArrayList<>(batches);
+    }
+
+    public static ArrayList<Lager> getLagerer() {
+        return new ArrayList<>(lagerer);
     }
 }

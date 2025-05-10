@@ -1,5 +1,6 @@
 package gui.mainVindue;
 
+import application.controller.Controller;
 import application.model.*;
 import gui.elements.Billeder;
 import gui.elements.Knapper;
@@ -170,7 +171,28 @@ public class MainVindue extends Application {
         påfyldning1.færdiggørPåfyldning(medarbejder1);
         påfyldning2.færdiggørPåfyldning(medarbejder2);
 
+        Lager lager1 = Controller.opretLager("Lager 1");
+        Lager lager2 = Controller.opretLager("Lager 2");
 
+        Controller.opretLagerplads(lager1, "A", 1);
+        Controller.opretLagerplads(lager1, "A", 2);
+        Controller.opretLagerplads(lager1, "A", 3);
+        Controller.opretLagerplads(lager1, "B", 1);
+        Controller.opretLagerplads(lager1, "B", 2);
+        Controller.opretLagerplads(lager1, "B", 3);
+        Controller.opretLagerplads(lager1, "C", 1);
+        Controller.opretLagerplads(lager1, "C", 2);
+        Controller.opretLagerplads(lager1, "C", 3);
+
+        Controller.opretLagerplads(lager2, "A", 1);
+        Controller.opretLagerplads(lager2, "A", 2);
+        Controller.opretLagerplads(lager2, "A", 3);
+        Controller.opretLagerplads(lager2, "B", 1);
+        Controller.opretLagerplads(lager2, "B", 2);
+        Controller.opretLagerplads(lager2, "B", 3);
+        Controller.opretLagerplads(lager2, "C", 1);
+        Controller.opretLagerplads(lager2, "C", 2);
+        Controller.opretLagerplads(lager2, "C", 3);
     }
 
 
