@@ -25,26 +25,22 @@ public class Påfyldning {
         resterendeVolume -= destillat.getVand().getMængde();
         destillat.setMængdeLiter(destillat.getMængdeLiter() - valgtDestillatmængde);
         mængdeLiterFraAlleDestillater += valgtDestillatmængde;
+        fad.tilføjDestillat(destillat);
     }
 
-//    public double fjernDestillat(Destillat destillat) {
-//        if (destillater.contains(destillat)) {
-//            throw new IllegalArgumentException("Destillat kan ikke fjernes, da det ikke findes i listen");
-//        } else {
-//            destillater.remove(destillat);
-//            resterendeVolume += destillat.getVand().getMængde();
-//            return resterendeVolume;
-//        }
-//    }
 
     public void færdiggørPåfyldning(Medarbejder medarbejder) {
         if (!destillater.isEmpty()) {
             for (Destillat destillat : destillater) {
-                fad.tilføjDestillat(destillat);
+                if (!fad.getDestillater().contains(destillat)) {
+                    fad.tilføjDestillat(destillat);
+                }
             }
             fad.setMængdePåfyldt(mængdeLiterFraAlleDestillater);
             fad.setPåfyldtAf(medarbejder.getNavn());
         }
     }
+
+
 }
 

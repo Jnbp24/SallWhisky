@@ -40,11 +40,16 @@ public class Batch {
         return fortyndelseLiter;
     }
 
+    public Tapning getTapning() {
+        return tapning;
+    }
+
     public void tilføjFlaske(Flaske flaske) {
         if (!flasker.contains(flaske)) {
             flasker.add(flaske);
         }
     }
+
 
     @Override
     public String toString() {
