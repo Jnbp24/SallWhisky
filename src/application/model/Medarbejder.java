@@ -19,6 +19,6 @@ public class Medarbejder {
 
     @Override
     public String toString() {
-        return "Nr: " + medarbejderNr + " Navn: " + navn;
+        return navn;
     }
 }

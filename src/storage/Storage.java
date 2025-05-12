@@ -38,7 +38,8 @@ public class Storage {
         else
             throw new IllegalArgumentException("Dette fad er allerede tilføjet!");
     }
-    public static void tilføjDestillat (Destillat destillat) {
+
+    public static void tilføjDestillat(Destillat destillat) {
         if (!destillater.contains(destillat)) {
             destillater.add(destillat);
         }
@@ -70,12 +71,12 @@ public class Storage {
             throw new IllegalArgumentException("Denne medarbejder er allerede tilføjet!");
     }
 
-    public static void tilføjLager(Lager lager){
-        if (!lagerer.contains(lager)){
+    public static void tilføjLager(Lager lager) {
+        if (!lagerer.contains(lager)) {
             lagerer.add(lager);
         }
         else
-            throw new IllegalArgumentException("Dette lager er allerede tilføjet");
+            throw new IllegalArgumentException("Lager er allerede oprettet");
     }
 
     public static ArrayList<Kornsort> getKornsorter() {
@@ -86,7 +87,7 @@ public class Storage {
         return new ArrayList<>(vandtyper);
     }
 
-    public static ArrayList<Fad> getFade(){
+    public static ArrayList<Fad> getFade() {
         return new ArrayList<>(fade);
     }
 

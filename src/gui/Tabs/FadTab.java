@@ -3,6 +3,7 @@ package gui.Tabs;
 import application.controller.Controller;
 import application.model.Destillat;
 import application.model.Fad;
+import application.model.Påfyldning;
 import gui.elements.InfoBox;
 import gui.elements.Knapper;
 import gui.mainVindue.MainVindue;
@@ -66,18 +67,23 @@ public class FadTab {
                 fadTypeInfo.opdaterIndhold("Fadtype: " + valgtFad.getType());
                 kapacitetInfo.opdaterIndhold("Fadstørrelse: " + valgtFad.getFadStørrelse() + " liter");
                 antalGangeBrugtInfo.opdaterIndhold("Antal gange brugt: " + valgtFad.getAntalGangeBrugt());
+
                 StringBuilder destillatBuilderInfo = new StringBuilder("\n");
                 for (Destillat destillat : valgtFad.getDestillater()) {
                     destillatBuilderInfo.append(destillat.getNmNummer()).append("\n");
                 }
-                destillaterInfo.opdaterIndhold("New make nummer i fad: " + destillatBuilderInfo.toString());
+                destillaterInfo.opdaterIndhold("New make nummer i fad: " + destillatBuilderInfo);
 
-
+                StringBuilder påfyldningBuilderInfo = new StringBuilder();
+                for (String påfyldninger : valgtFad.getPåfyldninger()) {
+                    påfyldningBuilderInfo.append(påfyldninger).append(" - ").append(valgtFad.getPåfyldningsDato()).append("\n");
+                }
+                medarbejderInfo.opdaterIndhold("Påfyldninger: \n" + påfyldningBuilderInfo);
             }
         });
 
 
-        historikInfo.getChildren().addAll(historikLabel, fadNummerInfo, fadTypeInfo, kapacitetInfo, antalGangeBrugtInfo, destillaterInfo);
+        historikInfo.getChildren().addAll(historikLabel, fadNummerInfo, fadTypeInfo, kapacitetInfo, antalGangeBrugtInfo, destillaterInfo, medarbejderInfo);
         fadTabContent.add(historikInfo, 1, 0);
         return fadTabContent;
     }

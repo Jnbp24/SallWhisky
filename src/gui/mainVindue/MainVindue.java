@@ -128,7 +128,9 @@ public class MainVindue extends Application {
 
         Medarbejder medarbejder1 = new Medarbejder(1, "Snaever");
         Medarbejder medarbejder2 = new Medarbejder(2, "Lars");
-        Medarbejder medarbejder3 = new Medarbejder(3, "Hans");
+
+        Storage.tilføjMedarbejder(medarbejder1);
+        Storage.tilføjMedarbejder(medarbejder2);
 
 
         Storage.tilføjFad(fad1);
@@ -171,28 +173,7 @@ public class MainVindue extends Application {
         påfyldning1.færdiggørPåfyldning(medarbejder1);
         påfyldning2.færdiggørPåfyldning(medarbejder2);
 
-        Lager lager1 = Controller.opretLager("Lager 1");
-        Lager lager2 = Controller.opretLager("Lager 2");
 
-        Controller.opretLagerplads(lager1, "A", 1);
-        Controller.opretLagerplads(lager1, "A", 2);
-        Controller.opretLagerplads(lager1, "A", 3);
-        Controller.opretLagerplads(lager1, "B", 1);
-        Controller.opretLagerplads(lager1, "B", 2);
-        Controller.opretLagerplads(lager1, "B", 3);
-        Controller.opretLagerplads(lager1, "C", 1);
-        Controller.opretLagerplads(lager1, "C", 2);
-        Controller.opretLagerplads(lager1, "C", 3);
-
-        Controller.opretLagerplads(lager2, "A", 1);
-        Controller.opretLagerplads(lager2, "A", 2);
-        Controller.opretLagerplads(lager2, "A", 3);
-        Controller.opretLagerplads(lager2, "B", 1);
-        Controller.opretLagerplads(lager2, "B", 2);
-        Controller.opretLagerplads(lager2, "B", 3);
-        Controller.opretLagerplads(lager2, "C", 1);
-        Controller.opretLagerplads(lager2, "C", 2);
-        Controller.opretLagerplads(lager2, "C", 3);
     }
 
 

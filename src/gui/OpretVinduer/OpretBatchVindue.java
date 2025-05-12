@@ -2,6 +2,7 @@ package gui.OpretVinduer;
 
 import application.controller.Controller;
 import application.model.Fad;
+import application.model.Medarbejder;
 import application.model.Tapning;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -16,7 +17,8 @@ import storage.Storage;
 
 public class OpretBatchVindue extends Stage {
     private ListView<Fad> fadListView = new ListView<>();
-    private TextField fadNavnTextField = new TextField();
+    private ListView<Medarbejder> medarbejderListView = new ListView<>();
+    private ObservableList<Medarbejder> medarbejderObservableList = FXCollections.observableArrayList();
     private TextField batchNavnTxtField = new TextField();
     private TextField batchNummerTxtField = new TextField();
     private TextField fortyndelseTxtField = new TextField("0");
@@ -24,7 +26,6 @@ public class OpretBatchVindue extends Stage {
     private TextField estimatTxtfield = new TextField();
     private ComboBox flaskeCombobox;
     private Tapning tapning;
-
 
     public OpretBatchVindue(String title) {
 
@@ -40,7 +41,7 @@ public class OpretBatchVindue extends Stage {
 
     private void initContent(GridPane pane) {
         pane.setPadding(new Insets(20));
-        pane.setPrefHeight(450);
+        pane.setPrefHeight(650);
         pane.setPrefWidth(500);
         pane.setVgap(10);
         pane.setHgap(30);
@@ -50,13 +51,21 @@ public class OpretBatchVindue extends Stage {
         fadListView.setPrefHeight(300);
         Label valgtFadLabel = new Label();
 
-        fadListView.setOnMouseClicked(event -> {
-            valgtFadLabel.setText(String.valueOf(fadListView.getSelectionModel().getSelectedItem()));
-            tapning = new Tapning(fadListView.getSelectionModel().getSelectedItem());
-            updaterFlaskeestimat();
+
+        medarbejderObservableList.addAll(Controller.getMedarbejdere());
+        medarbejderListView.setItems(medarbejderObservableList);
+        medarbejderListView.setPrefHeight(100);
+
+        Label valgtMedarbejderLabel = new Label("Hvilken medarbejder tapper?");
+        medarbejderListView.setOnMouseClicked(event -> {
+            valgtMedarbejderLabel.setText(String.valueOf(medarbejderListView.getSelectionModel().getSelectedItem()));
         });
 
-        Label fadNavnLabel = new Label("Fad: " + valgtFadLabel);
+
+        fadListView.setOnMouseClicked(event -> {
+            valgtFadLabel.setText(String.valueOf(fadListView.getSelectionModel().getSelectedItem()));
+            updaterFlaskeestimat();
+        });
 
 
         Label batchNavn = new Label("Batch navn: ");
@@ -96,7 +105,11 @@ public class OpretBatchVindue extends Stage {
         lavTapningBtn.setOnMouseClicked(event -> {
 
             try {
-                Controller.opretBatch(fadListView.getSelectionModel().getSelectedItem(), batchNavnTxtField.getText(), Integer.parseInt(batchNummerTxtField.getText()), Double.parseDouble(fortyndelseTxtField.getText()), flaskerListe.get(flaskeCombobox.getSelectionModel().getSelectedIndex()));
+                Fad valgtfad = fadListView.getSelectionModel().getSelectedItem();
+                Medarbejder valgtMedarbejer = medarbejderListView.getSelectionModel().getSelectedItem();
+
+
+                Controller.opretBatch(valgtfad, batchNavnTxtField.getText(), Integer.parseInt(batchNummerTxtField.getText()), Double.parseDouble(fortyndelseTxtField.getText()), flaskerListe.get(flaskeCombobox.getSelectionModel().getSelectedIndex()), valgtMedarbejer);
                 Alert succesAlert = new Alert(Alert.AlertType.CONFIRMATION);
                 succesAlert.setTitle("Batch oprettet!");
                 succesAlert.setHeaderText("Batch er er nu oprettet");
@@ -129,7 +142,7 @@ public class OpretBatchVindue extends Stage {
         estimatTxtfield.setEditable(false);
 
         VBox tapningVBox = new VBox(fortyndelseLabel, fortyndelseBox);
-        VBox informationBox = new VBox(fadNavnLabel, valgtFadLabel, batchNavn, batchNavnTxtField, batchNummer, batchNummerTxtField, tapningVBox, estimatLabel, estimatTxtfield, flaskeCombobox, lavTapningBtn);
+        VBox informationBox = new VBox(valgtFadLabel, batchNavn, batchNavnTxtField, batchNummer, batchNummerTxtField, valgtMedarbejderLabel, medarbejderListView, tapningVBox, estimatLabel, estimatTxtfield, flaskeCombobox, lavTapningBtn);
         informationBox.setSpacing(7.5);
         pane.add(informationBox, 2, 0);
     }
