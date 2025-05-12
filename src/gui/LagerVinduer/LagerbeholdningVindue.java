@@ -20,7 +20,8 @@ public class LagerbeholdningVindue extends Stage {
     private static ListView<Lagerplads> lagerpladsListView = new ListView<>();
     private static ObservableList<Lager> lagerLokationList = FXCollections.observableArrayList();
     private static ComboBox lagerCombobox;
-    private TextField findFadTxtField = new TextField();
+    private TextField findFadPåFadNummerTxtField = new TextField();
+    private TextField findFadPåNmNummerTxtField = new TextField();
 
     public LagerbeholdningVindue(String title) {
 
@@ -61,12 +62,18 @@ public class LagerbeholdningVindue extends Stage {
         lagerCombobox.setOnAction(event -> updaterLagerPladsList());
         pane.add(lagerCombobox, 0,1);
 
-        Label findFadLabel = new Label("Søg efter fadnummer");
-        Button findFadBtn = new Button("Søg");
-        findFadBtn.setOnMouseClicked(event -> lagerpladsListView.getItems().setAll(Controller.findFad(Integer.parseInt(findFadTxtField.getText()))));
+        Label findFadPåFadNummerLabel = new Label("Søg efter fadnummer");
+        Button findFadPåFadNummerBtn = new Button("Søg");
+        findFadPåFadNummerBtn.setOnMouseClicked(event -> lagerpladsListView.getItems().setAll(Controller.findFadPåFadNummer(Integer.parseInt(findFadPåFadNummerTxtField.getText()))));
 
-        HBox findFadHbox = new HBox(findFadTxtField, findFadBtn);
-        VBox findFadVbox = new VBox(findFadLabel, findFadHbox);
+        Label findFadPåNmNummerLabel = new Label("Søg efter Newmake nummer");
+        Button findFadPåNmNummerBtn = new Button("Søg");
+        findFadPåNmNummerBtn.setOnMouseClicked(event -> lagerpladsListView.getItems().setAll(Controller.findFadPåNmNummer(findFadPåNmNummerTxtField.getText())));
+
+        HBox findFadPåFadNummerHbox = new HBox(findFadPåFadNummerTxtField, findFadPåFadNummerBtn);
+        HBox findFadPåNmNummerHbox = new HBox(findFadPåNmNummerTxtField, findFadPåFadNummerBtn);
+
+        VBox findFadVbox = new VBox(findFadPåFadNummerLabel, findFadPåFadNummerHbox, findFadPåNmNummerLabel ,findFadPåNmNummerHbox);
 
         pane.add(findFadVbox, 1,1);
 
