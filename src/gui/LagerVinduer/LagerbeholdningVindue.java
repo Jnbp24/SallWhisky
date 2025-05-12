@@ -40,7 +40,6 @@ public class LagerbeholdningVindue extends Stage {
         pane.setPrefSize(800, 800);
         pane.setVgap(25);
 
-
         Label overskriftLabel = new Label("Lagerbeholdning");
         overskriftLabel.setFont(Font.font("Dialog", 20));
         overskriftLabel.setTextFill(Color.BLACK);
@@ -75,9 +74,7 @@ public class LagerbeholdningVindue extends Stage {
 
         VBox findFadVbox = new VBox(findFadPåFadNummerLabel, findFadPåFadNummerHbox, findFadPåNmNummerLabel ,findFadPåNmNummerHbox);
 
-        pane.add(findFadVbox, 1,1);
-
-
+        pane.add(findFadVbox, 1,2);
     }
 
     public static void updaterLagerPladsList(){

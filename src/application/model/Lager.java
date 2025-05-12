@@ -58,26 +58,8 @@ public class Lager {
     }
 
     public ArrayList<Lagerplads> getPladser() {
-        return new ArrayList<>(pladser);
+        return pladser;
     }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null || getClass() != obj.getClass()) {
-            return false;
-        }
-        Lager lager = (Lager) obj;
-        return Objects.equals(id, lager.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
-    }
-
 
     @Override
     public String toString() {
