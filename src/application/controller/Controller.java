@@ -54,6 +54,9 @@ public class Controller {
     }
 
     public static double udregnFlaskeestimat(Tapning tapning, double fortyndelsesLiter, double flaskeStørrelse) {
+        if (tapning == null) {
+            return fortyndelsesLiter / flaskeStørrelse;
+        }
         return tapning.udregnFlaskeEstimat(fortyndelsesLiter, flaskeStørrelse);
     }
 
@@ -67,11 +70,11 @@ public class Controller {
         lager.opretLagerplads(reol, hylde);
     }
 
-    public static Lagerplads findFad(int fadNummer){
+    public static Lagerplads findFad(int fadNummer) {
         Lagerplads lagerplads;
         for (Lager lager : getLagerer()) {
             lagerplads = lager.findFad(fadNummer);
-            if (lagerplads != null){
+            if (lagerplads != null) {
                 return lagerplads;
             }
         }
