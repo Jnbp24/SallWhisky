@@ -13,7 +13,7 @@ public class Lagerplads {
     }
 
     public void placerFad(Fad fad){
-        if (fad == null){
+        if (this.fad == null){
             this.fad = fad;
         }
     }
@@ -38,12 +38,11 @@ public class Lagerplads {
 
     @Override
     public String toString() {
-        StringBuilder stringBuilder = new StringBuilder("Reol : " + reol + " Hylde: " + hylde);
         if (fad == null){
-            stringBuilder.append("\n -Ledig-");
-        }else {
-            stringBuilder.append("\n" + fad);
+            return "Reol : " + reol + "\nHylde: " + hylde + "\n -Ledig-";
         }
-        return stringBuilder.toString();
+        else{
+            return "Reol : " + reol + "\nHylde: " + hylde + "\n" + fad;
+        }
     }
 }

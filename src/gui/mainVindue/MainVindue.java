@@ -26,11 +26,8 @@ public class MainVindue extends Application {
         GridPane pane = new GridPane();
         pane.setPrefSize(600, 600);
 
-
-        this.initContent(pane);
         this.initStorage();
-
-
+        this.initContent(pane);
         Scene scene = new Scene(pane);
         stage.setScene(scene);
         stage.show();
@@ -173,9 +170,30 @@ public class MainVindue extends Application {
         påfyldning1.færdiggørPåfyldning(medarbejder1);
         påfyldning2.færdiggørPåfyldning(medarbejder2);
 
+        Lager lager1 = Controller.opretLager("Lager 1");
+        Lager lager2 = Controller.opretLager("Lager 2");
 
+        lager1.opretLagerplads("A", 1);
+        lager1.opretLagerplads("A", 2);
+        lager1.opretLagerplads("A", 3);
+        lager1.opretLagerplads("B", 1);
+        lager1.opretLagerplads("B", 2);
+        lager1.opretLagerplads("B", 3);
+        lager1.opretLagerplads("C", 1);
+        lager1.opretLagerplads("C", 2);
+        lager1.opretLagerplads("C", 3);
+
+        lager2.opretLagerplads("A", 1);
+        lager2.opretLagerplads("A", 2);
+        lager2.opretLagerplads("A", 3);
+        lager2.opretLagerplads("B", 1);
+        lager2.opretLagerplads("B", 2);
+        lager2.opretLagerplads("B", 3);
+        lager2.opretLagerplads("C", 1);
+        lager2.opretLagerplads("C", 2);
+        lager2.opretLagerplads("C", 3);
+
+        lager1.getPladser().getFirst().placerFad(fad1);
     }
-
-
 }
 

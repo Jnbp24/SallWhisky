@@ -1,6 +1,7 @@
 package application.model;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 
 public class Fad {
@@ -90,7 +91,11 @@ public class Fad {
 
     @Override
     public String toString() {
-        return "Fadnummer: " + "F" + nummer + "\n" + "Fadtype: " + getType();
+        if (destillater.isEmpty()){
+            return "Fadnummer: " + "F" + nummer + "\n" + "Fadtype: " + getType() + "\n" + "Tid på Lager: Ikke påfyldt endnu";
+        }else {
+            return "Fadnummer: " + "F" + nummer + "\n" + "Fadtype: " + getType() + "\n" + "Tid på Lager: " + ChronoUnit.YEARS.between(påfyldningsDato, LocalDate.now()) + " År";
+        }
     }
 
 }
