@@ -29,23 +29,11 @@ public class TilføjDestillatVindue extends Stage {
     public TilføjDestillatVindue(String title, Fad fad) {
         this.setResizable(false);
         this.setTitle(title);
-
-        if (fad == null) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Fejl");
-            alert.setHeaderText("Intet fad valgt");
-            alert.setContentText("Vælg et fad fra listen");
-            alert.showAndWait();
-            return;
-        }
         GridPane pane = new GridPane();
         this.initContent(pane);
         Scene scene = new Scene(pane);
         this.setScene(scene);
         this.fad = fad;
-        resterendeMængdeTextfield.setText(String.valueOf(fad.getFadStørrelse()));
-        mængdeFraDestillatTextfield.setText("0");
-
 
 
     }
@@ -64,9 +52,13 @@ public class TilføjDestillatVindue extends Stage {
         pane.add(medarbejderListView, 2, 1);
         medarbejderListView.getItems().setAll(Controller.getMedarbejdere());
 
+        resterendeMængdeTextfield.setText(String.valueOf(fad.getFadStørrelse()));
+        mængdeFraDestillatTextfield.setText("0");
+
         Button tilføjBtn = new Button("Tilføj");
         tilføjBtn.setOnMouseClicked(event -> {
-
+            resterendeMængdeTextfield.setText(String.valueOf(fad.getFadStørrelse()));
+            mængdeFraDestillatTextfield.setText("0");
             try {
                 double resterendeMængde = Double.parseDouble(resterendeMængdeTextfield.getText());
                 double mængdeFraDestillat = Double.parseDouble(mængdeFraDestillatTextfield.getText());
