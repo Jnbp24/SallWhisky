@@ -47,7 +47,6 @@ public class Fad {
         return fadStørrelse;
     }
 
-
     public LocalDate getPåfyldningsDato() {
         return påfyldningsDato;
     }

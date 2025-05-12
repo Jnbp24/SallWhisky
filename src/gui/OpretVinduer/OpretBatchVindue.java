@@ -107,9 +107,9 @@ public class OpretBatchVindue extends Stage {
             try {
                 Fad valgtfad = fadListView.getSelectionModel().getSelectedItem();
                 Medarbejder valgtMedarbejer = medarbejderListView.getSelectionModel().getSelectedItem();
-
-
                 Controller.opretBatch(valgtfad, batchNavnTxtField.getText(), Integer.parseInt(batchNummerTxtField.getText()), Double.parseDouble(fortyndelseTxtField.getText()), flaskerListe.get(flaskeCombobox.getSelectionModel().getSelectedIndex()), valgtMedarbejer);
+
+
                 Alert succesAlert = new Alert(Alert.AlertType.CONFIRMATION);
                 succesAlert.setTitle("Batch oprettet!");
                 succesAlert.setHeaderText("Batch er er nu oprettet");
@@ -148,7 +148,18 @@ public class OpretBatchVindue extends Stage {
     }
 
     public void updaterFlaskeestimat() {
-        estimatTxtfield.setText(String.valueOf(Controller.udregnFlaskeestimat(tapning, Double.parseDouble(fortyndelseTxtField.getText()), flaskerListe.get(flaskeCombobox.getSelectionModel().getSelectedIndex()))));
+        try {
+
+            if (tapning == null) {
+                estimatTxtfield.setText(String.valueOf(Controller.udregnFlaskeestimat(null, Double.parseDouble(fortyndelseTxtField.getText()), flaskerListe.get(flaskeCombobox.getSelectionModel().getSelectedIndex()))));
+
+            }
+            else {
+                estimatTxtfield.setText(String.valueOf(Controller.udregnFlaskeestimat(tapning, Double.parseDouble(fortyndelseTxtField.getText()), flaskerListe.get(flaskeCombobox.getSelectionModel().getSelectedIndex()))));
+            }
+        } catch (NumberFormatException e) {
+            estimatTxtfield.setText("Ugyldigt input");
+        }
     }
 }
 
