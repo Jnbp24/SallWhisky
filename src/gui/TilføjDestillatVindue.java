@@ -27,9 +27,6 @@ public class TilføjDestillatVindue extends Stage {
     private Påfyldning påfyldning;
 
     public TilføjDestillatVindue(String title, Fad fad) {
-        //Load dummy-Data
-        //        MainVindue.initStorage();
-
         this.setResizable(false);
         this.setTitle(title);
 
