@@ -37,7 +37,7 @@ public class OpretDestillatVindue extends Stage {
     }
 
     private void initContent(GridPane pane) {
-                pane.setAlignment(Pos.TOP_CENTER);
+        pane.setAlignment(Pos.TOP_CENTER);
         pane.setPrefHeight(650);
         pane.setPrefWidth(600);
 
@@ -74,14 +74,11 @@ public class OpretDestillatVindue extends Stage {
             Kornsort valgtKorn = null;
             Vand valgtVand = null;
             try {
-
-
                 String newMakeNummer = nmNummerTxtField.getText();
                 double alkoholProcent = Double.parseDouble(alkolholProcentTxtField.getText());
                 boolean erTørv = tørvBox.isSelected();
                 valgtKorn = kornsortListView.getSelectionModel().getSelectedItem();
                 valgtVand = vandtyperListView.getSelectionModel().getSelectedItem();
-
                 if (newMakeNummer.isEmpty() || valgtKorn == null || valgtVand == null) {
                     throw new IllegalArgumentException("Alle felter skal udfyldes");
                 }
@@ -96,16 +93,13 @@ public class OpretDestillatVindue extends Stage {
                 succesAlert.setTitle("Destillat oprettet");
                 succesAlert.setHeaderText("Dit destillat er oprettet");
                 succesAlert.show();
-
                 this.close();
             } catch (IllegalArgumentException e) {
-
-
                 if (valgtKorn != null && valgtVand != null) {
                     Alert infoAlert = new Alert(Alert.AlertType.INFORMATION);
                     infoAlert.setTitle("Valg bekræftet");
                     infoAlert.setHeaderText("Du har valgt: ");
-                    infoAlert.setContentText("Korn: " + valgtKorn.toString() + "\nVand: " + valgtVand.toString());
+                    infoAlert.setContentText("Korn: " + valgtKorn + "\nVand: " + valgtVand);
                     infoAlert.show();
                 }
                 else {
@@ -116,7 +110,6 @@ public class OpretDestillatVindue extends Stage {
                     fejlAlert.show();
                 }
             }
-
         });
         pane.add(opretDestillat, 1, 7);
         GridPane.setHalignment(opretDestillat, HPos.RIGHT);

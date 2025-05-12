@@ -1,5 +1,6 @@
 package gui.elements;
 
+import application.controller.Controller;
 import application.model.Fad;
 import gui.LagerVinduer.LagerbeholdningVindue;
 import gui.LagerVinduer.LagerhistorikVindue;
@@ -72,13 +73,12 @@ public class Knapper {
         });
         return lagerbeholdningBtn;
     }
-
-    public static Button OpretLagerHistorikButton() {
-        Button seHistorikBtn = new Button("Lager historik");
-        seHistorikBtn.setOnMouseClicked(event -> {
-            LagerhistorikVindue lagerhistorikVindue = new LagerhistorikVindue("Lagerhistorik");
-            lagerhistorikVindue.show();
+    public static Button opretMedarbejderButton(){
+        Button medarbejderBtn = new Button("Opret en medarbejder");
+        medarbejderBtn.setOnMouseClicked(event -> {
+            OpretMedarbejderVindue medarbejderVindue = new OpretMedarbejderVindue("Medarbejdere");
+            medarbejderVindue.show();
         });
-        return seHistorikBtn;
+        return medarbejderBtn;
     }
 }
