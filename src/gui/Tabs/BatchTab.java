@@ -1,8 +1,6 @@
 package gui.Tabs;
 
-import application.model.Batch;
-import application.model.Destillat;
-import application.model.Råvarer;
+import application.model.*;
 import gui.elements.InfoBox;
 import gui.elements.Knapper;
 import javafx.collections.FXCollections;
@@ -11,7 +9,11 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import storage.Storage;
 
 public class BatchTab {
@@ -39,7 +41,7 @@ public class BatchTab {
         batchObservable.setAll(Storage.getBatches());
         batchListView.setItems(batchObservable);
 
-        batchTabContent.add(batchBox, 0, 0);
+        batchTabContent.add(batchBox, 0, 1);
 
         VBox historikInfo = new VBox(25);
         Label historikLabel = new Label("Batch historik");
@@ -48,6 +50,7 @@ public class BatchTab {
         InfoBox fadTypeInfo = new InfoBox("Vælg en batch..");
         InfoBox kornsortInfo = new InfoBox("Vælg en batch..");
         InfoBox fortyndelseInfo = new InfoBox("Vælg en batch..");
+        InfoBox tapningMedarbejder = new InfoBox("Vælg en batch..");
 
 
         batchListView.setOnMouseClicked(event -> {
@@ -62,12 +65,28 @@ public class BatchTab {
                     kornsortBuilderInfo.append(råvarer.getNavn()).append("\n");
                 }
                 kornsortInfo.opdaterIndhold("Kornsort i batch: " + kornsortBuilderInfo);
+
+                Tapning tapning = valgtBatch.getTapning();
+                if (tapning != null) {
+                    Fad fad = tapning.getFad();
+                    if (fad != null) {
+                        StringBuilder tappetBuilder = new StringBuilder("\n");
+                        for (String tappetAf : fad.getPåfyldninger()) {
+                            tappetBuilder.append(tappetAf).append("\n");
+                        }
+                        tapningMedarbejder.opdaterIndhold("Tappet af: \n" + tappetBuilder);
+                    }
+                    else {
+                        tapningMedarbejder.opdaterIndhold("Intet fad fundet");
+                    }
+                    tapningMedarbejder.opdaterIndhold("Ingen tapning foretaget");
+                }
             }
         });
 
 
-        historikInfo.getChildren().addAll(historikLabel, batchNummerInfo, batchNavnInfo, fortyndelseInfo, fadTypeInfo, kornsortInfo);
-        batchTabContent.add(historikInfo, 1, 0);
+        historikInfo.getChildren().addAll(historikLabel, batchNummerInfo, batchNavnInfo, fortyndelseInfo, fadTypeInfo, kornsortInfo, tapningMedarbejder);
+        batchTabContent.add(historikInfo, 1, 1);
 
 
         return batchTabContent;

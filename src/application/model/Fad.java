@@ -1,11 +1,7 @@
 package application.model;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
-import java.util.List;
 
 public class Fad {
 
@@ -14,9 +10,12 @@ public class Fad {
     private double fadStørrelse;
     private int antalGangeBrugt;
     private ArrayList<Destillat> destillater = new ArrayList<>();
+    private ArrayList<String> påfyldninger = new ArrayList<String>();
     private LocalDate påfyldningsDato;
     private double mængdePåfyldt;
     private String påfyldtAf;
+    private LocalDate tapningsDato;
+    private String tappetAf;
 
     public Fad(int nummer, String fadType, double fadStørrelse, int antalGangeBrugt) {
         this.nummer = nummer;
@@ -70,8 +69,24 @@ public class Fad {
 
     public void setPåfyldtAf(String påfyldtAf) {
         this.påfyldtAf = påfyldtAf;
+        påfyldninger.add(this.påfyldtAf);
     }
 
+    public ArrayList<String> getPåfyldninger() {
+        return påfyldninger;
+    }
+
+    public String getTappetAf() {
+        return tappetAf;
+    }
+
+    public void setTappetAf(String tappetAf) {
+        this.tappetAf = tappetAf;
+    }
+
+    public void setTapningsDato(LocalDate tapningsDato) {
+        this.tapningsDato = tapningsDato;
+    }
 
     @Override
     public String toString() {

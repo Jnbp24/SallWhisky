@@ -3,6 +3,7 @@ package gui.Tabs;
 import application.controller.Controller;
 import application.model.Destillat;
 import application.model.Fad;
+import application.model.Påfyldning;
 import gui.elements.InfoBox;
 import gui.elements.Knapper;
 import gui.mainVindue.MainVindue;
@@ -53,7 +54,7 @@ public class DestillatTab {
                 mængdeInfo.opdaterIndhold("Mængde vand: " + valgtDestillat.getMængdeLiter() + " L");
                 kornInfo.opdaterIndhold("Korn: " + valgtDestillat.getKornsort());
                 tørvInfo.opdaterIndhold("Brugt tørv: " + valgtDestillat.getTørv());
-            }
+                            }
         });
         historikInfo.getChildren().addAll(historikLabel, newMakeNummerInfo, alkoholProcentInfo, vandInfo, mængdeInfo, kornInfo, tørvInfo);
 

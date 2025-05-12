@@ -53,6 +53,7 @@ public class Destillat {
         return brugtTørv;
     }
 
+
     @Override
     public String toString() {
         return "Destillat: " + nmNummer + "\n" + "Kornsort: " + kornsort + "\n" + "Vand: " + getVand() + "\n" + "Alkohol procent: " + getAlkoholProcent() + "%" + "\n" + "Tørv: " + getTørv() + "\n" + vand.getMængde();

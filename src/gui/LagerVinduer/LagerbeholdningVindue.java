@@ -39,7 +39,8 @@ public class LagerbeholdningVindue extends Stage {
     private void initContent(GridPane pane){
 
         pane.setPrefSize(800, 800);
-        pane.setPadding(new Insets(20));
+        pane.setVgap(25);
+
 
         Label overskriftLabel = new Label("Lagerbeholdning");
         overskriftLabel.setFont(Font.font("Dialog", 20));
@@ -51,9 +52,11 @@ public class LagerbeholdningVindue extends Stage {
 
         HBox.setHgrow(headerHbox, Priority.ALWAYS);
         headerHbox.getChildren().addAll(overskriftLabel);
+        GridPane.setHgrow(headerHbox, Priority.ALWAYS);
 
-        pane.add(headerHbox, 0,0);
-        pane.add(lagerpladsListView,0,2);
+
+        pane.add(headerHbox, 0, 0);
+        pane.add(lagerpladsListView, 0, 2);
 
         lagerLokationList.setAll(Controller.getLagerer());
         lagerCombobox = new ComboBox<>(lagerLokationList);
