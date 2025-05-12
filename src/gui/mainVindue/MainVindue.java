@@ -96,7 +96,7 @@ public class MainVindue extends Application {
         //        mainTabContent.add(forsideBilleder,0,2);
 
         Label lagerbeholdningsLabel = new Label("Her kan du se den nuværende lagerbeholdning");
-        Label lagerhistorikLabel = new Label("Her kan du se en historik over hvad der tidligere har været på lager");
+        Label medarbejderLabel = new Label("Her kan du oprette nye medarbejdere");
 
 
         VBox lagerbeholdningBox = new VBox();
@@ -104,13 +104,13 @@ public class MainVindue extends Application {
         lagerbeholdningBox.setAlignment(Pos.CENTER);
         lagerbeholdningBox.setSpacing(10);
 
-        VBox lagerhistorikBox = new VBox();
-        lagerhistorikBox.getChildren().addAll(Knapper.OpretLagerHistorikButton(), lagerhistorikLabel);
-        lagerhistorikBox.setAlignment(Pos.CENTER);
-        lagerhistorikBox.setSpacing(10);
+        VBox opretMedarbejderBox = new VBox();
+        opretMedarbejderBox.getChildren().addAll(Knapper.opretMedarbejderButton(), medarbejderLabel);
+        opretMedarbejderBox.setAlignment(Pos.CENTER);
+        opretMedarbejderBox.setSpacing(10);
 
         VBox forsideKnapper = new VBox();
-        forsideKnapper.getChildren().addAll(lagerbeholdningBox, lagerhistorikBox);
+        forsideKnapper.getChildren().addAll(lagerbeholdningBox, opretMedarbejderBox);
         forsideKnapper.setAlignment(Pos.CENTER);
         forsideKnapper.setSpacing(45);
         mainTabContent.add(forsideKnapper, 0, 2);
