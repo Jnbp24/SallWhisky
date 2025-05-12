@@ -50,6 +50,10 @@ public class Lager {
         return fade;
     }
 
+    public ArrayList<Lagerplads> getPladser() {
+        return new ArrayList<>(pladser);
+    }
+
     @Override
     public String toString() {
         return id;

@@ -35,4 +35,15 @@ public class Lagerplads {
     public Fad getFad() {
         return fad;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder("Reol : " + reol + " Hylde: " + hylde);
+        if (fad == null){
+            stringBuilder.append("\n -Ledig-");
+        }else {
+            stringBuilder.append("\n" + fad);
+        }
+        return stringBuilder.toString();
+    }
 }
