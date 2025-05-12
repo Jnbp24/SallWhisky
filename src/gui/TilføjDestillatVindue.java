@@ -16,23 +16,31 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class TilføjDestillatVindue extends Stage {
-private ListView<Destillat> destillatListView = new ListView<>();
-private TextField resterendeMængdeTextfield = new TextField();
-private TextField mængdeFraDestillatTextfield = new TextField();
-private Fad fad;
-private Label resterendeMængdeLbl = new Label("Resterende liter");
-private Label fyldPåLbl = new Label("Fyld på");
-private ListView<Medarbejder> medarbejderListView = new ListView<>();
+    private ListView<Destillat> destillatListView = new ListView<>();
+    private TextField resterendeMængdeTextfield = new TextField();
+    private TextField mængdeFraDestillatTextfield = new TextField();
+    private Fad fad;
+    private Label resterendeMængdeLbl = new Label("Resterende liter");
+    private Label fyldPåLbl = new Label("Fyld på");
+    private ListView<Medarbejder> medarbejderListView = new ListView<>();
 
-private Påfyldning påfyldning;
+    private Påfyldning påfyldning;
 
     public TilføjDestillatVindue(String title, Fad fad) {
         //Load dummy-Data
-//        MainVindue.initStorage();
+        //        MainVindue.initStorage();
 
         this.setResizable(false);
         this.setTitle(title);
 
+        if (fad == null) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Fejl");
+            alert.setHeaderText("Intet fad valgt");
+            alert.setContentText("Vælg et fad fra listen");
+            alert.showAndWait();
+            return;
+        }
         GridPane pane = new GridPane();
         this.initContent(pane);
         Scene scene = new Scene(pane);
@@ -40,38 +48,41 @@ private Påfyldning påfyldning;
         this.fad = fad;
         resterendeMængdeTextfield.setText(String.valueOf(fad.getFadStørrelse()));
         mængdeFraDestillatTextfield.setText("0");
+
+
+
     }
 
     private void initContent(GridPane pane) {
         pane.setAlignment(Pos.TOP_CENTER);
-//        pane.setPrefHeight(500);
-//        pane.setPrefWidth(300);
         pane.setPadding(new Insets(35));
         pane.setVgap(20);
 
 
-        pane.add(new Label("Destillater"),0,0);
-        pane.add(destillatListView, 0,1);
+        pane.add(new Label("Destillater"), 0, 0);
+        pane.add(destillatListView, 0, 1);
         destillatListView.getItems().setAll(Controller.getDestillater());
 
-        pane.add(new Label("Vælg medarbejder til påfyldning"),2,0);
-        pane.add(medarbejderListView, 2,1);
+        pane.add(new Label("Vælg medarbejder til påfyldning"), 2, 0);
+        pane.add(medarbejderListView, 2, 1);
         medarbejderListView.getItems().setAll(Controller.getMedarbejdere());
 
-//        pane.add(resterendeMængdeLbl, 2,0);
-//        pane.add(resterendeMængdeTextfield,2,1);
-//
-//        pane.add(fyldPåLbl, 2,2);
-//        pane.add(mængdeFraDestillatTextfield, 2,3);
-
         Button tilføjBtn = new Button("Tilføj");
-//        pane.add(tilføjBtn, 2,4);
         tilføjBtn.setOnMouseClicked(event -> {
 
             try {
+                double resterendeMængde = Double.parseDouble(resterendeMængdeTextfield.getText());
+                double mængdeFraDestillat = Double.parseDouble(mængdeFraDestillatTextfield.getText());
+
+                if (mængdeFraDestillat > resterendeMængde) {
+                    throw new IllegalArgumentException("Mængde overskrider resterende volume");
+                }
+
                 påfyldning = Controller.tilføjDestillat(fad, destillatListView.getSelectionModel().getSelectedItem(), Double.parseDouble(mængdeFraDestillatTextfield.getText()));
                 double difference = Double.parseDouble(resterendeMængdeTextfield.getText()) - Double.parseDouble(mængdeFraDestillatTextfield.getText());
                 resterendeMængdeTextfield.setText(String.valueOf(difference));
+
+
             } catch (IllegalArgumentException e) {
                 Alert fejlAlert = new Alert(Alert.AlertType.ERROR);
                 fejlAlert.setTitle("Invalid information");
@@ -81,15 +92,13 @@ private Påfyldning påfyldning;
         });
 
         Button plusBtn = new Button("+");
-//        pane.add(plusBtn, 3,3);
         plusBtn.setOnMouseClicked(event -> mængdeFraDestillatTextfield.setText(String.valueOf(Integer.parseInt(mængdeFraDestillatTextfield.getText()) + 1)));
 
         Button minusBtn = new Button("-");
-//        pane.add(minusBtn, 1,3);
-        minusBtn.setOnMouseClicked(event -> mængdeFraDestillatTextfield.setText(String.valueOf(Integer.parseInt(mængdeFraDestillatTextfield.getText())- 1)));
+        minusBtn.setOnMouseClicked(event -> mængdeFraDestillatTextfield.setText(String.valueOf(Integer.parseInt(mængdeFraDestillatTextfield.getText()) - 1)));
 
         Button accepterBtn = new Button("Accepter");
-        pane.add(accepterBtn, 0,2);
+        pane.add(accepterBtn, 0, 2);
         accepterBtn.setOnMouseClicked(event -> {
             Controller.færdiggørPåfyldning(påfyldning, medarbejderListView.getSelectionModel().getSelectedItem());
             this.close();
@@ -102,6 +111,6 @@ private Påfyldning påfyldning;
         hBox.setPadding(new Insets(35));
         VBox vBox = new VBox(resterendeMængdeLbl, resterendeMængdeTextfield, fyldPåLbl, hBox, tilføjBtn);
         vBox.setPadding(new Insets(35));
-        pane.add(vBox, 1,1);
+        pane.add(vBox, 1, 1);
     }
 }
