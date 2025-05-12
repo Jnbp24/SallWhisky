@@ -21,7 +21,7 @@ public class DestillatTab {
 
     public GridPane initContent() {
         //Load dummy-data
-        MainVindue.initStorage();
+//        MainVindue.initStorage();
 
         VBox destillatbox = new VBox(15);
         GridPane destillatTabContent = new GridPane();

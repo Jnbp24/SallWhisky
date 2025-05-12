@@ -28,7 +28,7 @@ private Påfyldning påfyldning;
 
     public TilføjDestillatVindue(String title, Fad fad) {
         //Load dummy-Data
-        MainVindue.initStorage();
+//        MainVindue.initStorage();
 
         this.setResizable(false);
         this.setTitle(title);

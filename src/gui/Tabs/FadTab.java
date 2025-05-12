@@ -22,7 +22,7 @@ public class FadTab {
 
     public GridPane initContent() {
         //Load dummy-data
-        MainVindue.initStorage();
+//        MainVindue.initStorage();
 
         GridPane fadTabContent = new GridPane();
         fadTabContent.setAlignment(Pos.CENTER);

@@ -4,6 +4,7 @@ import application.model.*;
 import storage.Storage;
 
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 
 public class Controller {
 
@@ -66,8 +67,15 @@ public class Controller {
         lager.opretLagerplads(reol, hylde);
     }
 
-    public static Lagerplads findFad(Lager lager, int fadNummer) {
-        return lager.findFad(fadNummer);
+    public static Lagerplads findFad(int fadNummer){
+        Lagerplads lagerplads;
+        for (Lager lager : getLagerer()) {
+            lagerplads = lager.findFad(fadNummer);
+            if (lagerplads != null){
+                return lagerplads;
+            }
+        }
+        throw new NoSuchElementException("Dette fad er ikke på lager");
     }
 
     public static ArrayList<Fad> findTapklar(Lager lager) {

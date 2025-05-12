@@ -43,6 +43,10 @@ public class Lager {
         return fade;
     }
 
+    public ArrayList<Lagerplads> getPladser() {
+        return new ArrayList<>(pladser);
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
