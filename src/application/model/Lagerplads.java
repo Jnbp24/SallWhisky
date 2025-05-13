@@ -36,6 +36,10 @@ public class Lagerplads {
         return fad;
     }
 
+    public Lager getLager() {
+        return lager;
+    }
+
     @Override
     public String toString() {
         if (fad == null){
