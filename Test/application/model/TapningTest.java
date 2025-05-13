@@ -10,6 +10,7 @@ class TapningTest {
 
     @BeforeEach
     void setUp() {
+
     }
 
     @Test
@@ -19,9 +20,22 @@ class TapningTest {
         Medarbejder medarbejder = new Medarbejder(1, "Sammi");
         Påfyldning påfyldning = Controller.tilføjDestillat(fad, destillat, 5);
         Controller.færdiggørPåfyldning(påfyldning, medarbejder);
-        Tapning tapning = new Tapning(fad);
+        Tapning tapning = new Tapning(fad, medarbejder);
         double actual = tapning.udregnFlaskeEstimat(10, 10);
 
         assertEquals(1.5, actual, 0.001);
+    }
+
+    @Test
+    void opretBatch() {
+        Fad fad = new Fad(2, "Sherry", 20, 2);
+        Medarbejder medarbejder = new Medarbejder(1, "Sammi");
+        Batch batch = Controller.opretBatch(fad, "B109", 109, 12, 1.5, medarbejder);
+
+        assertEquals("Sherry", batch.getFadtype());
+        assertEquals("B109", batch.getBatchNavn());
+        assertEquals(109, batch.getBatchNummer());
+        assertEquals(12, batch.getFortyndelseLiter());
+        assertEquals("Sammi", medarbejder.getNavn());
     }
 }
