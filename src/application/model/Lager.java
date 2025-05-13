@@ -24,7 +24,7 @@ public class Lager {
         pladser.add(new Lagerplads(reol, hylde, this));
     }
 
-    public Lagerplads findFad(int fadNummer) {
+    public Lagerplads findFadPåFadNummer(int fadNummer) {
         for (Lagerplads lagerplads : pladser) {
             if (lagerplads.getFad().getNummer() == fadNummer) {
                 return lagerplads;
@@ -33,14 +33,28 @@ public class Lager {
         return null;
     }
 
-    public ArrayList<Fad> findTapklar() {
-        ArrayList<Fad> fade = new ArrayList<>();
+    public ArrayList<Lagerplads> findFadPåNmNummer(String newMakeNummer){
+        ArrayList<Lagerplads> pladserTilRetur = new ArrayList<>();
         for (Lagerplads lagerplads : pladser) {
-            if (ChronoUnit.YEARS.between(lagerplads.getFad().getPåfyldningsDato(), LocalDate.now()) >= 3) {
-                fade.add(lagerplads.getFad());
+            if (lagerplads.getFad() != null){
+                for (Destillat destillat : lagerplads.getFad().getDestillater()) {
+                    if (destillat.getNmNummer().equals(newMakeNummer)){
+                        pladserTilRetur.add(lagerplads);
+                    }
+                }
             }
         }
-        return fade;
+        return pladserTilRetur;
+    }
+
+    public ArrayList<Lagerplads> findTapklar() {
+        ArrayList<Lagerplads> lagerpladser = new ArrayList<>();
+        for (Lagerplads lagerplads : pladser) {
+            if (lagerplads.getFad() != null && ChronoUnit.YEARS.between(lagerplads.getFad().getPåfyldningsDato(), LocalDate.now()) >= 3) {
+                lagerpladser.add(lagerplads);
+            }
+        }
+        return lagerpladser;
     }
 
     public ArrayList<Lagerplads> getPladser() {
