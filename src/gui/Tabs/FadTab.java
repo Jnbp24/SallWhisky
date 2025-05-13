@@ -21,8 +21,6 @@ public class FadTab {
     private ObservableList fadObservable = FXCollections.observableArrayList();
 
     public GridPane initContent() {
-        //Load dummy-data
-        //        MainVindue.initStorage();
         GridPane fadTabContent = new GridPane();
         fadTabContent.setAlignment(Pos.CENTER);
         fadTabContent.setVgap(10);
