@@ -79,10 +79,10 @@ public class Controller {
         lager.opretLagerplads(reol, hylde);
     }
 
-    public static Lagerplads findFad(int fadNummer) {
+    public static Lagerplads findFadPåFadNummer(int fadNummer) {
         Lagerplads lagerplads;
         for (Lager lager : getLagerer()) {
-            lagerplads = lager.findFad(fadNummer);
+            lagerplads = lager.findFadPåFadNummer(fadNummer);
             if (lagerplads != null) {
                 return lagerplads;
             }
@@ -90,8 +90,20 @@ public class Controller {
         throw new NoSuchElementException("Dette fad er ikke på lager");
     }
 
-    public static ArrayList<Fad> findTapklar(Lager lager) {
-        return lager.findTapklar();
+    public static ArrayList<Lagerplads> findFadPåNmNummer(String nmNummer){
+        ArrayList<Lagerplads> lagerpladser = new ArrayList<>();
+        for (Lager lager : getLagerer()) {
+            lagerpladser.addAll(lager.findFadPåNmNummer(nmNummer));
+        }
+        return lagerpladser;
+    }
+
+    public static ArrayList<Lagerplads> findTapklar() {
+        ArrayList<Lagerplads> lagerpladser = new ArrayList<>();
+        for (Lager lager : getLagerer()) {
+            lagerpladser.addAll(lager.findTapklar());
+        }
+        return lagerpladser;
     }
 
     public static void tilføjFadTilLagerplads(Fad fad, Lagerplads lagerplads) {
