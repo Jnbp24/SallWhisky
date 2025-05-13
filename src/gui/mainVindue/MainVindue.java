@@ -18,6 +18,9 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import storage.Storage;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
+
 public class MainVindue extends Application {
 
     @Override
@@ -166,9 +169,15 @@ public class MainVindue extends Application {
         Påfyldning påfyldning2 = new Påfyldning(fad2);
         påfyldning2.tilføjDestillat(destillat3, 35);
 
-
         påfyldning1.færdiggørPåfyldning(medarbejder1);
         påfyldning2.færdiggørPåfyldning(medarbejder2);
+
+        fad3.setPåfyldningsDato(LocalDate.of(2021,12,5));
+        ArrayList<Destillat> destillater = new ArrayList<>();
+        destillater.add(destillat1);
+        fad3.setDestillater(destillater);
+        fad3.setMængdePåfyldt(destillater.getFirst().getMængdeLiter());
+        fad3.setPåfyldtAf(medarbejder1.getNavn());
 
         Lager lager1 = Controller.opretLager("Lager 1");
         Lager lager2 = Controller.opretLager("Lager 2");
@@ -194,6 +203,7 @@ public class MainVindue extends Application {
         lager2.opretLagerplads("C", 3);
 
         lager1.getPladser().getFirst().placerFad(fad1);
+        lager2.getPladser().getFirst().placerFad(fad3);
     }
 }
 

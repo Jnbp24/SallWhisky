@@ -1,10 +1,12 @@
 package gui.LagerVinduer;
 
 import application.controller.Controller;
+import application.model.Fad;
 import application.model.Lager;
 import application.model.Lagerplads;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -22,6 +24,7 @@ public class LagerbeholdningVindue extends Stage {
     private static ComboBox lagerCombobox;
     private TextField findFadPåFadNummerTxtField = new TextField();
     private TextField findFadPåNmNummerTxtField = new TextField();
+    private static ListView<Fad> fadListView = new ListView<>();
 
     public LagerbeholdningVindue(String title) {
 
@@ -39,6 +42,8 @@ public class LagerbeholdningVindue extends Stage {
 
         pane.setPrefSize(800, 800);
         pane.setVgap(25);
+        pane.setHgap(25);
+        pane.setPadding(new Insets(20));
 
         Label overskriftLabel = new Label("Lagerbeholdning");
         overskriftLabel.setFont(Font.font("Dialog", 20));
@@ -58,8 +63,10 @@ public class LagerbeholdningVindue extends Stage {
 
         lagerLokationList.setAll(Controller.getLagerer());
         lagerCombobox = new ComboBox<>(lagerLokationList);
+        lagerCombobox.setValue(lagerLokationList.getFirst());
         lagerCombobox.setOnAction(event -> updaterLagerPladsList());
         pane.add(lagerCombobox, 0,1);
+        updaterLagerPladsList();
 
         Label findFadPåFadNummerLabel = new Label("Søg efter fadnummer");
         Button findFadPåFadNummerBtn = new Button("Søg");
@@ -69,15 +76,85 @@ public class LagerbeholdningVindue extends Stage {
         Button findFadPåNmNummerBtn = new Button("Søg");
         findFadPåNmNummerBtn.setOnMouseClicked(event -> lagerpladsListView.getItems().setAll(Controller.findFadPåNmNummer(findFadPåNmNummerTxtField.getText())));
 
+        Label findTapklarLable = new Label("Find alle tapklar fade");
+        Button findTapklarBtn = new Button("Find tapklar");
+        findTapklarBtn.setOnMouseClicked(event -> lagerpladsListView.getItems().setAll(Controller.findTapklar()));
+
+        pane.add(fadListView, 2,2);
+        updaterFadList();
+
+        Label tilføjFadLabel = new Label("Tilføj fad til lagerplads");
+        Button tilføjFadBtn = new Button("Placer fad");
+        tilføjFadBtn.setOnMouseClicked(event -> {
+            if (lagerpladsListView.getSelectionModel().getSelectedItem() != null && fadListView.getSelectionModel().getSelectedItem() != null){
+                if (lagerpladsListView.getSelectionModel().getSelectedItem().getFad() == null){
+                    lagerpladsListView.getSelectionModel().getSelectedItem().placerFad(fadListView.getSelectionModel().getSelectedItem());
+                    updaterLagerPladsList();
+                    updaterFadList();
+                }else {
+                    Alert pladsOptagetAlert = new Alert(Alert.AlertType.ERROR);
+                    pladsOptagetAlert.setTitle("FEJL");
+                    pladsOptagetAlert.setHeaderText("Denne plads er optaget");
+                    pladsOptagetAlert.setContentText("Vælg venlist en anden plads");
+                    pladsOptagetAlert.show();
+                }
+            }else {
+                Alert listAlert = new Alert(Alert.AlertType.ERROR);
+                listAlert.setTitle("FEJL");
+                listAlert.setHeaderText("Der skal vælges både en lagerplads, og et fad");
+                listAlert.setContentText("Vælg venligst en fri plads fra listen, og et fad fra den anden liste");
+                listAlert.show();
+            }
+        });
+
+        Label fjernFadLabel = new Label("Fjern et fad fra lagerplads");
+        Button fjernFadBtn = new Button("Fjern fad");
+        fjernFadBtn.setOnMouseClicked(event -> {
+            if (lagerpladsListView.getSelectionModel().getSelectedItem() != null){
+                if (lagerpladsListView.getSelectionModel().getSelectedItem().getFad() != null){
+                    lagerpladsListView.getSelectionModel().getSelectedItem().fjernFad();
+                    updaterLagerPladsList();
+                    updaterFadList();
+                }else {
+                    Alert ledigFejl = new Alert(Alert.AlertType.ERROR);
+                    ledigFejl.setTitle("FEJL");
+                    ledigFejl.setHeaderText("Denne plads er tom");
+                    ledigFejl.setContentText("Vælg venligst en plads som indeholder et fad");
+                    ledigFejl.show();
+                }
+            }else {
+                Alert listAlert = new Alert(Alert.AlertType.ERROR);
+                listAlert.setTitle("Fejl");
+                listAlert.setHeaderText("Ingen plads valgt");
+                listAlert.setContentText("Vælg venligst en plads");
+                listAlert.show();
+            }
+        });
+
         HBox findFadPåFadNummerHbox = new HBox(findFadPåFadNummerTxtField, findFadPåFadNummerBtn);
-        HBox findFadPåNmNummerHbox = new HBox(findFadPåNmNummerTxtField, findFadPåFadNummerBtn);
+        HBox findFadPåNmNummerHbox = new HBox(findFadPåNmNummerTxtField, findFadPåNmNummerBtn);
 
-        VBox findFadVbox = new VBox(findFadPåFadNummerLabel, findFadPåFadNummerHbox, findFadPåNmNummerLabel ,findFadPåNmNummerHbox);
+        VBox knapVbox = new VBox(findFadPåFadNummerLabel, findFadPåFadNummerHbox, findFadPåNmNummerLabel ,findFadPåNmNummerHbox, findTapklarLable, findTapklarBtn, tilføjFadLabel, tilføjFadBtn, fjernFadLabel, fjernFadBtn);
+        knapVbox.setSpacing(15);
+        pane.add(knapVbox, 1,2);
 
-        pane.add(findFadVbox, 1,2);
+        this.setOnCloseRequest(event -> {
+
+        });
     }
 
     public static void updaterLagerPladsList(){
-        lagerpladsListView.getItems().setAll(lagerLokationList.get(lagerCombobox.getSelectionModel().getSelectedIndex()).getPladser());
+        if (lagerCombobox.getSelectionModel().getSelectedIndex() >= 0) {
+            lagerpladsListView.getItems().setAll(lagerLokationList.get(lagerCombobox.getSelectionModel().getSelectedIndex()).getPladser());
+        }
+    }
+
+    public static void updaterFadList(){
+        fadListView.getItems().clear();
+        for (Fad fad : Controller.getFadList()) {
+            if (!fad.isPåLager()){
+                fadListView.getItems().add(fad);
+            }
+        }
     }
 }
