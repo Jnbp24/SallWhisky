@@ -1,11 +1,10 @@
-package gui;
+package gui.OpretVinduer;
 
 import application.controller.Controller;
 import application.model.Destillat;
 import application.model.Fad;
 import application.model.Medarbejder;
 import application.model.Påfyldning;
-import gui.mainVindue.MainVindue;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
