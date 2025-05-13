@@ -2,6 +2,7 @@ package gui.mainVindue;
 
 import application.controller.Controller;
 import application.model.*;
+import gui.Tabs.RaavarerTab;
 import gui.elements.Billeder;
 import gui.elements.Knapper;
 import gui.Tabs.BatchTab;
@@ -27,7 +28,7 @@ public class MainVindue extends Application {
     public void start(Stage stage) throws Exception {
         stage.setTitle("Sall Whisky");
         GridPane pane = new GridPane();
-        pane.setPrefSize(600, 600);
+        pane.setPrefSize(800, 800);
 
         this.initStorage();
         this.initContent(pane);
@@ -44,19 +45,22 @@ public class MainVindue extends Application {
         Tab fadtab = new Tab("Fad");
         Tab batchTab = new Tab("Batch");
         Tab destillatTab = new Tab("Destillat");
+        Tab råvarerTab = new Tab("Råvarer");
 
         mainTab.setClosable(false);
         fadtab.setClosable(false);
         fadtab.setClosable(false);
         batchTab.setClosable(false);
         destillatTab.setClosable(false);
+        råvarerTab.setClosable(false);
 
         mainTab.setContent(mainTabContent());
         fadtab.setContent(new FadTab().initContent());
         batchTab.setContent(new BatchTab().initContent());
         destillatTab.setContent(new DestillatTab().initContent());
+        råvarerTab.setContent(new RaavarerTab().initContent());
 
-        tabPane.getTabs().addAll(mainTab, fadtab, batchTab, destillatTab);
+        tabPane.getTabs().addAll(mainTab, fadtab, batchTab, destillatTab, råvarerTab);
         pane.add(tabPane, 0, 0);
 
     }
@@ -89,11 +93,6 @@ public class MainVindue extends Application {
         headerHbox.setMaxWidth(Double.MAX_VALUE);
         mainTabContent.add(headerHbox, 0, 1);
 
-        //        VBox forsideBilleder = new VBox();
-        //        ImageView glødBillede = new Billeder().opretBillede("/billeder/GlødWhisky.png",150,150);
-        //
-        //        forsideBilleder.getChildren().addAll(glødBillede);
-        //        mainTabContent.add(forsideBilleder,0,2);
 
         Label lagerbeholdningsLabel = new Label("Her kan du se den nuværende lagerbeholdning");
         Label medarbejderLabel = new Label("Her kan du oprette nye medarbejdere");
@@ -172,7 +171,7 @@ public class MainVindue extends Application {
         påfyldning1.færdiggørPåfyldning(medarbejder1);
         påfyldning2.færdiggørPåfyldning(medarbejder2);
 
-        fad3.setPåfyldningsDato(LocalDate.of(2021,12,5));
+        fad3.setPåfyldningsDato(LocalDate.of(2021, 12, 5));
         ArrayList<Destillat> destillater = new ArrayList<>();
         destillater.add(destillat1);
         fad3.setDestillater(destillater);

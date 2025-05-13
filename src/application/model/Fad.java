@@ -61,7 +61,7 @@ public class Fad {
             }
         }
 
-        String historikIndtastning = "Overført " + omhældningMængde + " L til " + valgtFad.getNummer() + " med størrelse " + valgtFad.getFadStørrelse();
+        String historikIndtastning = "Overført " + omhældningMængde + " L til " + valgtFad.getNummer() + " med størrelse " + valgtFad.getFadStørrelse() + "og fadtypen " + valgtFad.getType();
         this.historik.add(historikIndtastning);
         valgtFad.historik.add("Modtaget " + omhældningMængde + " L fra " + this.getNummer() + " med størrelsen " + this.fadStørrelse);
     }
