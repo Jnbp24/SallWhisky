@@ -1,11 +1,10 @@
-package gui;
+package gui.OpretVinduer;
 
 import application.controller.Controller;
 import application.model.Destillat;
 import application.model.Fad;
 import application.model.Medarbejder;
 import application.model.Påfyldning;
-import gui.mainVindue.MainVindue;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -52,25 +51,16 @@ public class TilføjDestillatVindue extends Stage {
         pane.add(medarbejderListView, 2, 1);
         medarbejderListView.getItems().setAll(Controller.getMedarbejdere());
 
-        resterendeMængdeTextfield.setText(String.valueOf(fad.getFadStørrelse()));
-        mængdeFraDestillatTextfield.setText("0");
 
         Button tilføjBtn = new Button("Tilføj");
         tilføjBtn.setOnMouseClicked(event -> {
             resterendeMængdeTextfield.setText(String.valueOf(fad.getFadStørrelse()));
             mængdeFraDestillatTextfield.setText("0");
             try {
-                double resterendeMængde = Double.parseDouble(resterendeMængdeTextfield.getText());
-                double mængdeFraDestillat = Double.parseDouble(mængdeFraDestillatTextfield.getText());
-
-                if (mængdeFraDestillat > resterendeMængde) {
-                    throw new IllegalArgumentException("Mængde overskrider resterende volume");
-                }
-
                 påfyldning = Controller.tilføjDestillat(fad, destillatListView.getSelectionModel().getSelectedItem(), Double.parseDouble(mængdeFraDestillatTextfield.getText()));
                 double difference = Double.parseDouble(resterendeMængdeTextfield.getText()) - Double.parseDouble(mængdeFraDestillatTextfield.getText());
                 resterendeMængdeTextfield.setText(String.valueOf(difference));
-
+                mængdeFraDestillatTextfield.setText("0");
 
             } catch (IllegalArgumentException e) {
                 Alert fejlAlert = new Alert(Alert.AlertType.ERROR);

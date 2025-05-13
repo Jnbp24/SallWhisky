@@ -1,11 +1,9 @@
 package gui.elements;
 
-import application.controller.Controller;
 import application.model.Fad;
 import gui.LagerVinduer.LagerbeholdningVindue;
-import gui.LagerVinduer.LagerhistorikVindue;
 import gui.OpretVinduer.*;
-import gui.TilføjDestillatVindue;
+import gui.OpretVinduer.TilføjDestillatVindue;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
@@ -60,7 +58,7 @@ public class Knapper {
         Button tilføjDestillatBtn = new Button("Tilføj Destillat");
         tilføjDestillatBtn.setOnMouseClicked(event -> {
             TilføjDestillatVindue tilføjDestillatVindue = new TilføjDestillatVindue("Tilføj Destillat", fadListView.getSelectionModel().getSelectedItem());
-                Fad valgtFad = fadListView.getSelectionModel().getSelectedItem();
+            Fad valgtFad = fadListView.getSelectionModel().getSelectedItem();
             if (valgtFad == null) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Fejl");
@@ -90,5 +88,14 @@ public class Knapper {
             medarbejderVindue.show();
         });
         return medarbejderBtn;
+    }
+
+    public static Button opretOmhældningButton() {
+        Button omhældningButton = new Button("Lav en ophældning");
+        omhældningButton.setOnMouseClicked(event -> {
+            LavOmhældningVindue omhældningVindue = new LavOmhældningVindue("Foretag omhældning");
+            omhældningVindue.show();
+        });
+        return omhældningButton;
     }
 }
