@@ -18,12 +18,14 @@ public class Fad {
     private String påfyldtAf;
     private LocalDate tapningsDato;
     private String tappetAf;
+    private boolean påLager;
 
     public Fad(int nummer, String fadType, double fadStørrelse, int antalGangeBrugt) {
         this.nummer = nummer;
         this.fadType = fadType;
         this.fadStørrelse = fadStørrelse;
         this.antalGangeBrugt = antalGangeBrugt;
+        this.påLager = false;
     }
 
 
@@ -109,6 +111,22 @@ public class Fad {
 
     public void setTapningsDato(LocalDate tapningsDato) {
         this.tapningsDato = tapningsDato;
+    }
+
+    public void setPåfyldningsDato(LocalDate påfyldningsDato) {
+        this.påfyldningsDato = påfyldningsDato;
+    }
+
+    public void setDestillater(ArrayList<Destillat> destillater) {
+        this.destillater = destillater;
+    }
+
+    public void setPåLager(boolean påLager) {
+        this.påLager = påLager;
+    }
+
+    public boolean isPåLager() {
+        return påLager;
     }
 
     @Override

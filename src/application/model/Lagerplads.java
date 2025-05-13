@@ -16,10 +16,12 @@ public class Lagerplads {
         if (this.fad == null){
             this.fad = fad;
         }
+        fad.setPåLager(true);
     }
 
     public void fjernFad(){
         if (fad != null){
+            fad.setPåLager(false);
             fad = null;
         }
     }
@@ -43,10 +45,10 @@ public class Lagerplads {
     @Override
     public String toString() {
         if (fad == null){
-            return "Reol : " + reol + "\nHylde: " + hylde + "\n -Ledig-";
+            return lager + "\nReol : " + reol + "\nHylde: " + hylde + "\n -Ledig-";
         }
         else{
-            return "Reol : " + reol + "\nHylde: " + hylde + "\n" + fad;
+            return lager + "\nReol : " + reol + "\nHylde: " + hylde + "\n" + fad;
         }
     }
 }
