@@ -42,9 +42,12 @@ public class Controller {
         påfyldning.færdiggørPåfyldning(medarbejder);
     }
 
-    public static void opretBatch(Fad fad, String batchNavn, int batchNummer, double fortyndelsesLiter, double flaskeStørrelse, Medarbejder medarbejder) {
-        Tapning batch = new Tapning(fad, medarbejder);
-        Storage.tilføjBatch(batch.opretBatch(fad, batchNavn, batchNummer, fortyndelsesLiter, flaskeStørrelse));
+    public static Batch opretBatch(Fad fad, String batchNavn, int batchNummer, double fortyndelsesLiter, double flaskeStørrelse, Medarbejder medarbejder) {
+        Tapning tapning = new Tapning(fad, medarbejder);
+        Batch batch = tapning.opretBatch(fad, batchNavn, batchNummer, fortyndelsesLiter, flaskeStørrelse);
+        Storage.tilføjBatch(batch);
+
+        return batch;
     }
 
     public static Medarbejder opretMedarbejder(int nummer, String navn) {

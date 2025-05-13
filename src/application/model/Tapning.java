@@ -18,7 +18,7 @@ public class Tapning {
         return (fad.getMængdePåfyldt() + fortyndelsesLiter) / flaskeStørrelse;
     }
 
-    public Batch opretBatch(Fad fad, String batchNavn, int batchNummer, double fortyndelsesLiter, double flaskeStørrelse) {
+    public Batch opretBatch(Fad fad, String batchNavn, int batchNummer, double fortyndelsesLiter, double flaskeStørrelseILiter) {
         fad.setTapningsDato(LocalDate.now());
         fad.setTappetAf(medarbejder.getNavn());
 
@@ -26,11 +26,11 @@ public class Tapning {
         for (Destillat destillat : fad.getDestillater()) {
             kornsorter.add(destillat.getKornsort());
         }
-        int antalFlasker = (int) udregnFlaskeEstimat(fortyndelsesLiter, flaskeStørrelse);
+        int antalFlasker = (int) udregnFlaskeEstimat(fortyndelsesLiter, flaskeStørrelseILiter);
         Batch batch = new Batch(kornsorter, fad.getType(), batchNummer, batchNavn, fortyndelsesLiter);
 
         for (int i = 0; i < antalFlasker; i++) {
-            Flaske flaske = new Flaske(flaskeStørrelse, batchNavn, i + 1);
+            Flaske flaske = new Flaske(flaskeStørrelseILiter, batchNavn, i + 1);
             batch.tilføjFlaske(flaske);
         }
         return batch;

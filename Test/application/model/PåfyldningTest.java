@@ -15,7 +15,6 @@ class PåfyldningTest {
     @Test
     void påfyldningTest() {
 
-
     }
 
     @org.junit.jupiter.api.Test
@@ -50,7 +49,6 @@ class PåfyldningTest {
 //
 //
 //        assertEquals(destillat2, fad2.getDestillater().remove(destillat2));
-//
 //
 //    }
 

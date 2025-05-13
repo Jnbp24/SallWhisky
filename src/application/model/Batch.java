@@ -50,6 +50,9 @@ public class Batch {
         }
     }
 
+    public ArrayList<Flaske> getFlasker() {
+        return flasker;
+    }
 
     @Override
     public String toString() {
