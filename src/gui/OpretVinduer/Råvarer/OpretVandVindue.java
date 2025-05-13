@@ -1,4 +1,4 @@
-package gui.OpretVinduer;
+package gui.OpretVinduer.Råvarer;
 
 import application.controller.Controller;
 import javafx.geometry.HPos;

@@ -1,4 +1,4 @@
-package gui.OpretVinduer;
+package gui.OpretVinduer.Fad;
 
 import application.controller.Controller;
 import application.model.Destillat;

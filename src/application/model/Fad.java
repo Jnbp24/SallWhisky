@@ -43,6 +43,9 @@ public class Fad {
         if (valgtFad.fadStørrelse - valgtFad.mængdePåfyldt < omhældningMængde) {
             throw new IllegalArgumentException("Ikke nok plads i det valgte fad");
         }
+        if(valgtFad.fadStørrelse - valgtFad.mængdePåfyldt < omhældningMængde){
+            throw new IllegalArgumentException("Ikke nok plads i det valgte fad");
+        }
 
         //Trække mængden fra det tidligere fad fra og tilføjer det til det valgte fad
         valgtFad.mængdePåfyldt += omhældningMængde;
