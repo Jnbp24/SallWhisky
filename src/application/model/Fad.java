@@ -12,6 +12,7 @@ public class Fad {
     private int antalGangeBrugt;
     private ArrayList<Destillat> destillater = new ArrayList<>();
     private ArrayList<String> påfyldninger = new ArrayList<String>();
+    private ArrayList<String> historik = new ArrayList<>();
     private LocalDate påfyldningsDato;
     private double mængdePåfyldt;
     private String påfyldtAf;
@@ -36,6 +37,32 @@ public class Fad {
         else
             throw new IllegalArgumentException("Dette fad indeholder allerede dette destillat");
     }
+
+    public void omhæld(Fad valgtFad, double omhældningMængde) {
+        if (omhældningMængde > mængdePåfyldt) {
+            throw new IllegalArgumentException("Ikke nok væske til at overføre fra fadet");
+        }
+        if (valgtFad.fadStørrelse - valgtFad.mængdePåfyldt < omhældningMængde) {
+            throw new IllegalArgumentException("Ikke nok plads i det valgte fad");
+        }
+
+        //Trække mængden fra det tidligere fad fra og tilføjer det til det valgte fad
+        valgtFad.mængdePåfyldt += omhældningMængde;
+        this.mængdePåfyldt -= omhældningMængde;
+
+        //Overfører destillater hvis fadet ikke indeholder destillatet fra det tidligere fad endnu
+        for (Destillat destillat : destillater) {
+            if (!valgtFad.destillater.contains(destillat)) {
+                valgtFad.tilføjDestillat(destillat);
+                this.destillater.remove(destillat);
+            }
+        }
+
+        String historikIndtastning = "Overført " + omhældningMængde + " L til " + valgtFad.getNummer() + " med størrelse " + valgtFad.getFadStørrelse();
+        this.historik.add(historikIndtastning);
+        valgtFad.historik.add("Modtaget " + omhældningMængde + " L fra " + this.getNummer() + " med størrelsen " + this.fadStørrelse);
+    }
+
 
     public int getNummer() {
         return nummer;
@@ -78,10 +105,6 @@ public class Fad {
         return påfyldninger;
     }
 
-    public String getTappetAf() {
-        return tappetAf;
-    }
-
     public void setTappetAf(String tappetAf) {
         this.tappetAf = tappetAf;
     }
@@ -108,9 +131,10 @@ public class Fad {
 
     @Override
     public String toString() {
-        if (destillater.isEmpty()){
+        if (destillater.isEmpty()) {
             return "Fadnummer: " + "F" + nummer + "\n" + "Fadtype: " + getType() + "\n" + "Tid på Lager: Ikke påfyldt endnu";
-        }else {
+        }
+        else {
             return "Fadnummer: " + "F" + nummer + "\n" + "Fadtype: " + getType() + "\n" + "Tid på Lager: " + ChronoUnit.YEARS.between(påfyldningsDato, LocalDate.now()) + " År";
         }
     }

@@ -22,7 +22,7 @@ public class FadTab {
 
     public GridPane initContent() {
         //Load dummy-data
-//        MainVindue.initStorage();
+        //        MainVindue.initStorage();
 
         GridPane fadTabContent = new GridPane();
         fadTabContent.setAlignment(Pos.CENTER);
@@ -37,8 +37,8 @@ public class FadTab {
         labelBox.setStyle("-fx-border-color: grey; " + "-fx-border-width: 2;" + "-fx-padding: 10;");
 
 
-        HBox Knapbox = new HBox(200);
-        Knapbox.getChildren().addAll(Knapper.OpretFadButton(), Knapper.TilføjDestillatButton(fadListView));
+        HBox Knapbox = new HBox(75);
+        Knapbox.getChildren().addAll(Knapper.OpretFadButton(), Knapper.TilføjDestillatButton(fadListView), Knapper.opretOmhældningButton());
 
         VBox listebox = new VBox(10);
         listebox.getChildren().addAll(Knapbox, labelBox, fadListView);
@@ -57,7 +57,6 @@ public class FadTab {
         InfoBox antalGangeBrugtInfo = new InfoBox("Vælg et fad..");
         InfoBox destillaterInfo = new InfoBox("Vælg et fad..");
         InfoBox medarbejderInfo = new InfoBox("Vælg et fad..");
-
 
         fadListView.setOnMouseClicked(event -> {
             Fad valgtFad = fadListView.getSelectionModel().getSelectedItem();
