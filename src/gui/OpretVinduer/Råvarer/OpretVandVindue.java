@@ -1,6 +1,7 @@
-package gui.OpretVinduer;
+package gui.OpretVinduer.Råvarer;
 
 import application.controller.Controller;
+import gui.Tabs.RaavarerTab;
 import javafx.geometry.HPos;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -57,6 +58,7 @@ public class OpretVandVindue extends Stage {
                 succesAlert.setTitle("Vandtype oprettet!");
                 succesAlert.setHeaderText("Din vandtype er nu oprettet");
                 succesAlert.show();
+                RaavarerTab.opdaterListview();
                 this.close();
             } catch (NumberFormatException e) {
                 if (vandTypeTxtField.getText().isEmpty() || vandLokationTxtField.getText().isEmpty() || vandMængdeTxtField.getText().isEmpty()) {

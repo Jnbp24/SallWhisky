@@ -1,8 +1,7 @@
-package gui.OpretVinduer;
+package gui.OpretVinduer.Fad;
 
 import application.controller.Controller;
 import gui.Tabs.FadTab;
-import gui.mainVindue.MainVindue;
 import javafx.geometry.HPos;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;

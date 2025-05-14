@@ -21,13 +21,11 @@ public class FadTab {
     private ObservableList fadObservable = FXCollections.observableArrayList();
 
     public GridPane initContent() {
-        //Load dummy-data
-        //        MainVindue.initStorage();
-
         GridPane fadTabContent = new GridPane();
         fadTabContent.setAlignment(Pos.CENTER);
         fadTabContent.setVgap(10);
         fadTabContent.setHgap(20);
+
 
         Label FadListeLabel = new Label("Liste af oprettede fade - Tryk på et fad for at tilføje et destillat");
         Label visHistorikLabel = new Label("Tryk på et fad for at se indholdet");

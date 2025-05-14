@@ -69,6 +69,12 @@ public class Controller {
         return lager;
     }
 
+    public static void foretagOmhældning(Fad destinationsFad, Fad kildeFad, double omhældningsMængde) {
+        if (kildeFad == null || destinationsFad == null) {
+            throw new IllegalArgumentException("Vælg både kilde og destinations fad");
+        } kildeFad.omhæld(destinationsFad, omhældningsMængde);
+    }
+
     public static void opretLagerplads(Lager lager, String reol, int hylde) {
         lager.opretLagerplads(reol, hylde);
     }

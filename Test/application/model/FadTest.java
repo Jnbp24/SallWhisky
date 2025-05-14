@@ -35,7 +35,12 @@ class FadTest {
 
     @Test
     void tilføjDestillatAlkohol(){
-        assertEquals(destillat, destillat.getAlkoholProcent());
+        assertEquals(63.5, destillat.getAlkoholProcent());
+    }
+
+    @Test
+    void tilføjDestillatBrugtTørv(){
+        assertEquals(true, destillat.isBrugtTørv());
     }
 
 }

@@ -1,7 +1,8 @@
-package gui.OpretVinduer;
+package gui.OpretVinduer.Råvarer;
 
 import application.controller.Controller;
 import application.model.Ristethed;
+import gui.Tabs.RaavarerTab;
 import javafx.geometry.HPos;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -89,6 +90,8 @@ public class OpretKornVindue extends Stage {
                 succesAlert.setTitle("Kornsort oprettet!");
                 succesAlert.setHeaderText("Din kornsort er nu oprettet");
                 succesAlert.show();
+
+                RaavarerTab.opdaterListview();
                 this.close();
             } catch (NumberFormatException e) {
                 if (kornsortTypeTxtField.getText().isEmpty() || kornsortLokationTxtField.getText().isEmpty() || kornsortMængdeTxtField.getText().isEmpty()) {
