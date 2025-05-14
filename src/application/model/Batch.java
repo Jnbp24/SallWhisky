@@ -4,7 +4,7 @@ package application.model;
 import java.util.ArrayList;
 
 public class Batch {
-    private ArrayList<Råvarer> kornsorter;
+    private ArrayList<Kornsort> kornsorter;
     private String fadtype;
     private int batchNummer;
     private String batchNavn;
@@ -12,7 +12,7 @@ public class Batch {
     private Tapning tapning;
     private ArrayList<Flaske> flasker = new ArrayList<>();
 
-    public Batch(ArrayList<Råvarer> kornsorter, String fadtype, int batchNummer, String batchNavn, double fortyndelseLiter, Tapning tapning) {
+    public Batch(ArrayList<Kornsort> kornsorter, String fadtype, int batchNummer, String batchNavn, double fortyndelseLiter, Tapning tapning) {
         this.kornsorter = kornsorter;
         this.fadtype = fadtype;
         this.batchNummer = batchNummer;
@@ -29,7 +29,7 @@ public class Batch {
         return batchNavn;
     }
 
-    public ArrayList<Råvarer> getKornsorter() {
+    public ArrayList<Kornsort> getKornsorter() {
         return kornsorter;
     }
 

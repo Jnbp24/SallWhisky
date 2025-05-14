@@ -29,7 +29,7 @@ class StorageTest {
 
     @Test
     void tilføjBatch() {
-        ArrayList<Råvarer> kornsorter = new ArrayList<>();
+        ArrayList<Kornsort> kornsorter = new ArrayList<>();
         kornsorter.add(new Kornsort("Korn", "Kornsort", 23, Ristethed.IKKE_RISTET));
         Batch batch = new Batch(kornsorter,"Eg", 12, "B89", 23, new Tapning());
         Storage.tilføjBatch(batch);
