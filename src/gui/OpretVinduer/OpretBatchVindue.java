@@ -60,11 +60,13 @@ public class OpretBatchVindue extends Stage {
         Label valgtMedarbejderLabel = new Label("Hvilken medarbejder tapper?");
         medarbejderListView.setOnMouseClicked(event -> {
             valgtMedarbejderLabel.setText(String.valueOf(medarbejderListView.getSelectionModel().getSelectedItem()));
+            tapning.setMedarbejder(medarbejderListView.getSelectionModel().getSelectedItem());
         });
 
 
         fadListView.setOnMouseClicked(event -> {
             valgtFadLabel.setText(String.valueOf(fadListView.getSelectionModel().getSelectedItem()));
+            tapning.setFad(fadListView.getSelectionModel().getSelectedItem());
             updaterFlaskeestimat();
         });
 
