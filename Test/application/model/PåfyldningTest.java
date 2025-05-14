@@ -15,6 +15,7 @@ class PåfyldningTest {
     @Test
     void påfyldningTest() {
 
+
     }
 
     @org.junit.jupiter.api.Test
@@ -30,7 +31,7 @@ class PåfyldningTest {
 
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void færdiggørPåfyldning() {
         Fad fad = new Fad(1, "Eg", 50.0, 2);
         Destillat destillat = new Destillat("NM1", 63.5, new Kornsort("korn", "kornmark", 10, Ristethed.IKKE_RISTET), new Vand("vand", "vandmark", 10), true);
