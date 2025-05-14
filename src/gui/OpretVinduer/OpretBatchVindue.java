@@ -4,6 +4,7 @@ import application.controller.Controller;
 import application.model.Fad;
 import application.model.Medarbejder;
 import application.model.Tapning;
+import gui.Tabs.BatchTab;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -59,13 +60,11 @@ public class OpretBatchVindue extends Stage {
         Label valgtMedarbejderLabel = new Label("Hvilken medarbejder tapper?");
         medarbejderListView.setOnMouseClicked(event -> {
             valgtMedarbejderLabel.setText(String.valueOf(medarbejderListView.getSelectionModel().getSelectedItem()));
-            tapning.setMedarbejder(medarbejderListView.getSelectionModel().getSelectedItem());
         });
 
 
         fadListView.setOnMouseClicked(event -> {
             valgtFadLabel.setText(String.valueOf(fadListView.getSelectionModel().getSelectedItem()));
-            tapning.setFad(fadListView.getSelectionModel().getSelectedItem());
             updaterFlaskeestimat();
         });
 
@@ -109,6 +108,7 @@ public class OpretBatchVindue extends Stage {
             try {
                 Fad valgtfad = fadListView.getSelectionModel().getSelectedItem();
                 Medarbejder valgtMedarbejer = medarbejderListView.getSelectionModel().getSelectedItem();
+                BatchTab.updaterBatchList();
                 //her
                 Controller.opretBatch(valgtfad, batchNavnTxtField.getText(), Integer.parseInt(batchNummerTxtField.getText()), Double.parseDouble(fortyndelseTxtField.getText()), flaskerListe.get(flaskeCombobox.getSelectionModel().getSelectedIndex()), valgtMedarbejer, tapning);
 

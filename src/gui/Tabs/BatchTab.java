@@ -1,5 +1,6 @@
 package gui.Tabs;
 
+import application.controller.Controller;
 import application.model.*;
 import gui.elements.InfoBox;
 import gui.elements.Knapper;
@@ -13,7 +14,7 @@ import javafx.scene.layout.VBox;
 import storage.Storage;
 
 public class BatchTab {
-    private ListView<Batch> batchListView = new ListView<>();
+    private static ListView<Batch> batchListView = new ListView<>();
     private ObservableList batchObservable = FXCollections.observableArrayList();
 
     public GridPane initContent() {
@@ -88,9 +89,11 @@ public class BatchTab {
         historikInfo.getChildren().addAll(historikLabel, batchNummerInfo, batchNavnInfo, fortyndelseInfo, fadTypeInfo, kornsortInfo,antalFlaskerIBatch ,tapningMedarbejder);
         batchTabContent.add(historikInfo, 1, 1);
 
-
         return batchTabContent;
     }
 
+    public static void updaterBatchList(){
+        batchListView.getItems().setAll(Controller.getBatches());
+    }
 
 }

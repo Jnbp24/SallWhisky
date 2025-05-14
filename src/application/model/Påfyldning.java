@@ -15,16 +15,23 @@ public class Påfyldning {
 
     public void tilføjDestillat(Destillat destillat, double valgtDestillatmængde) {
         if (valgtDestillatmængde > destillat.getMængdeLiter()) {
+            System.out.println(destillat.getNmNummer());
+            System.out.println(destillat.getMængdeLiter());
+            System.out.println(valgtDestillatmængde);
             throw new IllegalArgumentException("Ikke nok væske i destillatet");
         }
         if (resterendeVolume - destillat.getVand().getMængde() <= 0) {
             throw new IllegalArgumentException("Ikke nok plads i fadet");
         }
 
-        destillater.add(destillat);
-        resterendeVolume -= destillat.getVand().getMængde();
         destillat.setMængdeLiter(destillat.getMængdeLiter() - valgtDestillatmængde);
+        resterendeVolume -= destillat.getVand().getMængde();
         mængdeLiterFraAlleDestillater += valgtDestillatmængde;
+
+        if (!destillater.contains(destillat)) {
+            destillater.add(destillat);
+        }
+
         fad.tilføjDestillat(destillat);
     }
 
@@ -40,7 +47,5 @@ public class Påfyldning {
             fad.setPåfyldtAf(medarbejder.getNavn());
         }
     }
-
-
 }
 

@@ -136,6 +136,10 @@ public class Controller {
         return Storage.getDestillater();
     }
 
+    public static ArrayList<Batch> getBatches(){
+        return Storage.getBatches();
+    }
+
     public static ArrayList<Medarbejder> getMedarbejdere() {
         return Storage.getMedarbejderer();
     }

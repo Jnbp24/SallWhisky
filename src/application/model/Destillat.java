@@ -14,7 +14,7 @@ public class Destillat {
         this.kornsort = kornsort;
         this.vand = vand;
         this.brugtTørv = brugtTørv;
-        mængdeLiter = vand.getMængde();
+        setMængdeLiter(vand.getMængde());
     }
 
 
@@ -56,6 +56,6 @@ public class Destillat {
 
     @Override
     public String toString() {
-        return "Destillat: " + nmNummer + "\n" + "Kornsort: " + kornsort + "\n" + "Vand: " + getVand() + "\n" + "Alkohol procent: " + getAlkoholProcent() + "%" + "\n" + "Tørv: " + getTørv() + "\n" + vand.getMængde();
+        return "Destillat: " + nmNummer + "\n" + "Kornsort: " + kornsort + "\n" + "Vand: " + getVand() + "\n" + "Alkohol procent: " + getAlkoholProcent() + "%" + "\n" + "Tørv: " + getTørv() + "\n" + "Mængde i liter: " + mængdeLiter;
     }
 }
