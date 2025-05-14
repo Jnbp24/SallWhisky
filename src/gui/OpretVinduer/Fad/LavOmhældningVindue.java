@@ -15,6 +15,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+
 public class LavOmhældningVindue extends Stage {
     private ListView<Fad> kildeListView = new ListView<>();
     private ObservableList kildeObservable = FXCollections.observableArrayList();

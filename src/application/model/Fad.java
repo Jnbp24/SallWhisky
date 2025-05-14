@@ -139,11 +139,10 @@ public class Fad {
     @Override
     public String toString() {
         if (destillater.isEmpty()) {
-            return "Fadnummer: " + "F" + nummer + "\n" + "Fadtype: " + getType() + "\n" + "Tid på Lager: Ikke påfyldt endnu";
+            return "Fadnummer: " + "F" + nummer + "\n" + "Fadtype: " + getType() + "\n" + "Tid på Lager: Ikke påfyldt endnu" + "\nFadstørrelse: " + fadStørrelse + " L";
         }
         else {
-            return "Fadnummer: " + "F" + nummer + "\n" + "Fadtype: " + getType() + "\n" + "Tid på Lager: " + ChronoUnit.YEARS.between(påfyldningsDato, LocalDate.now()) + " År";
+            return "Fadnummer: " + "F" + nummer + "\n" + "Fadtype: " + getType() + "\n" + "Tid på Lager: " + ChronoUnit.YEARS.between(påfyldningsDato, LocalDate.now()) + " År" + "\nVæske i fad: " + mængdePåfyldt + " L" + "\nFadstørrelse: " + fadStørrelse + " L";
         }
     }
-
 }
