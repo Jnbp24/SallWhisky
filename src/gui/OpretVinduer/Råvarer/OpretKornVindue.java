@@ -72,19 +72,18 @@ public class OpretKornVindue extends Stage {
         pane.add(RistethedLabel, 0, 3);
 
 
-        Ristethed valgtRistethed;
-        if (ristetgroup.getSelectedToggle() != null) {
-            valgtRistethed = (Ristethed) ristetgroup.getSelectedToggle().getUserData();
-        }
-        else {
-            valgtRistethed = null;
-        }
-
-
         Button opretBtn = new Button("Opret kornsort");
         opretBtn.setOnMouseClicked(event -> {
             try {
-                Controller.opretKornsort(kornsortTypeTxtField.getText(),kornsortLokationTxtField.getText(),Integer.parseInt(kornsortMængdeTxtField.getText()),valgtRistethed);
+                Ristethed valgtRistethed;
+                if (ristetgroup.getSelectedToggle() != null) {
+                    valgtRistethed = (Ristethed) ristetgroup.getSelectedToggle().getUserData();
+                }
+                else {
+                    valgtRistethed = null;
+                }
+                
+                Controller.opretKornsort(kornsortTypeTxtField.getText(), kornsortLokationTxtField.getText(), Integer.parseInt(kornsortMængdeTxtField.getText()), valgtRistethed);
                 Alert succesAlert = new Alert(Alert.AlertType.CONFIRMATION);
                 succesAlert.setTitle("Kornsort oprettet!");
                 succesAlert.setHeaderText("Din kornsort er nu oprettet");
@@ -106,7 +105,7 @@ public class OpretKornVindue extends Stage {
                 }
             }
         });
-        pane.add(opretBtn,1,4);
+        pane.add(opretBtn, 1, 4);
         GridPane.setHalignment(opretBtn, HPos.RIGHT);
 
         Button annullerBtn = new Button("Annuller");
