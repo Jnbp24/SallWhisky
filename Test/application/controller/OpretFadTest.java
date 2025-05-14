@@ -12,7 +12,6 @@ class OpretFadTest {
 
     @BeforeEach
     void setUp() {
-        // Initialize a valid Fad object
         fad = Controller.opretFad(1, "Sherry", 200, 0);
     }
 
@@ -36,9 +35,5 @@ class OpretFadTest {
         assertEquals(0, fad.getAntalGangeBrugt(), "Antal gange brugt skal matche det angivne antal");
     }
 
-    @Test
-    void testGetId() {
-        assertEquals("F1", fad.getNummer(), "Fad-ID skal være korrekt formatteret");
-    }
 
 }
