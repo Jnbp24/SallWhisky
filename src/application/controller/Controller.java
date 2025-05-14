@@ -42,8 +42,13 @@ public class Controller {
         påfyldning.færdiggørPåfyldning(medarbejder);
     }
 
-    public static Batch opretBatch(Fad fad, String batchNavn, int batchNummer, double fortyndelsesLiter, double flaskeStørrelse, Medarbejder medarbejder) {
-        Tapning tapning = new Tapning(fad, medarbejder);
+    public static Tapning opretTapning(){
+        return new Tapning();
+    }
+
+    public static Batch opretBatch(Fad fad, String batchNavn, int batchNummer, double fortyndelsesLiter, double flaskeStørrelse, Medarbejder medarbejder, Tapning tapning) {
+        tapning.setFad(fad);
+        tapning.setMedarbejder(medarbejder);
         Batch batch = tapning.opretBatch(fad, batchNavn, batchNummer, fortyndelsesLiter, flaskeStørrelse);
         Storage.tilføjBatch(batch);
 

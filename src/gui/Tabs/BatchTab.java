@@ -46,6 +46,7 @@ public class BatchTab {
         InfoBox fadTypeInfo = new InfoBox("Vælg en batch..");
         InfoBox kornsortInfo = new InfoBox("Vælg en batch..");
         InfoBox fortyndelseInfo = new InfoBox("Vælg en batch..");
+        InfoBox antalFlaskerIBatch = new InfoBox("Vælg en batch..");
         InfoBox tapningMedarbejder = new InfoBox("Vælg en batch..");
 
 
@@ -61,6 +62,7 @@ public class BatchTab {
                     kornsortBuilderInfo.append(råvarer.getNavn()).append("\n");
                 }
                 kornsortInfo.opdaterIndhold("Kornsort i batch: " + kornsortBuilderInfo);
+                antalFlaskerIBatch.opdaterIndhold("Antal flasker i Batch: " + valgtBatch.getFlasker().size());
 
                 Tapning tapning = valgtBatch.getTapning();
                 if (tapning != null) {
@@ -83,7 +85,7 @@ public class BatchTab {
         });
 
 
-        historikInfo.getChildren().addAll(historikLabel, batchNummerInfo, batchNavnInfo, fortyndelseInfo, fadTypeInfo, kornsortInfo, tapningMedarbejder);
+        historikInfo.getChildren().addAll(historikLabel, batchNummerInfo, batchNavnInfo, fortyndelseInfo, fadTypeInfo, kornsortInfo,antalFlaskerIBatch ,tapningMedarbejder);
         batchTabContent.add(historikInfo, 1, 1);
 
 
