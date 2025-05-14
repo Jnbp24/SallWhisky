@@ -12,7 +12,7 @@ class BatchTest {
     @Test
     void tilføjFlaske() {
         Flaske expected = new Flaske(2, "B189", 234);
-        ArrayList<Råvarer> kornsorter = new ArrayList<>();
+        ArrayList<Kornsort> kornsorter = new ArrayList<>();
         kornsorter.add(new Kornsort("Korn", "Kornsort", 23, Ristethed.IKKE_RISTET));
         Batch batch = new Batch(kornsorter,"Eg", 12, "B89", 23);
         batch.tilføjFlaske(expected);

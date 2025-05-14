@@ -22,7 +22,7 @@ public class Tapning {
         fad.setTapningsDato(LocalDate.now());
         fad.setTappetAf(medarbejder.getNavn());
 
-        ArrayList<Råvarer> kornsorter = new ArrayList<>();
+        ArrayList<Kornsort> kornsorter = new ArrayList<>();
         for (Destillat destillat : fad.getDestillater()) {
             kornsorter.add(destillat.getKornsort());
         }

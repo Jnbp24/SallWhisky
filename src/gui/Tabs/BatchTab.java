@@ -72,17 +72,14 @@ public class BatchTab {
                             tappetBuilder.append(tappetAf).append("\n");
                         }
                         tapningMedarbejder.opdaterIndhold("Tappet af: \n" + tappetBuilder);
-                    }
-                    else {
+                    } else {
                         tapningMedarbejder.opdaterIndhold("Intet fad fundet");
                     }
-                }
-                else {
+                } else {
                     tapningMedarbejder.opdaterIndhold("Ingen tapning foretaget");
                 }
             }
         });
-
 
         historikInfo.getChildren().addAll(historikLabel, batchNummerInfo, batchNavnInfo, fortyndelseInfo, fadTypeInfo, kornsortInfo, tapningMedarbejder);
         batchTabContent.add(historikInfo, 1, 1);
@@ -90,8 +87,12 @@ public class BatchTab {
         return batchTabContent;
     }
 
-    public static void updaterBatchList(){
+    public static void updaterBatchList() {
         batchListView.getItems().setAll(Controller.getBatches());
+    }
+
+    public static Batch getBatch(){
+        return batchListView.getSelectionModel().getSelectedItem();
     }
 
 }

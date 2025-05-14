@@ -14,6 +14,7 @@ class StorageTest {
 
     @Test
     void tilføjFad() {
+
     }
 
     @Test

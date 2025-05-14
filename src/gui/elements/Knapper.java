@@ -8,6 +8,7 @@ import gui.OpretVinduer.Fad.OpretFadVindue;
 import gui.OpretVinduer.Fad.TilføjDestillatVindue;
 import gui.OpretVinduer.Råvarer.OpretKornVindue;
 import gui.OpretVinduer.Råvarer.OpretVandVindue;
+import gui.Tabs.BatchTab;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
@@ -95,7 +96,7 @@ public class Knapper {
     }
 
     public static Button opretOmhældningButton() {
-        Button omhældningButton = new Button("Lav en ophældning");
+        Button omhældningButton = new Button("Lav en omhældning");
         omhældningButton.setOnMouseClicked(event -> {
             LavOmhældningVindue omhældningVindue = new LavOmhældningVindue("Foretag omhældning");
             omhældningVindue.show();
@@ -106,6 +107,8 @@ public class Knapper {
     public static Button opretFuldHistorikButton(){
         Button fuldHistorikButton = new Button("Vis fuld historik");
         fuldHistorikButton.setOnMouseClicked(event -> {
+            FindHistorikVindue historikVindue = new FindHistorikVindue("Vis historik", BatchTab.getBatch());
+            historikVindue.show();
 
         });
         return fuldHistorikButton;
