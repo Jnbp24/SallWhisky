@@ -15,7 +15,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class TilføjDestillatVindue extends Stage {
-    private ListView<Destillat> destillatListView = new ListView<>();
+    private static ListView<Destillat> destillatListView = new ListView<>();
     private TextField resterendeMængdeTextfield = new TextField();
     private TextField mængdeFraDestillatTextfield = new TextField();
     private Fad fad;
@@ -42,10 +42,14 @@ public class TilføjDestillatVindue extends Stage {
         pane.setPadding(new Insets(35));
         pane.setVgap(20);
 
+        mængdeFraDestillatTextfield.setText("0");
 
         pane.add(new Label("Destillater"), 0, 0);
         pane.add(destillatListView, 0, 1);
-        destillatListView.getItems().setAll(Controller.getDestillater());
+        updaterList();
+        destillatListView.setOnMouseClicked(event -> {
+            resterendeMængdeTextfield.setText(String.valueOf((fad.getFadStørrelse() - fad.getMængdePåfyldt() - Integer.parseInt(mængdeFraDestillatTextfield.getText()))));
+        });
 
         pane.add(new Label("Vælg medarbejder til påfyldning"), 2, 0);
         pane.add(medarbejderListView, 2, 1);
@@ -54,13 +58,10 @@ public class TilføjDestillatVindue extends Stage {
 
         Button tilføjBtn = new Button("Tilføj");
         tilføjBtn.setOnMouseClicked(event -> {
-            resterendeMængdeTextfield.setText(String.valueOf(fad.getFadStørrelse()));
-            mængdeFraDestillatTextfield.setText("0");
             try {
                 påfyldning = Controller.tilføjDestillat(fad, destillatListView.getSelectionModel().getSelectedItem(), Double.parseDouble(mængdeFraDestillatTextfield.getText()));
-                double difference = Double.parseDouble(resterendeMængdeTextfield.getText()) - Double.parseDouble(mængdeFraDestillatTextfield.getText());
-                resterendeMængdeTextfield.setText(String.valueOf(difference));
                 mængdeFraDestillatTextfield.setText("0");
+                updaterList();
 
             } catch (IllegalArgumentException e) {
                 Alert fejlAlert = new Alert(Alert.AlertType.ERROR);
@@ -70,11 +71,27 @@ public class TilføjDestillatVindue extends Stage {
             }
         });
 
+        mængdeFraDestillatTextfield.setOnAction(event -> {
+            if (destillatListView.getSelectionModel().getSelectedItem() != null){
+                resterendeMængdeTextfield.setText(String.valueOf((fad.getFadStørrelse() - fad.getMængdePåfyldt() - Integer.parseInt(mængdeFraDestillatTextfield.getText()))));
+            }
+        });
+
         Button plusBtn = new Button("+");
-        plusBtn.setOnMouseClicked(event -> mængdeFraDestillatTextfield.setText(String.valueOf(Integer.parseInt(mængdeFraDestillatTextfield.getText()) + 1)));
+        plusBtn.setOnMouseClicked(event ->{
+            mængdeFraDestillatTextfield.setText(String.valueOf(Integer.parseInt(mængdeFraDestillatTextfield.getText()) + 1));
+            if (destillatListView.getSelectionModel().getSelectedItem() != null){
+                resterendeMængdeTextfield.setText(String.valueOf((fad.getFadStørrelse() - fad.getMængdePåfyldt() - Integer.parseInt(mængdeFraDestillatTextfield.getText()))));
+            }
+        });
 
         Button minusBtn = new Button("-");
-        minusBtn.setOnMouseClicked(event -> mængdeFraDestillatTextfield.setText(String.valueOf(Integer.parseInt(mængdeFraDestillatTextfield.getText()) - 1)));
+        minusBtn.setOnMouseClicked(event -> {
+            mængdeFraDestillatTextfield.setText(String.valueOf(Integer.parseInt(mængdeFraDestillatTextfield.getText()) - 1));
+            if (destillatListView.getSelectionModel().getSelectedItem() != null){
+                resterendeMængdeTextfield.setText(String.valueOf((fad.getFadStørrelse() - fad.getMængdePåfyldt() - Integer.parseInt(mængdeFraDestillatTextfield.getText()))));
+            }
+        });
 
         Button accepterBtn = new Button("Accepter");
         pane.add(accepterBtn, 0, 2);
@@ -91,5 +108,10 @@ public class TilføjDestillatVindue extends Stage {
         VBox vBox = new VBox(resterendeMængdeLbl, resterendeMængdeTextfield, fyldPåLbl, hBox, tilføjBtn);
         vBox.setPadding(new Insets(35));
         pane.add(vBox, 1, 1);
+    }
+
+    public static void updaterList(){
+        destillatListView.getItems().clear();
+        destillatListView.getItems().setAll(Controller.getDestillater());
     }
 }
