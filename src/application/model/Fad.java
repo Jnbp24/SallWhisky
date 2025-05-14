@@ -45,7 +45,7 @@ public class Fad {
         if (valgtFad.fadStørrelse - valgtFad.mængdePåfyldt < omhældningMængde) {
             throw new IllegalArgumentException("Ikke nok plads i det valgte fad");
         }
-        if(valgtFad.fadStørrelse - valgtFad.mængdePåfyldt < omhældningMængde){
+        if (valgtFad.fadStørrelse - valgtFad.mængdePåfyldt < omhældningMængde) {
             throw new IllegalArgumentException("Ikke nok plads i det valgte fad");
         }
 
@@ -102,6 +102,10 @@ public class Fad {
     public void setPåfyldtAf(String påfyldtAf) {
         this.påfyldtAf = påfyldtAf;
         påfyldninger.add(this.påfyldtAf);
+    }
+
+    public String getPåfyldtAf() {
+        return påfyldtAf;
     }
 
     public ArrayList<String> getPåfyldninger() {

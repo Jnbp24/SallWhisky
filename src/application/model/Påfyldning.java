@@ -21,10 +21,14 @@ public class Påfyldning {
             throw new IllegalArgumentException("Ikke nok plads i fadet");
         }
 
-        destillater.add(destillat);
-        resterendeVolume -= destillat.getVand().getMængde();
         destillat.setMængdeLiter(destillat.getMængdeLiter() - valgtDestillatmængde);
+        resterendeVolume -= destillat.getVand().getMængde();
         mængdeLiterFraAlleDestillater += valgtDestillatmængde;
+
+        if (!destillater.contains(destillat)) {
+            destillater.add(destillat);
+        }
+
         fad.tilføjDestillat(destillat);
     }
 
