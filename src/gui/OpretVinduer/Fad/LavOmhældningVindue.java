@@ -77,8 +77,6 @@ public class LavOmhældningVindue extends Stage {
 
         //Gemmer destinationsview før kildelistview item er valgt
         kildeListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-
-
             if (newValue != null) {
                 destinationListView.setVisible(true);
                 destinationFadInfo.setVisible(true);
@@ -88,8 +86,6 @@ public class LavOmhældningVindue extends Stage {
             }
             else {
                 destinationListView.setVisible(false);
-
-
             }
         });
 
