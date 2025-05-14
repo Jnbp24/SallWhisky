@@ -1,6 +1,8 @@
 package gui.Tabs;
 
 import application.controller.Controller;
+import application.model.Kornsort;
+import application.model.Ristethed;
 import application.model.Råvarer;
 import gui.elements.InfoBox;
 import gui.elements.Knapper;
@@ -34,6 +36,13 @@ public class RaavarerTab {
 
         InfoBox kornInfoBox = new InfoBox("Her kan du se en liste af oprettede kornsorter");
 
+        VBox kornHistorikInfo = new VBox(10);
+        Label kornHistorikLabel = new Label("Korn historik");
+        InfoBox kornsortNavnInfo = new InfoBox("Vælg korn..");
+        InfoBox kornLokationInfo = new InfoBox("Vælg korn..");
+        InfoBox kornMængdeInfo = new InfoBox("Vælg korn..");
+        InfoBox kornRistethed = new InfoBox("Vælg korn..");
+
         kornBox.getChildren().addAll(Knapper.OpretKornButton(), kornInfoBox, kornsorterListview);
 
         VBox vandBox = new VBox(7.5);
@@ -43,13 +52,39 @@ public class RaavarerTab {
         vandtyperListview.setItems(vandtyperObservable);
         vandBox.getChildren().addAll(Knapper.OpretVandButton(), vandtyperBox, vandtyperListview);
 
-        råvarerTabContent.add(kornBox, 0, 0);
-        råvarerTabContent.add(vandBox, 1, 0);
+        VBox vandHistorikInfo = new VBox(10);
+        Label vandHistorikLabel = new Label("Vand historik");
+        InfoBox vandTypeInfo = new InfoBox("Vælg vand..");
+        InfoBox vandLokationInfo = new InfoBox("Vælg vand..");
+        InfoBox vandMængdeILiterInfo = new InfoBox("Vælg vand..");
 
+
+        kornHistorikInfo.getChildren().addAll(kornHistorikLabel, kornsortNavnInfo, kornLokationInfo, kornMængdeInfo, kornRistethed);
+        vandHistorikInfo.getChildren().addAll(vandHistorikLabel, vandTypeInfo, vandLokationInfo, vandMængdeILiterInfo);
+        råvarerTabContent.add(kornBox, 0, 0);
+        råvarerTabContent.add(kornHistorikInfo, 1, 0);
+        råvarerTabContent.add(vandBox, 2, 0);
+        råvarerTabContent.add(vandHistorikInfo, 3, 0);
+
+
+        kornsorterListview.setOnMouseClicked(event -> {
+            Kornsort valgtKornsort = (Kornsort) kornsorterListview.getSelectionModel().getSelectedItem();
+            kornsortNavnInfo.opdaterIndhold("Navn på kornsort: " + valgtKornsort.getNavn());
+            kornLokationInfo.opdaterIndhold("Kornsort lokation: " + valgtKornsort.getLokation());
+            kornMængdeInfo.opdaterIndhold("Korn mængde: " + valgtKornsort.getMængde());
+            kornRistethed.opdaterIndhold("Ristethed: " + valgtKornsort.getRistethed() );
+        });
+
+        vandtyperListview.setOnMouseClicked(event -> {
+            Råvarer valgtVand = vandtyperListview.getSelectionModel().getSelectedItem();
+            vandTypeInfo.opdaterIndhold("Vandtype: " + valgtVand.getNavn());
+            vandLokationInfo.opdaterIndhold("Vand lokation: " + valgtVand.getLokation());
+            vandMængdeILiterInfo.opdaterIndhold("Vandmængde i liter: " + valgtVand.getMængde());
+        });
         return råvarerTabContent;
     }
 
-    public static void opdaterListview(){
+    public static void opdaterListview() {
         kornsorterObservable.setAll(Controller.getKornList());
         kornsorterListview.setItems(kornsorterObservable);
 

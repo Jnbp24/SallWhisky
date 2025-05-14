@@ -43,5 +43,4 @@ class FadTest {
         assertEquals(true, destillat.isBrugtTørv());
     }
 
-
 }
