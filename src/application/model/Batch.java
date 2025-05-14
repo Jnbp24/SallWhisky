@@ -12,7 +12,7 @@ public class Batch {
     private Tapning tapning;
     private ArrayList<Flaske> flasker = new ArrayList<>();
 
-    public Batch(ArrayList<Kornsort> kornsorter, String fadtype, int batchNummer, String batchNavn, double fortyndelseLiter) {
+    public Batch(ArrayList<Kornsort> kornsorter, String fadtype, int batchNummer, String batchNavn, double fortyndelseLiter, Tapning tapning) {
         this.kornsorter = kornsorter;
         this.fadtype = fadtype;
         this.batchNummer = batchNummer;
