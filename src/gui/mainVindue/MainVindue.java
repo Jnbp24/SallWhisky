@@ -203,6 +203,11 @@ public class MainVindue extends Application {
 
         lager1.getPladser().getFirst().placerFad(fad1);
         lager2.getPladser().getFirst().placerFad(fad3);
+
+        Controller.opretBatch(fad1, "Glød", 1, 20, 1.5, medarbejder1);
+        Controller.opretBatch(fad2, "Mørk", 2, 10, 1.0, medarbejder1);
+        Controller.opretBatch(fad3, "Røg", 3, 25, 1.5, medarbejder2);
+
     }
 }
 

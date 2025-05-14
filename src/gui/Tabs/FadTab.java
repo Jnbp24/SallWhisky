@@ -14,7 +14,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 
 public class FadTab {
     private static ListView<Fad> fadListView = new ListView<>();
@@ -25,7 +28,6 @@ public class FadTab {
         fadTabContent.setAlignment(Pos.CENTER);
         fadTabContent.setVgap(10);
         fadTabContent.setHgap(20);
-
 
         Label FadListeLabel = new Label("Liste af oprettede fade - Tryk på et fad for at tilføje et destillat");
         Label visHistorikLabel = new Label("Tryk på et fad for at se indholdet");

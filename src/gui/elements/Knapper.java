@@ -102,4 +102,12 @@ public class Knapper {
         });
         return omhældningButton;
     }
+
+    public static Button opretFuldHistorikButton(){
+        Button fuldHistorikButton = new Button("Vis fuld historik");
+        fuldHistorikButton.setOnMouseClicked(event -> {
+
+        });
+        return fuldHistorikButton;
+    }
 }

@@ -90,7 +90,6 @@ public class OpretKornVindue extends Stage {
                 succesAlert.setTitle("Kornsort oprettet!");
                 succesAlert.setHeaderText("Din kornsort er nu oprettet");
                 succesAlert.show();
-
                 RaavarerTab.opdaterListview();
                 this.close();
             } catch (NumberFormatException e) {

@@ -39,7 +39,7 @@ public class BatchTab {
 
         batchTabContent.add(batchBox, 0, 1);
 
-        VBox historikInfo = new VBox(25);
+        VBox historikInfo = new VBox(10);
         Label historikLabel = new Label("Batch historik");
         InfoBox batchNummerInfo = new InfoBox("Vælg en batch..");
         InfoBox batchNavnInfo = new InfoBox("Vælg en batch..");
@@ -75,6 +75,8 @@ public class BatchTab {
                     else {
                         tapningMedarbejder.opdaterIndhold("Intet fad fundet");
                     }
+                }
+                else {
                     tapningMedarbejder.opdaterIndhold("Ingen tapning foretaget");
                 }
             }

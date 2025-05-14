@@ -58,7 +58,7 @@ public class LagerbeholdningVindue extends Stage {
         GridPane.setHgrow(headerHbox, Priority.ALWAYS);
 
 
-        pane.add(headerHbox, 0, 0);
+        pane.add(headerHbox, 0, 0,3,1);
         pane.add(lagerpladsListView, 0, 2);
 
         lagerLokationList.setAll(Controller.getLagerer());
