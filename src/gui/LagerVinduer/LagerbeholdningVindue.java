@@ -64,9 +64,9 @@ public class LagerbeholdningVindue extends Stage {
         lagerLokationList.setAll(Controller.getLagerer());
         lagerCombobox = new ComboBox<>(lagerLokationList);
         lagerCombobox.setValue(lagerLokationList.getFirst());
-        lagerCombobox.setOnAction(event -> updaterLagerPladsList());
+        lagerCombobox.setOnAction(event -> opdaterLagerPladsList());
         pane.add(lagerCombobox, 0,1);
-        updaterLagerPladsList();
+        opdaterLagerPladsList();
 
         Label findFadPåFadNummerLabel = new Label("Søg efter fadnummer");
         Button findFadPåFadNummerBtn = new Button("Søg");
@@ -81,7 +81,7 @@ public class LagerbeholdningVindue extends Stage {
         findTapklarBtn.setOnMouseClicked(event -> lagerpladsListView.getItems().setAll(Controller.findTapklar()));
 
         pane.add(fadListView, 2,2);
-        updaterFadList();
+        opdaterFadList();
 
         Label tilføjFadLabel = new Label("Tilføj fad til lagerplads");
         Button tilføjFadBtn = new Button("Placer fad");
@@ -89,8 +89,8 @@ public class LagerbeholdningVindue extends Stage {
             if (lagerpladsListView.getSelectionModel().getSelectedItem() != null && fadListView.getSelectionModel().getSelectedItem() != null){
                 if (lagerpladsListView.getSelectionModel().getSelectedItem().getFad() == null){
                     lagerpladsListView.getSelectionModel().getSelectedItem().placerFad(fadListView.getSelectionModel().getSelectedItem());
-                    updaterLagerPladsList();
-                    updaterFadList();
+                    opdaterLagerPladsList();
+                    opdaterFadList();
                 }else {
                     Alert pladsOptagetAlert = new Alert(Alert.AlertType.ERROR);
                     pladsOptagetAlert.setTitle("FEJL");
@@ -113,8 +113,8 @@ public class LagerbeholdningVindue extends Stage {
             if (lagerpladsListView.getSelectionModel().getSelectedItem() != null){
                 if (lagerpladsListView.getSelectionModel().getSelectedItem().getFad() != null){
                     lagerpladsListView.getSelectionModel().getSelectedItem().fjernFad();
-                    updaterLagerPladsList();
-                    updaterFadList();
+                    opdaterLagerPladsList();
+                    opdaterFadList();
                 }else {
                     Alert ledigFejl = new Alert(Alert.AlertType.ERROR);
                     ledigFejl.setTitle("FEJL");
@@ -143,13 +143,13 @@ public class LagerbeholdningVindue extends Stage {
         });
     }
 
-    public static void updaterLagerPladsList(){
+    public static void opdaterLagerPladsList(){
         if (lagerCombobox.getSelectionModel().getSelectedIndex() >= 0) {
             lagerpladsListView.getItems().setAll(lagerLokationList.get(lagerCombobox.getSelectionModel().getSelectedIndex()).getPladser());
         }
     }
 
-    public static void updaterFadList(){
+    public static void opdaterFadList(){
         fadListView.getItems().clear();
         for (Fad fad : Controller.getFadList()) {
             if (!fad.isPåLager()){

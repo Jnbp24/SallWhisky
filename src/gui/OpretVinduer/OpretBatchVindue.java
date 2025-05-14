@@ -16,8 +16,12 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import storage.Storage;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+
 public class OpretBatchVindue extends Stage {
-    private ListView<Fad> fadListView = new ListView<>();
+    private static ListView<Fad> fadListView = new ListView<>();
+    private static ObservableList<Fad> fadObservable = FXCollections.observableArrayList();
     private ListView<Medarbejder> medarbejderListView = new ListView<>();
     private ObservableList<Medarbejder> medarbejderObservableList = FXCollections.observableArrayList();
     private TextField batchNavnTxtField = new TextField();
@@ -48,10 +52,12 @@ public class OpretBatchVindue extends Stage {
         pane.setHgap(30);
 
         Label vælgFadLabel = new Label("Vælg et fad der ønskes tappet:");
-        fadListView.getItems().setAll(Storage.getFade());
+
         fadListView.setPrefHeight(300);
         Label valgtFadLabel = new Label();
 
+        opdaterList();
+        fadListView.setItems(fadObservable);
 
         medarbejderObservableList.addAll(Controller.getMedarbejdere());
         medarbejderListView.setItems(medarbejderObservableList);
@@ -65,9 +71,18 @@ public class OpretBatchVindue extends Stage {
 
 
         fadListView.setOnMouseClicked(event -> {
+            Fad valgtFad = fadListView.getSelectionModel().getSelectedItem();
+            if (valgtFad == null) {
+                Alert fejl = new Alert(Alert.AlertType.ERROR);
+                fejl.setTitle("Fejl");
+                fejl.setHeaderText("Vælg venligst et gyldigt fad");
+                fejl.setContentText("Vælg et gyldigt fad");
+                fejl.show();
+                throw new IllegalArgumentException("Vælg et gyldigt fad");
+            }
             valgtFadLabel.setText(String.valueOf(fadListView.getSelectionModel().getSelectedItem()));
             tapning.setFad(fadListView.getSelectionModel().getSelectedItem());
-            updaterFlaskeestimat();
+            opdaterFlaskeestimat();
         });
 
 
@@ -89,7 +104,7 @@ public class OpretBatchVindue extends Stage {
         minusBtn.setOnMouseClicked(event -> {
             if (Integer.parseInt(fortyndelseTxtField.getText()) - 1 >= 0) {
                 fortyndelseTxtField.setText(String.valueOf(Integer.parseInt(fortyndelseTxtField.getText()) - 1));
-                updaterFlaskeestimat();
+                opdaterFlaskeestimat();
             }
         });
 
@@ -97,10 +112,10 @@ public class OpretBatchVindue extends Stage {
         Button plusBtn = new Button("+");
         plusBtn.setOnMouseClicked(event -> {
             fortyndelseTxtField.setText(String.valueOf(Integer.parseInt(fortyndelseTxtField.getText()) + 1));
-            updaterFlaskeestimat();
+            opdaterFlaskeestimat();
         });
 
-        flaskeCombobox.setOnAction(event -> updaterFlaskeestimat());
+        flaskeCombobox.setOnAction(event -> opdaterFlaskeestimat());
 
         Label fortyndelseLabel = new Label("Fortyndelse i liter: ");
 
@@ -110,9 +125,8 @@ public class OpretBatchVindue extends Stage {
             try {
                 Fad valgtfad = fadListView.getSelectionModel().getSelectedItem();
                 Medarbejder valgtMedarbejer = medarbejderListView.getSelectionModel().getSelectedItem();
-                BatchTab.updaterBatchList();
-                //her
                 Controller.opretBatch(valgtfad, batchNavnTxtField.getText(), Integer.parseInt(batchNummerTxtField.getText()), Double.parseDouble(fortyndelseTxtField.getText()), flaskerListe.get(flaskeCombobox.getSelectionModel().getSelectedIndex()), valgtMedarbejer, tapning);
+                BatchTab.updaterBatchList();
 
 
                 Alert succesAlert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -152,12 +166,22 @@ public class OpretBatchVindue extends Stage {
         pane.add(informationBox, 2, 0);
     }
 
-    public void updaterFlaskeestimat() {
+    public void opdaterFlaskeestimat() {
         try {
             estimatTxtfield.setText(String.valueOf(Controller.udregnFlaskeestimat(tapning, Double.parseDouble(fortyndelseTxtField.getText()), flaskerListe.get(flaskeCombobox.getSelectionModel().getSelectedIndex()))));
         } catch (NumberFormatException e) {
             estimatTxtfield.setText("Ugyldigt input");
         }
     }
+
+    public static void opdaterList() {
+        fadObservable.clear();
+        for (Fad fad : Controller.getFadList()) {
+            if (fad.getPåfyldningsDato() != null && fad.isPåLager() && ChronoUnit.YEARS.between(fad.getPåfyldningsDato(), LocalDate.now()) >= 3) {
+                fadObservable.add(fad);
+            }
+        }
+    }
 }
+
 
