@@ -5,6 +5,7 @@ public class Vand extends Råvarer {
         super(navn, lokation, mængde);
     }
 
+
     @Override
     public String toString() {
         return super.getNavn();

@@ -15,6 +15,9 @@ public class Påfyldning {
 
     public void tilføjDestillat(Destillat destillat, double valgtDestillatmængde) {
         if (valgtDestillatmængde > destillat.getMængdeLiter()) {
+            System.out.println(destillat.getNmNummer());
+            System.out.println(destillat.getMængdeLiter());
+            System.out.println(valgtDestillatmængde);
             throw new IllegalArgumentException("Ikke nok væske i destillatet");
         }
         if (resterendeVolume - destillat.getVand().getMængde() <= 0) {
@@ -40,7 +43,5 @@ public class Påfyldning {
             fad.setPåfyldtAf(medarbejder.getNavn());
         }
     }
-
-
 }
 
