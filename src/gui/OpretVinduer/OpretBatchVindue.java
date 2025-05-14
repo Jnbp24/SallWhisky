@@ -109,6 +109,7 @@ public class OpretBatchVindue extends Stage {
                 Fad valgtfad = fadListView.getSelectionModel().getSelectedItem();
                 Medarbejder valgtMedarbejer = medarbejderListView.getSelectionModel().getSelectedItem();
                 Controller.opretBatch(valgtfad, batchNavnTxtField.getText(), Integer.parseInt(batchNummerTxtField.getText()), Double.parseDouble(fortyndelseTxtField.getText()), flaskerListe.get(flaskeCombobox.getSelectionModel().getSelectedIndex()), valgtMedarbejer);
+                BatchTab.updaterBatchList();
 
                 Alert succesAlert = new Alert(Alert.AlertType.CONFIRMATION);
                 succesAlert.setTitle("Batch oprettet!");
