@@ -54,6 +54,7 @@ public class FadTab {
         InfoBox fadNummerInfo = new InfoBox("Vælg et fad..");
         InfoBox fadTypeInfo = new InfoBox("Vælg et fad..");
         InfoBox kapacitetInfo = new InfoBox("Vælg et fad..");
+        InfoBox væskeLiterIFad = new InfoBox("Vælg et fad..");
         InfoBox antalGangeBrugtInfo = new InfoBox("Vælg et fad..");
         InfoBox destillaterInfo = new InfoBox("Vælg et fad..");
         InfoBox medarbejderInfo = new InfoBox("Vælg et fad..");
@@ -64,8 +65,9 @@ public class FadTab {
 
                 fadNummerInfo.opdaterIndhold("Fadnummer: " + valgtFad.getNummer());
                 fadTypeInfo.opdaterIndhold("Fadtype: " + valgtFad.getType());
-                kapacitetInfo.opdaterIndhold("Fadstørrelse: " + valgtFad.getFadStørrelse() + " liter");
+                kapacitetInfo.opdaterIndhold("Fadstørrelse: " + valgtFad.getFadStørrelse() + " L");
                 antalGangeBrugtInfo.opdaterIndhold("Antal gange brugt: " + valgtFad.getAntalGangeBrugt());
+                væskeLiterIFad.opdaterIndhold("Væske i fad: " + valgtFad.getMængdePåfyldt() + " L");
 
                 StringBuilder destillatBuilderInfo = new StringBuilder("\n");
                 for (Destillat destillat : valgtFad.getDestillater()) {
@@ -82,7 +84,7 @@ public class FadTab {
         });
 
 
-        historikInfo.getChildren().addAll(historikLabel, fadNummerInfo, fadTypeInfo, kapacitetInfo, antalGangeBrugtInfo, destillaterInfo, medarbejderInfo);
+        historikInfo.getChildren().addAll(historikLabel, fadNummerInfo, fadTypeInfo, kapacitetInfo, væskeLiterIFad, destillaterInfo,antalGangeBrugtInfo, medarbejderInfo);
         fadTabContent.add(historikInfo, 1, 0);
         return fadTabContent;
     }

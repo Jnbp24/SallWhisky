@@ -21,7 +21,6 @@ public class OpretKornVindue extends Stage {
         this.setResizable(false);
         this.setTitle(title);
 
-
         GridPane pane = new GridPane();
         this.initContent(pane);
         Scene scene = new Scene(pane);
