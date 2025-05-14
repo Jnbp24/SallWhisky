@@ -18,6 +18,7 @@ public class Batch {
         this.batchNummer = batchNummer;
         this.batchNavn = batchNavn;
         this.fortyndelseLiter = fortyndelseLiter;
+        this.tapning = tapning;
     }
 
     public int getBatchNummer() {

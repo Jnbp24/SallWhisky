@@ -28,7 +28,7 @@ public class MainVindue extends Application {
     public void start(Stage stage) throws Exception {
         stage.setTitle("Sall Whisky");
         GridPane pane = new GridPane();
-        pane.setPrefSize(800, 800);
+        pane.setPrefSize(1100, 900);
 
         this.initStorage();
         this.initContent(pane);
@@ -204,9 +204,9 @@ public class MainVindue extends Application {
         lager1.getPladser().getFirst().placerFad(fad1);
         lager2.getPladser().getFirst().placerFad(fad3);
 
-        Controller.opretBatch(fad1, "Glød", 1, 20, 1.5, medarbejder1);
-        Controller.opretBatch(fad2, "Mørk", 2, 10, 1.0, medarbejder1);
-        Controller.opretBatch(fad3, "Røg", 3, 25, 1.5, medarbejder2);
+        Controller.opretBatch(fad1, "Glød", 1, 20, 1.5, medarbejder1, Controller.opretTapning());
+        Controller.opretBatch(fad2, "Mørk", 2, 10, 1.0, medarbejder1, Controller.opretTapning());
+        Controller.opretBatch(fad3, "Røg", 3, 25, 1.5, medarbejder2, Controller.opretTapning());
 
     }
 }

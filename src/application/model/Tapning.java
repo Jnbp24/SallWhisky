@@ -9,9 +9,7 @@ public class Tapning {
     private Fad fad;
     private Medarbejder medarbejder;
 
-    public Tapning(Fad fad, Medarbejder medarbejder) {
-        this.fad = fad;
-        this.medarbejder = medarbejder;
+    public Tapning() {
     }
 
     public double udregnFlaskeEstimat(double fortyndelsesLiter, double flaskeStørrelse) {
@@ -27,7 +25,7 @@ public class Tapning {
             kornsorter.add(destillat.getKornsort());
         }
         int antalFlasker = (int) udregnFlaskeEstimat(fortyndelsesLiter, flaskeStørrelseILiter);
-        Batch batch = new Batch(kornsorter, fad.getType(), batchNummer, batchNavn, fortyndelsesLiter);
+        Batch batch = new Batch(kornsorter, fad.getType(), batchNummer, batchNavn, fortyndelsesLiter, this);
 
         for (int i = 0; i < antalFlasker; i++) {
             Flaske flaske = new Flaske(flaskeStørrelseILiter, batchNavn, i + 1);
@@ -36,6 +34,13 @@ public class Tapning {
         return batch;
     }
 
+    public void setFad(Fad fad) {
+        this.fad = fad;
+    }
+
+    public void setMedarbejder(Medarbejder medarbejder) {
+        this.medarbejder = medarbejder;
+    }
 
     public Fad getFad() {
         return fad;

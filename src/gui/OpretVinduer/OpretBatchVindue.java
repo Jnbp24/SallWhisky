@@ -26,7 +26,7 @@ public class OpretBatchVindue extends Stage {
     private ObservableList<Double> flaskerListe = FXCollections.observableArrayList();
     private TextField estimatTxtfield = new TextField();
     private ComboBox flaskeCombobox;
-    private Tapning tapning;
+    private Tapning tapning = Controller.opretTapning();
 
     public OpretBatchVindue(String title) {
 
@@ -60,11 +60,13 @@ public class OpretBatchVindue extends Stage {
         Label valgtMedarbejderLabel = new Label("Hvilken medarbejder tapper?");
         medarbejderListView.setOnMouseClicked(event -> {
             valgtMedarbejderLabel.setText(String.valueOf(medarbejderListView.getSelectionModel().getSelectedItem()));
+            tapning.setMedarbejder(medarbejderListView.getSelectionModel().getSelectedItem());
         });
 
 
         fadListView.setOnMouseClicked(event -> {
             valgtFadLabel.setText(String.valueOf(fadListView.getSelectionModel().getSelectedItem()));
+            tapning.setFad(fadListView.getSelectionModel().getSelectedItem());
             updaterFlaskeestimat();
         });
 
@@ -108,8 +110,10 @@ public class OpretBatchVindue extends Stage {
             try {
                 Fad valgtfad = fadListView.getSelectionModel().getSelectedItem();
                 Medarbejder valgtMedarbejer = medarbejderListView.getSelectionModel().getSelectedItem();
-                Controller.opretBatch(valgtfad, batchNavnTxtField.getText(), Integer.parseInt(batchNummerTxtField.getText()), Double.parseDouble(fortyndelseTxtField.getText()), flaskerListe.get(flaskeCombobox.getSelectionModel().getSelectedIndex()), valgtMedarbejer);
                 BatchTab.updaterBatchList();
+                //her
+                Controller.opretBatch(valgtfad, batchNavnTxtField.getText(), Integer.parseInt(batchNummerTxtField.getText()), Double.parseDouble(fortyndelseTxtField.getText()), flaskerListe.get(flaskeCombobox.getSelectionModel().getSelectedIndex()), valgtMedarbejer, tapning);
+
 
                 Alert succesAlert = new Alert(Alert.AlertType.CONFIRMATION);
                 succesAlert.setTitle("Batch oprettet!");
@@ -150,14 +154,7 @@ public class OpretBatchVindue extends Stage {
 
     public void updaterFlaskeestimat() {
         try {
-
-            if (tapning == null) {
-                estimatTxtfield.setText(String.valueOf(Controller.udregnFlaskeestimat(null, Double.parseDouble(fortyndelseTxtField.getText()), flaskerListe.get(flaskeCombobox.getSelectionModel().getSelectedIndex()))));
-
-            }
-            else {
-                estimatTxtfield.setText(String.valueOf(Controller.udregnFlaskeestimat(tapning, Double.parseDouble(fortyndelseTxtField.getText()), flaskerListe.get(flaskeCombobox.getSelectionModel().getSelectedIndex()))));
-            }
+            estimatTxtfield.setText(String.valueOf(Controller.udregnFlaskeestimat(tapning, Double.parseDouble(fortyndelseTxtField.getText()), flaskerListe.get(flaskeCombobox.getSelectionModel().getSelectedIndex()))));
         } catch (NumberFormatException e) {
             estimatTxtfield.setText("Ugyldigt input");
         }
