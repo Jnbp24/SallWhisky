@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 public class Batch {
     private ArrayList<Kornsort> kornsorter;
+
     private String fadtype;
     private int batchNummer;
     private String batchNavn;

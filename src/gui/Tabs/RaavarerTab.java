@@ -2,17 +2,15 @@ package gui.Tabs;
 
 import application.controller.Controller;
 import application.model.Kornsort;
-import application.model.Ristethed;
 import application.model.Råvarer;
-import gui.elements.InfoBox;
-import gui.elements.Knapper;
+import gui.Elements.InfoBox;
+import gui.Elements.Knapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 public class RaavarerTab {

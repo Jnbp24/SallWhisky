@@ -3,8 +3,8 @@ package gui.mainVindue;
 import application.controller.Controller;
 import application.model.*;
 import gui.Tabs.RaavarerTab;
-import gui.elements.Billeder;
-import gui.elements.Knapper;
+import gui.Elements.Billeder;
+import gui.Elements.Knapper;
 import gui.Tabs.BatchTab;
 import gui.Tabs.DestillatTab;
 import gui.Tabs.FadTab;
@@ -28,7 +28,7 @@ public class MainVindue extends Application {
     public void start(Stage stage) throws Exception {
         stage.setTitle("Sall Whisky");
         GridPane pane = new GridPane();
-        pane.setPrefSize(1100, 900);
+        pane.setPrefSize(1000, 600);
 
         this.initStorage();
         this.initContent(pane);
