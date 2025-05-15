@@ -1,5 +1,10 @@
 package application.model;
 
+import application.model.BatchIndhold.Batch;
+import application.model.BatchIndhold.Flaske;
+import application.model.FadVæskeKontrol.Tapning;
+import application.model.Raavarer.Kornsort;
+import application.model.Raavarer.Ristethed;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
