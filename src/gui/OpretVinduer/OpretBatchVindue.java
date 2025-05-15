@@ -14,7 +14,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import storage.Storage;
+
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
@@ -140,8 +140,7 @@ public class OpretBatchVindue extends Stage {
                     fejlAlert.setTitle("Invalid information");
                     fejlAlert.setHeaderText("Alle felter skal udfyldes");
                     fejlAlert.show();
-                }
-                else {
+                } else {
                     Alert fejlAlert = new Alert(Alert.AlertType.ERROR);
                     fejlAlert.setTitle("Invalid information");
                     fejlAlert.setHeaderText("Ugyldig information indtastet");
@@ -182,6 +181,10 @@ public class OpretBatchVindue extends Stage {
             }
         }
     }
+
+
+
+
 }
 
 

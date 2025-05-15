@@ -10,6 +10,7 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import storage.Storage;
 
@@ -30,10 +31,14 @@ public class BatchTab {
         Label batchListeLabel = new Label("Liste af oprettede batches");
         Label visHistorikLabel = new Label("Tryk på en batch for at se indholdet");
 
+        HBox knapperBox = new HBox(25);
+        knapperBox.getChildren().addAll(Knapper.OpretBatchButton(), Knapper.opretFuldHistorikButton());
+
         VBox labelBox = new VBox(3.5);
         labelBox.getChildren().addAll(batchListeLabel, visHistorikLabel);
         labelBox.setStyle("-fx-border-color: grey; " + "-fx-border-width: 2;" + "-fx-padding: 10;");
-        batchBox.getChildren().addAll(Knapper.OpretBatchButton(), labelBox, batchListView, Knapper.opretFuldHistorikButton());
+        batchBox.getChildren().addAll(knapperBox, labelBox, batchListView);
+
 
         batchObservable.setAll(Storage.getBatches());
         batchListView.setItems(batchObservable);
@@ -84,7 +89,7 @@ public class BatchTab {
         });
 
 
-        historikInfo.getChildren().addAll(historikLabel, batchNummerInfo, batchNavnInfo, fortyndelseInfo, fadTypeInfo, kornsortInfo,antalFlaskerIBatch ,tapningMedarbejder);
+        historikInfo.getChildren().addAll(historikLabel, batchNummerInfo, batchNavnInfo, fortyndelseInfo, fadTypeInfo, kornsortInfo, antalFlaskerIBatch, tapningMedarbejder);
         batchTabContent.add(historikInfo, 1, 1);
 
         return batchTabContent;
@@ -94,7 +99,7 @@ public class BatchTab {
         batchListView.getItems().setAll(Controller.getBatches());
     }
 
-    public static Batch getBatch(){
+    public static Batch getBatch() {
         return batchListView.getSelectionModel().getSelectedItem();
     }
 
