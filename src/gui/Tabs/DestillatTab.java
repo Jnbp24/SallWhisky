@@ -14,7 +14,7 @@ import javafx.scene.layout.VBox;
 
 public class DestillatTab {
     private ListView<Destillat> destillatListView = new ListView<>();
-    private ObservableList destillatObservable = FXCollections.observableArrayList();
+    private static ObservableList destillatObservable = FXCollections.observableArrayList();
 
     public GridPane initContent() {
         //Load dummy-data
@@ -69,4 +69,8 @@ public class DestillatTab {
 
         return destillatTabContent;
     }
+    public static void opdaterDestillatList(){
+        destillatObservable.setAll(Controller.getDestillater());
+    }
+
 }

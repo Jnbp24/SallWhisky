@@ -1,8 +1,10 @@
 package gui.OpretVinduer;
 
 import application.controller.Controller;
+import application.model.Destillat;
 import application.model.Kornsort;
 import application.model.Vand;
+import gui.Tabs.DestillatTab;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.HPos;
@@ -26,8 +28,6 @@ public class OpretDestillatVindue extends Stage {
 
         this.setResizable(false);
         this.setTitle(title);
-
-
         GridPane pane = new GridPane();
         this.initContent(pane);
         Scene scene = new Scene(pane);
@@ -40,6 +40,7 @@ public class OpretDestillatVindue extends Stage {
         pane.setAlignment(Pos.TOP_CENTER);
         pane.setPrefHeight(650);
         pane.setPrefWidth(600);
+
 
         Label newMakeNummerLabel = new Label("New make nummer: ");
         nmNummerTxtField.setPromptText("Indtast new make nummer");
@@ -88,6 +89,8 @@ public class OpretDestillatVindue extends Stage {
                 vandtyperListView.getSelectionModel().select(valgtVand);
 
                 Controller.opretDestillat(newMakeNummer, alkoholProcent, valgtKorn, valgtVand, erTørv);
+                DestillatTab.opdaterDestillatList();
+
 
                 Alert succesAlert = new Alert(Alert.AlertType.CONFIRMATION);
                 succesAlert.setTitle("Destillat oprettet");

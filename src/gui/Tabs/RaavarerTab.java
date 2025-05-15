@@ -70,7 +70,7 @@ public class RaavarerTab {
             kornsortNavnInfo.opdaterIndhold("Navn på kornsort: " + valgtKornsort.getNavn());
             kornLokationInfo.opdaterIndhold("Kornsort lokation: " + valgtKornsort.getLokation());
             kornMængdeInfo.opdaterIndhold("Korn mængde: " + valgtKornsort.getMængde());
-            kornRistethed.opdaterIndhold("Ristethed: " + valgtKornsort.getRistethed() );
+            kornRistethed.opdaterIndhold("Ristethed: " + valgtKornsort.getRistethed());
         });
 
         vandtyperListview.setOnMouseClicked(event -> {
@@ -83,9 +83,11 @@ public class RaavarerTab {
     }
 
     public static void opdaterListview() {
-        kornsorterObservable.setAll(Controller.getKornList());
+        kornsorterObservable.clear();
+        kornsorterObservable.addAll(Controller.getKornList());
         kornsorterListview.setItems(kornsorterObservable);
 
+        vandtyperObservable.clear();
         vandtyperObservable.addAll(Controller.getVandTypeList());
         vandtyperListview.setItems(vandtyperObservable);
     }
