@@ -2,8 +2,8 @@ package gui.Tabs;
 
 import application.controller.Controller;
 import application.model.*;
-import gui.elements.InfoBox;
-import gui.elements.Knapper;
+import gui.Elements.InfoBox;
+import gui.Elements.Knapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
@@ -33,7 +33,7 @@ public class BatchTab {
         VBox labelBox = new VBox(3.5);
         labelBox.getChildren().addAll(batchListeLabel, visHistorikLabel);
         labelBox.setStyle("-fx-border-color: grey; " + "-fx-border-width: 2;" + "-fx-padding: 10;");
-        batchBox.getChildren().addAll(Knapper.OpretBatchButton(), labelBox, batchListView);
+        batchBox.getChildren().addAll(Knapper.OpretBatchButton(), labelBox, batchListView, Knapper.opretFuldHistorikButton());
 
         batchObservable.setAll(Storage.getBatches());
         batchListView.setItems(batchObservable);

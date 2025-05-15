@@ -1,4 +1,4 @@
-package gui.elements;
+package gui.Elements;
 
 import application.model.Fad;
 import gui.LagerVinduer.LagerbeholdningVindue;

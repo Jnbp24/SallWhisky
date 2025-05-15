@@ -3,10 +3,8 @@ package gui.Tabs;
 import application.controller.Controller;
 import application.model.Destillat;
 import application.model.Fad;
-import application.model.Påfyldning;
-import gui.elements.InfoBox;
-import gui.elements.Knapper;
-import gui.mainVindue.MainVindue;
+import gui.Elements.InfoBox;
+import gui.Elements.Knapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
@@ -14,10 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
 
 public class FadTab {
     private static ListView<Fad> fadListView = new ListView<>();

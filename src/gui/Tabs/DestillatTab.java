@@ -2,11 +2,8 @@ package gui.Tabs;
 
 import application.controller.Controller;
 import application.model.Destillat;
-import application.model.Fad;
-import application.model.Påfyldning;
-import gui.elements.InfoBox;
-import gui.elements.Knapper;
-import gui.mainVindue.MainVindue;
+import gui.Elements.InfoBox;
+import gui.Elements.Knapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Pos;

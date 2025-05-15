@@ -2,8 +2,7 @@ package gui.OpretVinduer.Fad;
 
 import application.controller.Controller;
 import application.model.Fad;
-import application.model.Medarbejder;
-import gui.elements.InfoBox;
+import gui.Elements.InfoBox;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;

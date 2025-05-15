@@ -1,23 +1,13 @@
 package gui.OpretVinduer;
 
-import application.controller.Controller;
 import application.model.*;
-import gui.Tabs.BatchTab;
-import gui.elements.InfoBox;
-import gui.elements.Knapper;
-import gui.mainVindue.MainVindue;
+import gui.Elements.InfoBox;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-
-import java.util.ArrayList;
-
-import static javafx.scene.input.KeyCode.L;
 
 public class FindHistorikVindue extends Stage {
     private Batch batch;
@@ -39,25 +29,21 @@ public class FindHistorikVindue extends Stage {
         pane.setPrefWidth(600);
 
 
-        StringBuilder historikStringbuilder = new StringBuilder("\nFad: " + batch.getFadtype() + "\nDestillat(er): " + batch.getTapning().getFad().getDestillater() + "\n");
+        StringBuilder historikStringbuilder = new StringBuilder("\nFad: " + batch.getFadtype() + "\nDestillat(er): " + batch.getTapning().getFad().getDestillater() + "\n" + "Kornsorter: \n");
         for (Kornsort kornsort : batch.getKornsorter()) {
-            historikStringbuilder.append(kornsort.getNavn() + "Ristethed: " + kornsort.getRistethed());
+            historikStringbuilder.append("\n" + "Kornsort: " + "\n" + kornsort.getNavn() + "\n" + "Ristethed: " + "\n" + kornsort.getRistethed() + "\n" + "Kornmark: " + "\n" + kornsort.getLokation() + "\n");
         }
-                InfoBox historikInfoBox = new InfoBox(batch.getBatchNavn() + "'s historik: ");
-                ;
+        for (Destillat destillat : batch.getTapning().getFad().getDestillater()) {
+            historikStringbuilder.append(destillat.getVand().getNavn() + "\n" + "Vand: " + "\n" +  destillat.getVand().getLokation() + "\n" +  "Vand lokation: " + "\n");
+        }
 
-//        Fad fad = batch.getFadtype();
-//        Destillat destillat = fad.getDestillater().add(batch.);
+
+        InfoBox historikInfoBox = new InfoBox(batch.getBatchNavn() + "'s historik: " + historikStringbuilder);
+        pane.add(historikInfoBox, 0, 0);
 
 
         VBox historikBox = new VBox(7.5);
         Label historikLabel = new Label(batch.getBatchNavn() + "'s historik: ");
-//        InfoBox historikFad = new InfoBox("Fad: " + batch.getFadtype());
-////        InfoBox historikDestillat = new InfoBox("Destillat: " + batch.getFadtype());
-//        InfoBox historikKorn = new InfoBox("Kornsorter: " + batch.getKornsorter());
-//        InfoBox historikRistethed = new InfoBox("Ristethed: " + kornsort.getRistethed());
-
-
 
 
     }

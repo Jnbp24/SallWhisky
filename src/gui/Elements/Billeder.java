@@ -1,4 +1,4 @@
-package gui.elements;
+package gui.Elements;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
