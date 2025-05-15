@@ -15,6 +15,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+
 public class LavOmhældningVindue extends Stage {
     private ListView<Fad> kildeListView = new ListView<>();
     private ObservableList kildeObservable = FXCollections.observableArrayList();
@@ -67,6 +70,10 @@ public class LavOmhældningVindue extends Stage {
 
         kildeObservable.addAll(Controller.getFadList());
         kildeListView.setItems(kildeObservable);
+        kildeListView.setOnMouseClicked(event -> {
+            destinationListView.getItems().setAll(Controller.getFadList());
+            destinationListView.getItems().remove(kildeListView.getSelectionModel().getSelectedItem());
+        });
 
         destinationObservable.addAll(Controller.getFadList());
         destinationListView.setItems(destinationObservable);
@@ -120,7 +127,7 @@ public class LavOmhældningVindue extends Stage {
         });
 
 
-        omhældningsInfo.getChildren().addAll(kildeFadLabel, destinationsFadLabel, omhældningsMængdeTxtField, foretagOmhældningBtn);
+        omhældningsInfo.getChildren().addAll(kildeFadLabel, destinationsFadLabel, new Label("Angiv mængde i liter"), omhældningsMængdeTxtField,foretagOmhældningBtn);
         omhældningBox.getChildren().addAll(kildeFadBox, omhældningsInfo, destinationFadBox);
         pane.add(omhældningBox, 0, 0);
 
