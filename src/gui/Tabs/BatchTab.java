@@ -4,6 +4,7 @@ import application.controller.Controller;
 import application.model.BatchIndhold.Batch;
 import application.model.FadIndhold.Fad;
 import application.model.FadVæskeKontrol.Tapning;
+import application.model.Raavarer.Kornsort;
 import gui.Elements.InfoBox;
 import gui.Elements.Knapper;
 import javafx.collections.FXCollections;
@@ -66,7 +67,7 @@ public class BatchTab {
                 fortyndelseInfo.opdaterIndhold("Fortyndelse: " + valgtBatch.getFortyndelseLiter() + "L");
                 fadTypeInfo.opdaterIndhold("Fadtype: " + valgtBatch.getFadtype());
                 StringBuilder kornsortBuilderInfo = new StringBuilder("\n");
-                for (Råvarer råvarer : valgtBatch.getKornsorter()) {
+                for (Kornsort råvarer : valgtBatch.getKornsorter()) {
                     kornsortBuilderInfo.append(råvarer.getNavn()).append("\n");
                 }
                 kornsortInfo.opdaterIndhold("Kornsort i batch: " + kornsortBuilderInfo);

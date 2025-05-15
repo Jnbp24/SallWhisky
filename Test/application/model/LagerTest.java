@@ -1,5 +1,12 @@
 package application.model;
 
+import application.model.FadIndhold.Destillat;
+import application.model.FadIndhold.Fad;
+import application.model.Lager.Lager;
+import application.model.Lager.Lagerplads;
+import application.model.Raavarer.Kornsort;
+import application.model.Raavarer.Ristethed;
+import application.model.Raavarer.Vand;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

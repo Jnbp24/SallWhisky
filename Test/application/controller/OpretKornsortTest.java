@@ -1,7 +1,7 @@
 package application.controller;
 
-import application.model.Kornsort;
-import application.model.Ristethed;
+import application.model.Raavarer.Kornsort;
+import application.model.Raavarer.Ristethed;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import storage.Storage;

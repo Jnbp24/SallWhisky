@@ -1,6 +1,6 @@
 package application.controller;
 
-import application.model.Fad;
+import application.model.FadIndhold.Fad;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

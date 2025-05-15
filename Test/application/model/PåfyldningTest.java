@@ -1,6 +1,13 @@
 package application.model;
 
 import application.controller.Controller;
+import application.model.FadIndhold.Destillat;
+import application.model.FadIndhold.Fad;
+import application.model.FadVæskeKontrol.Påfyldning;
+import application.model.Medarbejdere.Medarbejder;
+import application.model.Raavarer.Kornsort;
+import application.model.Raavarer.Ristethed;
+import application.model.Raavarer.Vand;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -18,7 +25,7 @@ class PåfyldningTest {
 
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void tilføjDestillatTest() {
         Fad fad = new Fad(1, "Eg", 30.0, 2);
         Kornsort kornsort = new Kornsort("korn", "kornmark", 30, Ristethed.IKKE_RISTET);
@@ -28,7 +35,7 @@ class PåfyldningTest {
         Medarbejder medarbejder = new Medarbejder(1, "Sammi");
         Påfyldning påfyldning = new Påfyldning(fad);
 
-        påfyldning.tilføjDestillat(destillat, 10);
+        påfyldning.påfyldDestillat(destillat, 10);
         påfyldning.færdiggørPåfyldning(medarbejder);
 
         assertTrue(fad.getDestillater().contains(destillat));
@@ -42,7 +49,7 @@ class PåfyldningTest {
         Destillat destillat = new Destillat("NM1", 63.5, new Kornsort("korn", "kornmark", 10, Ristethed.IKKE_RISTET), new Vand("vand", "vandmark", 10), true);
         Medarbejder medarbejder = new Medarbejder(1, "Sammi");
         Påfyldning påfyldning = new Påfyldning(fad);
-        påfyldning.tilføjDestillat(destillat, 10);
+        påfyldning.påfyldDestillat(destillat, 10);
 
         påfyldning.færdiggørPåfyldning(medarbejder);
 

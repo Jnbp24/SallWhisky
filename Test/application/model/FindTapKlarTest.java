@@ -1,5 +1,8 @@
 package application.model;
 
+import application.model.FadIndhold.Fad;
+import application.model.Lager.Lager;
+import application.model.Lager.Lagerplads;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

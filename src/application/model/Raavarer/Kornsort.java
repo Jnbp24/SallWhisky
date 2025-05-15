@@ -29,8 +29,8 @@ public class Kornsort implements IRaavarer {
         return mængde;
     }
 
-    public String getRistethed() {
-        this.ristethed = ristethed;
+    public Ristethed getRistethed(){
+        return ristethed;
     }
 }
 
