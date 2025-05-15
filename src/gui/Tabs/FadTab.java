@@ -1,8 +1,8 @@
 package gui.Tabs;
 
 import application.controller.Controller;
-import application.model.Destillat;
-import application.model.Fad;
+import application.model.FadIndhold.Destillat;
+import application.model.FadIndhold.Fad;
 import gui.Elements.InfoBox;
 import gui.Elements.Knapper;
 import javafx.collections.FXCollections;

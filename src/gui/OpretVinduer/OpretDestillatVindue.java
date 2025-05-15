@@ -1,9 +1,8 @@
 package gui.OpretVinduer;
 
 import application.controller.Controller;
-import application.model.Destillat;
-import application.model.Kornsort;
-import application.model.Vand;
+import application.model.Raavarer.Kornsort;
+import application.model.Raavarer.Vand;
 import gui.Tabs.DestillatTab;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

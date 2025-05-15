@@ -1,7 +1,7 @@
 package gui.OpretVinduer.Fad;
 
 import application.controller.Controller;
-import application.model.Fad;
+import application.model.FadIndhold.Fad;
 import gui.Elements.InfoBox;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -13,9 +13,6 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-
-import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
 
 public class LavOmhældningVindue extends Stage {
     private ListView<Fad> kildeListView = new ListView<>();

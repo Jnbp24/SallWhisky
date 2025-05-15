@@ -1,4 +1,4 @@
-package application.model;
+package application.model.BatchIndhold;
 
 public class Flaske {
     private double flaskeStørrelseILiter;

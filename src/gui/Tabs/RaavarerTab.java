@@ -1,8 +1,8 @@
 package gui.Tabs;
 
 import application.controller.Controller;
-import application.model.Kornsort;
-import application.model.Råvarer;
+import application.model.Raavarer.Kornsort;
+import application.model.Raavarer.Vand;
 import gui.Elements.InfoBox;
 import gui.Elements.Knapper;
 import javafx.collections.FXCollections;
@@ -14,11 +14,11 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 
 public class RaavarerTab {
-    private static ListView<Råvarer> kornsorterListview = new ListView<>();
-    private static ObservableList<Råvarer> kornsorterObservable = FXCollections.observableArrayList();
+    private static ListView<Kornsort> kornsorterListview = new ListView<>();
+    private static ObservableList<Kornsort> kornsorterObservable = FXCollections.observableArrayList();
 
-    private static ListView<Råvarer> vandtyperListview = new ListView<>();
-    private static ObservableList<Råvarer> vandtyperObservable = FXCollections.observableArrayList();
+    private static ListView<Vand> vandtyperListview = new ListView<>();
+    private static ObservableList<Vand> vandtyperObservable = FXCollections.observableArrayList();
 
     public GridPane initContent() {
 
@@ -74,7 +74,7 @@ public class RaavarerTab {
         });
 
         vandtyperListview.setOnMouseClicked(event -> {
-            Råvarer valgtVand = vandtyperListview.getSelectionModel().getSelectedItem();
+            Vand valgtVand = vandtyperListview.getSelectionModel().getSelectedItem();
             vandTypeInfo.opdaterIndhold("Vandtype: " + valgtVand.getNavn());
             vandLokationInfo.opdaterIndhold("Vand lokation: " + valgtVand.getLokation());
             vandMængdeILiterInfo.opdaterIndhold("Vandmængde i liter: " + valgtVand.getMængde());

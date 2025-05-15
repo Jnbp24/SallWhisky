@@ -1,7 +1,7 @@
 package gui.OpretVinduer;
 
 import application.controller.Controller;
-import application.model.Medarbejder;
+import application.model.Medarbejdere.Medarbejder;
 import gui.Elements.InfoBox;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

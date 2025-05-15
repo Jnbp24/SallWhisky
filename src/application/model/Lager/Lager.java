@@ -1,9 +1,10 @@
-package application.model;
+package application.model.Lager;
+
+import application.model.FadIndhold.Destillat;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class Lager {
     private String id;

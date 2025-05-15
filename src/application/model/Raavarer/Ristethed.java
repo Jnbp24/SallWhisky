@@ -1,4 +1,4 @@
-package application.model;
+package application.model.Raavarer;
 
 public enum Ristethed {
     IKKE_RISTET("Ikke ristet"), LET_RISTET("Let ristet"), SVÆRT_RISTET("Svært ristet");

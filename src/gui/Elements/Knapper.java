@@ -1,6 +1,6 @@
 package gui.Elements;
 
-import application.model.Fad;
+import application.model.FadIndhold.Fad;
 import gui.LagerVinduer.LagerbeholdningVindue;
 import gui.OpretVinduer.*;
 import gui.OpretVinduer.Fad.LavOmhældningVindue;
