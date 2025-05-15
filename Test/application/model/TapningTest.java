@@ -1,6 +1,15 @@
 package application.model;
 
 import application.controller.Controller;
+import application.model.BatchIndhold.Batch;
+import application.model.FadIndhold.Destillat;
+import application.model.FadIndhold.Fad;
+import application.model.FadVæskeKontrol.Påfyldning;
+import application.model.FadVæskeKontrol.Tapning;
+import application.model.Medarbejdere.Medarbejder;
+import application.model.Raavarer.Kornsort;
+import application.model.Raavarer.Ristethed;
+import application.model.Raavarer.Vand;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

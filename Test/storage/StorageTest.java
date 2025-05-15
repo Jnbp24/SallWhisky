@@ -1,6 +1,14 @@
 package storage;
 
 import application.model.*;
+import application.model.BatchIndhold.Batch;
+import application.model.FadIndhold.Fad;
+import application.model.FadVæskeKontrol.Tapning;
+import application.model.Lager.Lager;
+import application.model.Medarbejdere.Medarbejder;
+import application.model.Raavarer.Kornsort;
+import application.model.Raavarer.Ristethed;
+import application.model.Raavarer.Vand;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

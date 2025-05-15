@@ -16,12 +16,12 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 
 public class DestillatTab {
-    private ListView<Destillat> destillatListView = new ListView<>();
+    private static ListView<Destillat> destillatListView = new ListView<>();
     private static ObservableList destillatObservable = FXCollections.observableArrayList();
 
     public GridPane initContent() {
         //Load dummy-data
-//        MainVindue.initStorage();
+        //        MainVindue.initStorage();
 
         VBox destillatbox = new VBox(15);
         GridPane destillatTabContent = new GridPane();
@@ -54,7 +54,7 @@ public class DestillatTab {
                 mængdeInfo.opdaterIndhold("Mængde vand: " + valgtDestillat.getMængdeLiter() + " L");
                 kornInfo.opdaterIndhold("Korn: " + valgtDestillat.getKornsort());
                 tørvInfo.opdaterIndhold("Brugt tørv: " + valgtDestillat.getTørv());
-                            }
+            }
         });
         historikInfo.getChildren().addAll(historikLabel, newMakeNummerInfo, alkoholProcentInfo, vandInfo, mængdeInfo, kornInfo, tørvInfo);
 
@@ -64,7 +64,7 @@ public class DestillatTab {
 
         destillatbox.getChildren().addAll(Knapper.OpretDestillatButton(), labelBox, destillatListView);
 
-        destillatObservable.setAll(Controller.getDestillater());
+        opdaterDestillatList();
         destillatListView.setItems(destillatObservable);
 
         destillatTabContent.add(destillatbox, 0, 0);
@@ -72,8 +72,14 @@ public class DestillatTab {
 
         return destillatTabContent;
     }
-    public static void opdaterDestillatList(){
-        destillatObservable.setAll(Controller.getDestillater());
-    }
 
+    public static void opdaterDestillatList() {
+        destillatObservable.clear();
+        for (Destillat destillat : Controller.getDestillater()) {
+            if (destillat != null && destillat.getMængdeLiter() > 0) {
+                destillatObservable.add(destillat);
+            }
+        }
+        destillatListView.setItems(destillatObservable);
+    }
 }
