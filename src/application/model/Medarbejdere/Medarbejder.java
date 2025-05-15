@@ -1,4 +1,4 @@
-package application.model;
+package application.model.Medarbejdere;
 
 public class Medarbejder {
     private int medarbejderNr;

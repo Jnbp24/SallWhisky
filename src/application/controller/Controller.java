@@ -1,6 +1,16 @@
 package application.controller;
 
-import application.model.*;
+import application.model.BatchIndhold.Batch;
+import application.model.FadIndhold.Destillat;
+import application.model.FadIndhold.Fad;
+import application.model.FadVæskeKontrol.Påfyldning;
+import application.model.FadVæskeKontrol.Tapning;
+import application.model.Lager.Lager;
+import application.model.Lager.Lagerplads;
+import application.model.Medarbejdere.Medarbejder;
+import application.model.Raavarer.Kornsort;
+import application.model.Raavarer.Ristethed;
+import application.model.Raavarer.Vand;
 import storage.Storage;
 
 import java.util.ArrayList;
@@ -34,7 +44,7 @@ public class Controller {
 
     public static Påfyldning tilføjDestillat(Fad fad, Destillat destillat, double mængde) {
         Påfyldning påfyldning = new Påfyldning(fad);
-        påfyldning.tilføjDestillat(destillat, mængde);
+        påfyldning.påfyldDestillat(destillat, mængde);
         return påfyldning;
     }
 

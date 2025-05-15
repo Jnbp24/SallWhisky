@@ -1,14 +1,17 @@
-package application.model;
+package application.model.FadIndhold;
+
+import application.model.Raavarer.Kornsort;
+import application.model.Raavarer.Vand;
 
 public class Destillat {
     private String nmNummer;
     private double alkoholProcent;
     private Kornsort kornsort;
-    private Råvarer vand;
+    private Vand vand;
     private boolean brugtTørv;
     private double mængdeLiter;
 
-    public Destillat(String nmNummer, double alkoholProcent, Kornsort kornsort, Råvarer vand, boolean brugtTørv) {
+    public Destillat(String nmNummer, double alkoholProcent, Kornsort kornsort, Vand vand, boolean brugtTørv) {
         this.nmNummer = nmNummer;
         this.alkoholProcent = alkoholProcent;
         this.kornsort = kornsort;
@@ -22,7 +25,7 @@ public class Destillat {
         return kornsort;
     }
 
-    public Råvarer getVand() {
+    public Vand getVand() {
         return vand;
     }
 
@@ -52,9 +55,6 @@ public class Destillat {
     public boolean isBrugtTørv() {
         return brugtTørv;
     }
-
-
-
 
     @Override
     public String toString() {

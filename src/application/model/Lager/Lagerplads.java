@@ -1,4 +1,6 @@
-package application.model;
+package application.model.Lager;
+
+import application.model.FadIndhold.Fad;
 
 public class Lagerplads {
     private String reol;

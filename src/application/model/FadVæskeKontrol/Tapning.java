@@ -1,6 +1,11 @@
-package application.model;
+package application.model.FadVæskeKontrol;
 
-import javafx.geometry.Orientation;
+import application.model.BatchIndhold.Batch;
+import application.model.BatchIndhold.Flaske;
+import application.model.FadIndhold.Destillat;
+import application.model.FadIndhold.Fad;
+import application.model.Medarbejdere.Medarbejder;
+import application.model.Raavarer.Kornsort;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

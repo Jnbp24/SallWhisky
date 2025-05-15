@@ -1,7 +1,9 @@
 package gui.Tabs;
 
 import application.controller.Controller;
-import application.model.*;
+import application.model.BatchIndhold.Batch;
+import application.model.FadIndhold.Fad;
+import application.model.FadVæskeKontrol.Tapning;
 import gui.Elements.InfoBox;
 import gui.Elements.Knapper;
 import javafx.collections.FXCollections;

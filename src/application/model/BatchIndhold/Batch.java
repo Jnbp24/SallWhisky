@@ -1,5 +1,8 @@
-package application.model;
+package application.model.BatchIndhold;
 
+
+import application.model.Raavarer.Kornsort;
+import application.model.FadVæskeKontrol.Tapning;
 
 import java.util.ArrayList;
 

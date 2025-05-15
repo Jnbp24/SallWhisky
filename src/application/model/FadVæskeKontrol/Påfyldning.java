@@ -1,4 +1,8 @@
-package application.model;
+package application.model.FadVæskeKontrol;
+
+import application.model.FadIndhold.Destillat;
+import application.model.FadIndhold.Fad;
+import application.model.Medarbejdere.Medarbejder;
 
 import java.util.ArrayList;
 
@@ -13,7 +17,7 @@ public class Påfyldning {
         resterendeVolume = fad.getFadStørrelse();
     }
 
-    public void tilføjDestillat(Destillat destillat, double valgtDestillatmængde) {
+    public void påfyldDestillat(Destillat destillat, double valgtDestillatmængde) {
         if (valgtDestillatmængde > destillat.getMængdeLiter()) {
             System.out.println(destillat.getNmNummer());
             System.out.println(destillat.getMængdeLiter());

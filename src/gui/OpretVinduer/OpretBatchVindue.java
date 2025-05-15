@@ -1,9 +1,9 @@
 package gui.OpretVinduer;
 
 import application.controller.Controller;
-import application.model.Fad;
-import application.model.Medarbejder;
-import application.model.Tapning;
+import application.model.FadIndhold.Fad;
+import application.model.Medarbejdere.Medarbejder;
+import application.model.FadVæskeKontrol.Tapning;
 import gui.Tabs.BatchTab;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

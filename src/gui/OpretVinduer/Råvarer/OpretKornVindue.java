@@ -1,7 +1,7 @@
 package gui.OpretVinduer.Råvarer;
 
 import application.controller.Controller;
-import application.model.Ristethed;
+import application.model.Raavarer.Ristethed;
 import gui.Tabs.RaavarerTab;
 import javafx.geometry.HPos;
 import javafx.geometry.Pos;

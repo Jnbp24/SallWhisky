@@ -1,7 +1,14 @@
 package gui.mainVindue;
 
 import application.controller.Controller;
-import application.model.*;
+import application.model.FadIndhold.Destillat;
+import application.model.FadIndhold.Fad;
+import application.model.FadVæskeKontrol.Påfyldning;
+import application.model.Lager.Lager;
+import application.model.Medarbejdere.Medarbejder;
+import application.model.Raavarer.Kornsort;
+import application.model.Raavarer.Ristethed;
+import application.model.Raavarer.Vand;
 import gui.Tabs.RaavarerTab;
 import gui.Elements.Billeder;
 import gui.Elements.Knapper;
@@ -161,12 +168,12 @@ public class MainVindue extends Application {
         Storage.tilføjDestillat(destillat3);
 
         Påfyldning påfyldning1 = new Påfyldning(fad1);
-        påfyldning1.tilføjDestillat(destillat1, 50.0);
-        påfyldning1.tilføjDestillat(destillat2, 30.0);
+        påfyldning1.påfyldDestillat(destillat1, 50.0);
+        påfyldning1.påfyldDestillat(destillat2, 30.0);
 
         //Pas på at der ikke fyldes mere destillat på end der er tilgængeligt
         Påfyldning påfyldning2 = new Påfyldning(fad2);
-        påfyldning2.tilføjDestillat(destillat3, 35);
+        påfyldning2.påfyldDestillat(destillat3, 35);
 
         påfyldning1.færdiggørPåfyldning(medarbejder1);
         påfyldning2.færdiggørPåfyldning(medarbejder2);

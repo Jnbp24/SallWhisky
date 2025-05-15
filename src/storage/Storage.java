@@ -1,6 +1,13 @@
 package storage;
 
-import application.model.*;
+import application.model.BatchIndhold.Batch;
+import application.model.BatchIndhold.Flaske;
+import application.model.FadIndhold.Destillat;
+import application.model.FadIndhold.Fad;
+import application.model.Lager.Lager;
+import application.model.Medarbejdere.Medarbejder;
+import application.model.Raavarer.Kornsort;
+import application.model.Raavarer.Vand;
 
 import java.util.ArrayList;
 

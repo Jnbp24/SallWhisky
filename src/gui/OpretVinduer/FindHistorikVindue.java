@@ -1,13 +1,14 @@
 package gui.OpretVinduer;
 
-import application.model.*;
+import application.model.BatchIndhold.Batch;
+import application.model.BatchIndhold.Flaske;
+import application.model.FadIndhold.Destillat;
+import application.model.Raavarer.Kornsort;
 import gui.Elements.InfoBox;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class FindHistorikVindue extends Stage {
