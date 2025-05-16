@@ -3,6 +3,9 @@ package application.model.FadIndhold;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 public class Fad {
 
@@ -11,14 +14,14 @@ public class Fad {
     private double fadStørrelse;
     private int antalGangeBrugt;
     private ArrayList<Destillat> destillater = new ArrayList<>();
-    private ArrayList<String> påfyldninger = new ArrayList<String>();
-    private ArrayList<String> historik = new ArrayList<>();
+//    private ArrayList<String> påfyldninger = new ArrayList<String>();
     private LocalDate påfyldningsDato;
     private double mængdePåfyldt;
     private String påfyldtAf;
     private LocalDate tapningsDato;
     private String tappetAf;
     private boolean påLager;
+    private HashMap<Fad, Double> omhældninger = new HashMap<>();
 
     public Fad(int nummer, String fadType, double fadStørrelse, int antalGangeBrugt) {
         this.nummer = nummer;
@@ -49,6 +52,7 @@ public class Fad {
         //Trække mængden fra det tidligere fad fra og tilføjer det til det valgte fad
         valgtFad.mængdePåfyldt += omhældningMængde;
         this.mængdePåfyldt -= omhældningMængde;
+        valgtFad.tilføjOmhældning(this, omhældningMængde);
 
         //Overfører destillater hvis fadet ikke indeholder destillatet fra det tidligere fad endnu
         for (Destillat destillat : destillater) {
@@ -98,19 +102,27 @@ public class Fad {
 
     public void setPåfyldtAf(String påfyldtAf) {
         this.påfyldtAf = påfyldtAf;
-        påfyldninger.add(this.påfyldtAf);
+//        påfyldninger.add(this.påfyldtAf);
     }
 
     public String getPåfyldtAf() {
         return påfyldtAf;
     }
 
-    public ArrayList<String> getPåfyldninger() {
-        return påfyldninger;
-    }
+//    public ArrayList<String> getPåfyldninger() {
+//        return påfyldninger;
+//    }
 
     public void setTappetAf(String tappetAf) {
         this.tappetAf = tappetAf;
+    }
+
+    public String getTappetAf() {
+        return tappetAf;
+    }
+
+    public LocalDate getTapningsDato() {
+        return tapningsDato;
     }
 
     public void setTapningsDato(LocalDate tapningsDato) {
@@ -132,6 +144,16 @@ public class Fad {
     public boolean isPåLager() {
         return påLager;
     }
+
+    public void tilføjOmhældning(Fad fad, double mængde) {
+        omhældninger.put(fad, mængde);
+    }
+
+    public HashMap<Fad, Double> getOmhældninger() {
+        return omhældninger;
+    }
+
+
 
     @Override
     public String toString() {

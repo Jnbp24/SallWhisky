@@ -12,7 +12,7 @@ public class Destillat {
     private double mængdeLiter;
 
     public Destillat(String nmNummer, double alkoholProcent, Kornsort kornsort, Vand vand, boolean brugtTørv) {
-        this.nmNummer = nmNummer;
+        this.nmNummer = nmNummer.toUpperCase();
         this.alkoholProcent = alkoholProcent;
         this.kornsort = kornsort;
         this.vand = vand;

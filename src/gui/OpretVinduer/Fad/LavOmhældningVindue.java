@@ -3,6 +3,7 @@ package gui.OpretVinduer.Fad;
 import application.controller.Controller;
 import application.model.FadIndhold.Fad;
 import gui.Elements.InfoBox;
+import gui.Tabs.FadTab;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -33,6 +34,7 @@ public class LavOmhældningVindue extends Stage {
     }
 
     private void initContent(GridPane pane) {
+        FadTab fadTab = new FadTab();
         pane.setAlignment(Pos.TOP_CENTER);
         pane.setPadding(new Insets(35));
         pane.setVgap(20);
@@ -102,6 +104,7 @@ public class LavOmhældningVindue extends Stage {
                 succesAlert.setTitle("Omhældning succesful");
                 succesAlert.setHeaderText("Omhældning succesful");
                 succesAlert.show();
+                fadTab.updateFadList();
                 this.close();
             } catch (NumberFormatException e) {
                 if (kildeListView.getSelectionModel().isEmpty() || destinationListView.getSelectionModel().isEmpty()) {

@@ -78,9 +78,9 @@ public class BatchTab {
                     Fad fad = tapning.getFad();
                     if (fad != null) {
                         StringBuilder tappetBuilder = new StringBuilder();
-                        for (String tappetAf : fad.getPåfyldninger()) {
-                            tappetBuilder.append(tappetAf).append("\n");
-                        }
+
+                        tappetBuilder.append(fad.getTappetAf()).append(" - ").append(fad.getTapningsDato()).append("\n");
+
                         tapningMedarbejder.opdaterIndhold("Tappet af: \n" + tappetBuilder);
                     } else {
                         tapningMedarbejder.opdaterIndhold("Intet fad fundet");
