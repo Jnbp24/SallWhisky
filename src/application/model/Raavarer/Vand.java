@@ -25,6 +25,11 @@ public class Vand implements IRaavarer {
     public double getMængde() {
         return mængde;
     }
+
+    @Override
+    public String toString() {
+        return navn + "\nLokation: " + lokation + "\nMængde: " + mængde;
+    }
 }
 
 

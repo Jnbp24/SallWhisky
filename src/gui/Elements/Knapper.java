@@ -107,9 +107,16 @@ public class Knapper {
     public static Button opretFuldHistorikButton(){
         Button fuldHistorikButton = new Button("Vis fuld historik");
         fuldHistorikButton.setOnMouseClicked(event -> {
-            FindHistorikVindue historikVindue = new FindHistorikVindue("Vis historik", BatchTab.getBatch());
-            historikVindue.show();
-
+            try {
+                FindHistorikVindue historikVindue = new FindHistorikVindue("Vis historik", BatchTab.getBatch());
+                historikVindue.show();
+            } catch (Exception e) {
+                Alert fejlAlert = new Alert(Alert.AlertType.ERROR);
+                fejlAlert.setTitle("FEJL");
+                fejlAlert.setHeaderText("Ingen batch valgt");
+                fejlAlert.setContentText("Vælg venligst et fad og prøv igen");
+                fejlAlert.show();
+            }
         });
         return fuldHistorikButton;
     }

@@ -45,9 +45,6 @@ public class Fad {
         if (valgtFad.fadStørrelse - valgtFad.mængdePåfyldt < omhældningMængde) {
             throw new IllegalArgumentException("Ikke nok plads i det valgte fad");
         }
-        if (valgtFad.fadStørrelse - valgtFad.mængdePåfyldt < omhældningMængde) {
-            throw new IllegalArgumentException("Ikke nok plads i det valgte fad");
-        }
 
         //Trække mængden fra det tidligere fad fra og tilføjer det til det valgte fad
         valgtFad.mængdePåfyldt += omhældningMængde;
@@ -57,11 +54,13 @@ public class Fad {
         for (Destillat destillat : destillater) {
             if (!valgtFad.destillater.contains(destillat)) {
                 valgtFad.tilføjDestillat(destillat);
-                this.destillater.remove(destillat);
             }
         }
-
-
+        if (mængdePåfyldt == 0){
+            this.påfyldtAf = null;
+            this.påfyldningsDato = null;
+            destillater.clear();
+        }
     }
 
 
@@ -137,10 +136,10 @@ public class Fad {
     @Override
     public String toString() {
         if (destillater.isEmpty()) {
-            return "Fadnummer: " + "F" + nummer + "\n" + "Fadtype: " + getType() + "\n" + "Tid på Lager: Ikke påfyldt endnu" + "\nFadstørrelse: " + fadStørrelse + " L";
+            return "Fadnummer: " + "F" + nummer + "\n" + "Fadtype: " + getType() + "\nFadstørrelse: " + fadStørrelse + " L" + "\nFadet er tomt";
         }
         else {
-            return "Fadnummer: " + "F" + nummer + "\n" + "Fadtype: " + getType() + "\n" + "Tid på Lager: " + ChronoUnit.YEARS.between(påfyldningsDato, LocalDate.now()) + " År" + "\nVæske i fad: " + mængdePåfyldt + " L" + "\nFadstørrelse: " + fadStørrelse + " L";
+            return "Fadnummer: " + "F" + nummer + "\n" + "Fadtype: " + getType() + "\nVæske i fad: " + mængdePåfyldt + " L" + "\nFadstørrelse: " + fadStørrelse + " L" + "\nTid på Lager: " + ChronoUnit.YEARS.between(påfyldningsDato, LocalDate.now()) + " År";
         }
     }
 }

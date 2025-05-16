@@ -17,17 +17,14 @@ import javafx.stage.Stage;
 public class LavOmhældningVindue extends Stage {
     private ListView<Fad> kildeListView = new ListView<>();
     private ObservableList kildeObservable = FXCollections.observableArrayList();
-
     private ListView<Fad> destinationListView = new ListView<>();
     private ObservableList destinationObservable = FXCollections.observableArrayList();
-
     private TextField omhældningsMængdeTxtField = new TextField();
 
     public LavOmhældningVindue(String title) {
 
         this.setResizable(false);
         this.setTitle(title);
-
 
         GridPane pane = new GridPane();
         this.initContent(pane);
@@ -99,7 +96,7 @@ public class LavOmhældningVindue extends Stage {
             try {
                 Fad valgtKildeFad = kildeListView.getSelectionModel().getSelectedItem();
                 Fad valgtDestination = destinationListView.getSelectionModel().getSelectedItem();
-                Controller.foretagOmhældning(valgtKildeFad, valgtDestination, Integer.parseInt(omhældningsMængdeTxtField.getText()));
+                Controller.foretagOmhældning(valgtKildeFad, valgtDestination, Double.parseDouble(omhældningsMængdeTxtField.getText()));
 
                 Alert succesAlert = new Alert(Alert.AlertType.CONFIRMATION);
                 succesAlert.setTitle("Omhældning succesful");

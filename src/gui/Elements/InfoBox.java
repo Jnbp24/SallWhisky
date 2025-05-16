@@ -12,7 +12,6 @@ public class InfoBox extends VBox {
 
         this.titelLabel = new Label(titel);
         this.getChildren().add(titelLabel);
-
     }
 
     public void opdaterIndhold(String nyTitel) {
@@ -20,4 +19,7 @@ public class InfoBox extends VBox {
         titelLabel.setText(nyTitel);
     }
 
+    public Label getTitelLabel() {
+        return titelLabel;
+    }
 }

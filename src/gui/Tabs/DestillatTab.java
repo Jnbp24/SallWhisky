@@ -9,8 +9,10 @@ import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.layout.Border;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Paint;
 
 public class DestillatTab {
     private ListView<Destillat> destillatListView = new ListView<>();
@@ -39,7 +41,6 @@ public class DestillatTab {
         InfoBox mængdeInfo = new InfoBox("Vælg et fad..");
         InfoBox kornInfo = new InfoBox("Vælg et fad..");
         InfoBox tørvInfo = new InfoBox("Vælg et fad..");
-
 
         destillatListView.setOnMouseClicked(event -> {
             Destillat valgtDestillat = destillatListView.getSelectionModel().getSelectedItem();
