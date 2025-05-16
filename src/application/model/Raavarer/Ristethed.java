@@ -5,6 +5,7 @@ public enum Ristethed {
     private String display;
 
     Ristethed(String display) {
+        this.display = display;
     }
 
     public String getDisplay() {

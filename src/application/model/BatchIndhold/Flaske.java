@@ -10,4 +10,13 @@ public class Flaske {
         this.flaskeID = flaskeID;
         this.batchNavn = batchNavn;
     }
+
+    public double getFlaskeStørrelseILiter() {
+        return flaskeStørrelseILiter;
+    }
+
+    @Override
+    public String toString() {
+        return "FlaskeId: " + flaskeID + " Flaskestørrelse: " + flaskeStørrelseILiter;
+    }
 }

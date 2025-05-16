@@ -51,7 +51,7 @@ public class Lager {
     public ArrayList<Lagerplads> findTapklar() {
         ArrayList<Lagerplads> lagerpladser = new ArrayList<>();
         for (Lagerplads lagerplads : pladser) {
-            if (lagerplads.getFad() != null && ChronoUnit.YEARS.between(lagerplads.getFad().getPåfyldningsDato(), LocalDate.now()) >= 3) {
+            if (lagerplads.getFad() != null && lagerplads.getFad().getPåfyldningsDato()!=null && ChronoUnit.YEARS.between(lagerplads.getFad().getPåfyldningsDato(), LocalDate.now()) >= 3) {
                 lagerpladser.add(lagerplads);
             }
         }

@@ -8,13 +8,13 @@ import java.util.ArrayList;
 
 public class Batch {
     private ArrayList<Kornsort> kornsorter;
-
     private String fadtype;
     private int batchNummer;
     private String batchNavn;
     private double fortyndelseLiter;
     private Tapning tapning;
     private ArrayList<Flaske> flasker = new ArrayList<>();
+    private boolean fåetKvalitetsStempel;
 
     public Batch(ArrayList<Kornsort> kornsorter, String fadtype, int batchNummer, String batchNavn, double fortyndelseLiter, Tapning tapning) {
         this.kornsorter = kornsorter;
@@ -53,6 +53,14 @@ public class Batch {
         if (!flasker.contains(flaske)) {
             flasker.add(flaske);
         }
+    }
+
+    public void setFåetKvalitetsStempel(boolean fåetKvalitetsStempel) {
+        this.fåetKvalitetsStempel = fåetKvalitetsStempel;
+    }
+
+    public boolean harFåetKvalitetsStempel() {
+        return fåetKvalitetsStempel;
     }
 
     public ArrayList<Flaske> getFlasker() {

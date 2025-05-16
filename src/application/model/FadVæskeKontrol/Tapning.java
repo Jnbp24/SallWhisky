@@ -36,6 +36,13 @@ public class Tapning {
             Flaske flaske = new Flaske(flaskeStørrelseILiter, batchNavn, i + 1);
             batch.tilføjFlaske(flaske);
         }
+
+        if (antalFlasker <= 50){
+            batch.setFåetKvalitetsStempel(true);
+        }else {
+            batch.setFåetKvalitetsStempel(false);
+        }
+
         return batch;
     }
 

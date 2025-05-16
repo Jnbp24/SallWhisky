@@ -142,9 +142,10 @@ public class LagerbeholdningVindue extends Stage {
         knapVbox.setSpacing(15);
         pane.add(knapVbox, 1, 2);
 
-        this.setOnCloseRequest(event -> {
 
-        });
+        Button resetBtn = new Button("Reset");
+        resetBtn.setOnMouseClicked(event -> opdaterLagerPladsList());
+        pane.add(resetBtn, 0,3);
     }
 
     public static void opdaterLagerPladsList() {

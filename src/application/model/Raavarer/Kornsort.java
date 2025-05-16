@@ -32,5 +32,10 @@ public class Kornsort implements IRaavarer {
     public Ristethed getRistethed(){
         return ristethed;
     }
+
+    @Override
+    public String toString() {
+        return navn + "\nLokation: " + lokation + "\nMængde i gram: " + mængde + "\nRistethed: " + ristethed.getDisplay();
+    }
 }
 

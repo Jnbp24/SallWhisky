@@ -84,7 +84,7 @@ public class Controller {
         return lager;
     }
 
-    public static void foretagOmhældning(Fad destinationsFad, Fad kildeFad, double omhældningsMængde) {
+    public static void foretagOmhældning(Fad kildeFad, Fad destinationsFad, double omhældningsMængde) {
         if (kildeFad == null || destinationsFad == null) {
             throw new IllegalArgumentException("Vælg både kilde og destinations fad");
         } kildeFad.omhæld(destinationsFad, omhældningsMængde);
