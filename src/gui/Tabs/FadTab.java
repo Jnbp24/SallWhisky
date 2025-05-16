@@ -17,7 +17,7 @@ import javafx.scene.layout.VBox;
 
 public class FadTab {
     private static ListView<Fad> fadListView = new ListView<>();
-    private ObservableList fadObservable = FXCollections.observableArrayList();
+//    private ObservableList fadObservable = FXCollections.observableArrayList();
 
     public GridPane initContent() {
         GridPane fadTabContent = new GridPane();
@@ -41,7 +41,7 @@ public class FadTab {
 
 
         fadTabContent.add(listebox, 0, 0);
-        fadListView.setItems(fadObservable);
+        fadListView.getItems().setAll(Controller.getFadList());
         updateFadList();
 
 
@@ -54,6 +54,7 @@ public class FadTab {
         InfoBox antalGangeBrugtInfo = new InfoBox("Vælg et fad..");
         InfoBox destillaterInfo = new InfoBox("Vælg et fad..");
         InfoBox medarbejderInfo = new InfoBox("Vælg et fad..");
+        InfoBox omhældningInfo = new InfoBox("Vælg et fad..");
 
         fadListView.setOnMouseClicked(event -> {
             Fad valgtFad = fadListView.getSelectionModel().getSelectedItem();
@@ -72,20 +73,30 @@ public class FadTab {
                 destillaterInfo.opdaterIndhold("New make nummer i fad: " + destillatBuilderInfo);
 
                 StringBuilder påfyldningBuilderInfo = new StringBuilder();
-                for (String påfyldninger : valgtFad.getPåfyldninger()) {
-                    påfyldningBuilderInfo.append(påfyldninger).append(" - ").append(valgtFad.getPåfyldningsDato()).append("\n");
+
+                påfyldningBuilderInfo.append(valgtFad.getTappetAf()).append(" - ").append(valgtFad.getPåfyldningsDato()).append("\n");
+
+                medarbejderInfo.opdaterIndhold("Påfyldt af: \n" + påfyldningBuilderInfo);
+
+                if (!valgtFad.getOmhældninger().isEmpty()){
+                    StringBuilder omhældningStringBuilder = new StringBuilder("Omhældninger: \n");
+                    for (Fad fad : valgtFad.getOmhældninger().keySet()) {
+                        omhældningStringBuilder.append(valgtFad.getOmhældninger().get(fad)).append(" Liter fra fad nr.F").append(fad.getNummer()).append("\n");
+                    }
+                    omhældningInfo.opdaterIndhold(omhældningStringBuilder.toString());
+                }else {
+                    omhældningInfo.opdaterIndhold("Omhældninger: \nIngen omhældninger");
                 }
-                medarbejderInfo.opdaterIndhold("Påfyldninger: \n" + påfyldningBuilderInfo);
             }
         });
 
 
-        historikInfo.getChildren().addAll(historikLabel, fadNummerInfo, fadTypeInfo, kapacitetInfo, væskeLiterIFad, destillaterInfo,antalGangeBrugtInfo, medarbejderInfo);
+        historikInfo.getChildren().addAll(historikLabel, fadNummerInfo, fadTypeInfo, kapacitetInfo, væskeLiterIFad, destillaterInfo,antalGangeBrugtInfo, medarbejderInfo, omhældningInfo);
         fadTabContent.add(historikInfo, 1, 0);
         return fadTabContent;
     }
 
     public void updateFadList() {
-        fadObservable.setAll(Controller.getFadList());
+        fadListView.getItems().setAll(Controller.getFadList());
     }
 }

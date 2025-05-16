@@ -21,8 +21,8 @@ public class TilføjDestillatVindue extends Stage {
     private TextField resterendeMængdeTextfield = new TextField();
     private TextField mængdeFraDestillatTextfield = new TextField();
     private Fad fad;
-    private Label resterendeMængdeLbl = new Label("Resterende liter");
-    private Label fyldPåLbl = new Label("Fyld på");
+    private Label resterendeMængdeLbl = new Label("Resterende plads i fad");
+    private Label literFraDestillatLabel = new Label("Liter fra destillat");
     private ListView<Medarbejder> medarbejderListView = new ListView<>();
 
     private Påfyldning påfyldning;
@@ -44,6 +44,9 @@ public class TilføjDestillatVindue extends Stage {
         pane.setPadding(new Insets(35));
         pane.setVgap(20);
 
+        literFraDestillatLabel.setAlignment(Pos.CENTER);
+        resterendeMængdeLbl.setAlignment(Pos.CENTER);
+        resterendeMængdeTextfield.setEditable(false);
         mængdeFraDestillatTextfield.setText("0");
 
         pane.add(new Label("Destillater"), 0, 0);
@@ -89,7 +92,9 @@ public class TilføjDestillatVindue extends Stage {
 
         Button minusBtn = new Button("-");
         minusBtn.setOnMouseClicked(event -> {
-            mængdeFraDestillatTextfield.setText(String.valueOf(Integer.parseInt(mængdeFraDestillatTextfield.getText()) - 1));
+            if (Integer.parseInt(mængdeFraDestillatTextfield.getText()) - 1 >= 0){
+                mængdeFraDestillatTextfield.setText(String.valueOf(Integer.parseInt(mængdeFraDestillatTextfield.getText()) - 1));
+            }
             if (destillatListView.getSelectionModel().getSelectedItem() != null) {
                 resterendeMængdeTextfield.setText(String.valueOf((fad.getFadStørrelse() - fad.getMængdePåfyldt() - Integer.parseInt(mængdeFraDestillatTextfield.getText()))));
             }
@@ -107,8 +112,8 @@ public class TilføjDestillatVindue extends Stage {
 
         HBox hBox = new HBox(minusBtn, mængdeFraDestillatTextfield, plusBtn);
         hBox.setPadding(new Insets(35));
-        VBox vBox = new VBox(resterendeMængdeLbl, resterendeMængdeTextfield, fyldPåLbl, hBox, tilføjBtn);
-        vBox.setPadding(new Insets(35));
+        VBox vBox = new VBox(resterendeMængdeLbl, resterendeMængdeTextfield, literFraDestillatLabel, hBox, tilføjBtn);
+        vBox.setPadding(new Insets(20));
         pane.add(vBox, 1, 1);
     }
 

@@ -60,7 +60,7 @@ public class Knapper {
     }
 
     public static Button TilføjDestillatButton(ListView<Fad> fadListView) {
-        Button tilføjDestillatBtn = new Button("Tilføj Destillat");
+        Button tilføjDestillatBtn = new Button("Påfyld destillat");
         tilføjDestillatBtn.setOnMouseClicked(event -> {
             TilføjDestillatVindue tilføjDestillatVindue = new TilføjDestillatVindue("Tilføj Destillat", fadListView.getSelectionModel().getSelectedItem());
             Fad valgtFad = fadListView.getSelectionModel().getSelectedItem();

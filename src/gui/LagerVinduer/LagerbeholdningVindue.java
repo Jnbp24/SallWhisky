@@ -59,7 +59,10 @@ public class LagerbeholdningVindue extends Stage {
 
 
         pane.add(headerHbox, 0, 0, 3, 1);
-        pane.add(lagerpladsListView, 0, 2);
+
+        VBox lagerVbox = new VBox(new Label("Lagerpladser"), lagerpladsListView);
+        lagerVbox.setSpacing(15);
+        pane.add(lagerVbox, 0, 2);
 
         lagerLokationList.setAll(Controller.getLagerer());
         lagerCombobox = new ComboBox<>(lagerLokationList);
@@ -68,19 +71,53 @@ public class LagerbeholdningVindue extends Stage {
         pane.add(lagerCombobox, 0, 1);
         opdaterLagerPladsList();
 
-        Label findFadPåFadNummerLabel = new Label("Søg efter fadnummer");
+        Label findFadPåFadNummerLabel = new Label("Søg efter fadnummer \nEks. (1,2,3)");
         Button findFadPåFadNummerBtn = new Button("Søg");
-        findFadPåFadNummerBtn.setOnMouseClicked(event -> lagerpladsListView.getItems().setAll(Controller.findFadPåFadNummer(Integer.parseInt(findFadPåFadNummerTxtField.getText()))));
+        findFadPåFadNummerBtn.setOnMouseClicked(event -> {
+            try {
+                lagerpladsListView.getItems().setAll(Controller.findFadPåFadNummer(Integer.parseInt(findFadPåFadNummerTxtField.getText())));
+            } catch (Exception e) {
+                if (findFadPåFadNummerTxtField.getText().isEmpty()){
+                    Alert fejlAlert = new Alert(Alert.AlertType.ERROR);
+                    fejlAlert.setTitle("FEJL");
+                    fejlAlert.setHeaderText("Fadnummer ikke indtastet");
+                    fejlAlert.setContentText("Indtast venligst et fadnummer og prøv igen");
+                    fejlAlert.show();
+                }else {
+                    Alert fejlAlert = new Alert(Alert.AlertType.ERROR);
+                    fejlAlert.setTitle("FEJL");
+                    fejlAlert.setHeaderText("Dette fad er ikke på lager");
+                    fejlAlert.show();
+                }
+            }
+        });
 
-        Label findFadPåNmNummerLabel = new Label("Søg efter Newmake nummer");
+        Label findFadPåNmNummerLabel = new Label("Søg efter Newmake nummer \nEks. (NM1,NM2,NM3)");
         Button findFadPåNmNummerBtn = new Button("Søg");
-        findFadPåNmNummerBtn.setOnMouseClicked(event -> lagerpladsListView.getItems().setAll(Controller.findFadPåNmNummer(findFadPåNmNummerTxtField.getText())));
+        findFadPåNmNummerBtn.setOnMouseClicked(event -> {
+            if (findFadPåNmNummerTxtField.getText().isEmpty()){
+                Alert fejlAlert = new Alert(Alert.AlertType.ERROR);
+                fejlAlert.setTitle("FEJL");
+                fejlAlert.setHeaderText("NM nummer ikke indtastet");
+                fejlAlert.setContentText("Indtast venligst et NM nummer og prøv igen");
+                fejlAlert.show();
+            }else if (Controller.findFadPåNmNummer(findFadPåNmNummerTxtField.getText().toUpperCase()).isEmpty()){
+                Alert fejlAlert = new Alert(Alert.AlertType.ERROR);
+                fejlAlert.setTitle("FEJL");
+                fejlAlert.setHeaderText("Dette fad er ikke på lager");
+                fejlAlert.show();
+            }else {
+                lagerpladsListView.getItems().setAll(Controller.findFadPåNmNummer(findFadPåNmNummerTxtField.getText().toUpperCase()));
+            }
+        });
 
         Label findTapklarLable = new Label("Find alle tapklar fade");
         Button findTapklarBtn = new Button("Find tapklar");
         findTapklarBtn.setOnMouseClicked(event -> lagerpladsListView.getItems().setAll(Controller.findTapklar()));
 
-        pane.add(fadListView, 2, 2);
+        VBox fadVbox = new VBox(new Label("Fade uden lagerplads"), fadListView);
+        fadVbox.setSpacing(15);
+        pane.add(fadVbox, 2, 2);
         opdaterFadList();
 
         Label tilføjFadLabel = new Label("Tilføj fad til lagerplads");
@@ -143,9 +180,9 @@ public class LagerbeholdningVindue extends Stage {
         pane.add(knapVbox, 1, 2);
 
 
-        Button resetBtn = new Button("Reset");
+        Button resetBtn = new Button("Fortryd søgning");
         resetBtn.setOnMouseClicked(event -> opdaterLagerPladsList());
-        pane.add(resetBtn, 0,3);
+        pane.add(resetBtn, 0,4);
     }
 
     public static void opdaterLagerPladsList() {
