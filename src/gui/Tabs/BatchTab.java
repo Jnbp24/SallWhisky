@@ -77,7 +77,7 @@ public class BatchTab {
                 if (tapning != null) {
                     Fad fad = tapning.getFad();
                     if (fad != null) {
-                        StringBuilder tappetBuilder = new StringBuilder("\n");
+                        StringBuilder tappetBuilder = new StringBuilder();
                         for (String tappetAf : fad.getPåfyldninger()) {
                             tappetBuilder.append(tappetAf).append("\n");
                         }
