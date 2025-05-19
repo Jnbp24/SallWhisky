@@ -65,7 +65,7 @@ public class BatchTab {
                 batchNummerInfo.opdaterIndhold("Batch nummer: " + valgtBatch.getBatchNummer());
                 batchNavnInfo.opdaterIndhold("Batch navn: " + valgtBatch.getBatchNavn());
                 fortyndelseInfo.opdaterIndhold("Fortyndelse: " + valgtBatch.getFortyndelseLiter() + "L");
-                fadTypeInfo.opdaterIndhold("Fadtype: " + valgtBatch.getFadtype());
+                fadTypeInfo.opdaterIndhold("Fadtype: " + valgtBatch.getFadtyper());
                 StringBuilder kornsortBuilderInfo = new StringBuilder("\n");
                 for (Kornsort råvarer : valgtBatch.getKornsorter()) {
                     kornsortBuilderInfo.append(råvarer.getNavn()).append("\n");

@@ -58,6 +58,6 @@ public class Destillat {
 
     @Override
     public String toString() {
-        return "Destillat: " + nmNummer + "\n" + "Kornsort: " + kornsort + "\n" + "Vand: " + getVand() + "\n" + "Alkohol procent: " + getAlkoholProcent() + "%" + "\n" + "Tørv: " + getTørv() + "\n" + "Mængde i liter: " + mængdeLiter;
+        return "Destillat: " + nmNummer + "\n\n" + "Kornsort: " + kornsort + "\n\n" + "Vand: " + getVand() + "\n\n" + "Alkohol procent: " + getAlkoholProcent() + "%" + "\n\n" + "Tørv: " + getTørv() + "\n\n" + "Mængde i liter: " + mængdeLiter + "\n___________________________________________";
     }
 }

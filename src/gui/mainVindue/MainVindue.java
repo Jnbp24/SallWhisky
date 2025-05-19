@@ -162,10 +162,12 @@ public class MainVindue extends Application {
         Destillat destillat1 = new Destillat("NM1", 65.0, kornsort1, vand1, true);
         Destillat destillat2 = new Destillat("NM2", 54.0, kornsort3, vand2, false);
         Destillat destillat3 = new Destillat("NM3", 62.0, kornsort3, vand2, false);
+        Destillat destillat4 = new Destillat("NM4", 57.0, kornsort3, vand2, false);
 
         Storage.tilføjDestillat(destillat1);
         Storage.tilføjDestillat(destillat2);
         Storage.tilføjDestillat(destillat3);
+        Storage.tilføjDestillat(destillat4);
 
         Påfyldning påfyldning1 = new Påfyldning(fad1);
         påfyldning1.påfyldDestillat(destillat1, 50.0);
@@ -175,8 +177,12 @@ public class MainVindue extends Application {
         Påfyldning påfyldning2 = new Påfyldning(fad2);
         påfyldning2.påfyldDestillat(destillat3, 35);
 
+        Påfyldning påfyldning3 = new Påfyldning(fad4);
+        påfyldning3.påfyldDestillat(destillat4, 40);
+
         påfyldning1.færdiggørPåfyldning(medarbejder1);
         påfyldning2.færdiggørPåfyldning(medarbejder2);
+        påfyldning3.færdiggørPåfyldning(medarbejder1);
 
         fad3.setPåfyldningsDato(LocalDate.of(2021, 12, 5));
         ArrayList<Destillat> destillater = new ArrayList<>();
@@ -211,10 +217,11 @@ public class MainVindue extends Application {
         lager1.getPladser().getFirst().placerFad(fad1);
         lager2.getPladser().getFirst().placerFad(fad3);
 
+        Controller.foretagOmhældning(fad4,fad2,40);
+
         Controller.opretBatch(fad1, "Glød", 1, 20, 1.5, medarbejder1, Controller.opretTapning());
         Controller.opretBatch(fad2, "Mørk", 2, 10, 1.0, medarbejder1, Controller.opretTapning());
-        Controller.opretBatch(fad3, "Røg", 3, 25, 1.5, medarbejder2, Controller.opretTapning());
-
+        Controller.opretBatch(fad3, "Røg", 3, 0, 1.5, medarbejder2, Controller.opretTapning());
     }
 }
 

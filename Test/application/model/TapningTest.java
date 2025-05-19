@@ -27,7 +27,7 @@ class TapningTest {
         Fad fad = new Fad(2, "Sherry", 20, 2);
         Destillat destillat = new Destillat("NM10", 60, new Kornsort("s", "s", 23, Ristethed.IKKE_RISTET), new Vand("nanv", "avnd", 5), true);
         Medarbejder medarbejder = new Medarbejder(1, "Sammi");
-        Påfyldning påfyldning = Controller.tilføjDestillat(fad, destillat, 5);
+        Påfyldning påfyldning = Controller.tilføjDestillat(fad, destillat, 5, medarbejder);
         Controller.færdiggørPåfyldning(påfyldning, medarbejder);
         Tapning tapning = new Tapning();
         tapning.setFad(fad);

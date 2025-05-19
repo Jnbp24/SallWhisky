@@ -36,8 +36,6 @@ public class Fad {
             destillater.add(destillat);
             this.påfyldningsDato = LocalDate.now();
         }
-        else
-            throw new IllegalArgumentException("Dette fad indeholder allerede dette destillat");
     }
 
     public void omhæld(Fad valgtFad, double omhældningMængde) {
@@ -157,10 +155,10 @@ public class Fad {
     @Override
     public String toString() {
         if (destillater.isEmpty()) {
-            return "Fadnummer: " + "F" + nummer + "\n" + "Fadtype: " + getType() + "\nFadstørrelse: " + fadStørrelse + " L" + "\nFadet er tomt";
+            return "Fadnummer: " + "F" + nummer + "\n" + "Fadtype: " + getType() + "\nFadstørrelse: " + fadStørrelse + " L" + "\nFadet er tomt" + "\n_________________________________________________________________________________";
         }
         else {
-            return "Fadnummer: " + "F" + nummer + "\n" + "Fadtype: " + getType() + "\nVæske i fad: " + mængdePåfyldt + " L" + "\nFadstørrelse: " + fadStørrelse + " L" + "\nTid på Lager: " + ChronoUnit.YEARS.between(påfyldningsDato, LocalDate.now()) + " År";
+            return "Fadnummer: " + "F" + nummer + "\n" + "Fadtype: " + getType() + "\nVæske i fad: " + mængdePåfyldt + " L" + "\nFadstørrelse: " + fadStørrelse + " L" + "\nTid på Lager: " + ChronoUnit.YEARS.between(påfyldningsDato, LocalDate.now()) + " År" + "\n_________________________________________________________________________________";
         }
     }
 }

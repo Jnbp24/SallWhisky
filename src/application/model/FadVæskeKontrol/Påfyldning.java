@@ -47,7 +47,7 @@ public class Påfyldning {
                     fad.tilføjDestillat(destillat);
                 }
             }
-            fad.setMængdePåfyldt(mængdeLiterFraAlleDestillater);
+            fad.setMængdePåfyldt(fad.getMængdePåfyldt() + mængdeLiterFraAlleDestillater);
             fad.setPåfyldtAf(medarbejder.getNavn());
         }
     }
