@@ -14,7 +14,6 @@ public class Fad {
     private double fadStørrelse;
     private int antalGangeBrugt;
     private ArrayList<Destillat> destillater = new ArrayList<>();
-//    private ArrayList<String> påfyldninger = new ArrayList<String>();
     private LocalDate påfyldningsDato;
     private double mængdePåfyldt;
     private String påfyldtAf;
