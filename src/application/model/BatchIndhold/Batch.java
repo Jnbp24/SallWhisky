@@ -8,17 +8,17 @@ import java.util.ArrayList;
 
 public class Batch {
     private ArrayList<Kornsort> kornsorter;
-    private String fadtype;
+    private ArrayList<String> fadtyper = new ArrayList<>();
     private int batchNummer;
     private String batchNavn;
     private double fortyndelseLiter;
     private Tapning tapning;
     private ArrayList<Flaske> flasker = new ArrayList<>();
     private boolean fåetKvalitetsStempel;
+    private WhiskyTyper whiskyType;
 
-    public Batch(ArrayList<Kornsort> kornsorter, String fadtype, int batchNummer, String batchNavn, double fortyndelseLiter, Tapning tapning) {
+    public Batch(ArrayList<Kornsort> kornsorter, int batchNummer, String batchNavn, double fortyndelseLiter, Tapning tapning) {
         this.kornsorter = kornsorter;
-        this.fadtype = fadtype;
         this.batchNummer = batchNummer;
         this.batchNavn = batchNavn;
         this.fortyndelseLiter = fortyndelseLiter;
@@ -37,8 +37,14 @@ public class Batch {
         return kornsorter;
     }
 
-    public String getFadtype() {
-        return fadtype;
+    public ArrayList<String> getFadtyper() {
+        return fadtyper;
+    }
+
+    public void tilføjFadtype(String fadtype){
+        if (!fadtyper.contains(fadtype)){
+            fadtyper.add(fadtype);
+        }
     }
 
     public double getFortyndelseLiter() {
@@ -67,8 +73,16 @@ public class Batch {
         return flasker;
     }
 
+    public void setWhiskyType(WhiskyTyper whiskyType) {
+        this.whiskyType = whiskyType;
+    }
+
+    public WhiskyTyper getWhiskyType() {
+        return whiskyType;
+    }
+
     @Override
     public String toString() {
-        return "Batchnummer: " + "B" + batchNummer + "\n " + " Batchnavn: " + batchNavn;
+        return "Batchnummer: " + "B" + batchNummer + "\n" + "Batchnavn: " + batchNavn + "\n" + whiskyType.getDisplay() + "\n______________________________________________";
     }
 }

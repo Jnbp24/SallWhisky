@@ -30,31 +30,45 @@ public class FindHistorikVindue extends Stage {
 
     private void initContent(GridPane pane) {
         pane.setAlignment(Pos.CENTER);
-        pane.setPrefHeight(650);
+        pane.setPrefHeight(900);
         pane.setPrefWidth(400);
 
 
-        StringBuilder historikStringbuilder = new StringBuilder("\nFad: " + batch.getFadtype() + "\n" +
+        StringBuilder historikStringbuilder = new StringBuilder("\nFadtype(er): " + batch.getFadtyper() + "\n\n________________________________________________________________\n" +
                 "Destillat(er): ");
 
         for (Destillat destillat : batch.getTapning().getFad().getDestillater()) {
-            historikStringbuilder.append("\n" +
+            historikStringbuilder.append("\n\n" +
                     "NM nummer: " + destillat.getNmNummer() + "\n" +
                     "ABV: " + destillat.getAlkoholProcent() + "\n" +
                     "Tørv: " + destillat.getTørv());
         }
+
+        historikStringbuilder.append("\n________________________________________________________________\n");
+        historikStringbuilder.append("Kornsorter:\n");
+
         for (Kornsort kornsort : batch.getKornsorter()) {
-            historikStringbuilder.append("\n" +
-                    "Kornsort: " + "\n" + kornsort.getNavn() + " - " + kornsort.getRistethed().getDisplay() + "\n" +
-                    "Kornmark: " + "\n" + kornsort.getLokation() + "\n");
+            if (!historikStringbuilder.toString().contains(kornsort.getNavn()) && !historikStringbuilder.toString().contains(kornsort.getRistethed().getDisplay()) && !historikStringbuilder.toString().contains(kornsort.getLokation())){
+                historikStringbuilder.append("\n" +
+                        kornsort.getNavn() + " - " + kornsort.getRistethed().getDisplay() + "\n" +
+                        "Kornmark: " + kornsort.getLokation() + "\n");
+            }
         }
+
+        historikStringbuilder.append("\n________________________________________________________________\n");
+
+        historikStringbuilder.append("Vand: \n\n");
+
         for (Destillat destillat : batch.getTapning().getFad().getDestillater()) {
-            historikStringbuilder.append(destillat.getVand().getNavn() + "\n" +
-                    "Vand: " + "\n" + destillat.getVand().getLokation() + "\n" +
-                    "Vand lokation: " + "\n");
+            if (!historikStringbuilder.toString().contains(destillat.getVand().getNavn()) && !historikStringbuilder.toString().contains(destillat.getVand().getLokation())) {
+                historikStringbuilder.append(destillat.getVand().getNavn() + "\n" + destillat.getVand().getLokation() + "\n" + "Vand lokation: " + "\n");
+            }
 
         }
-        historikStringbuilder.append("\nAntal flasker: " + batch.getFlasker().size() + "\nFlaskestørrelse: " + batch.getFlasker().getFirst().getFlaskeStørrelseILiter());
+
+        historikStringbuilder.append("\n________________________________________________________________\n");
+
+        historikStringbuilder.append("\nAntal flasker: " + batch.getFlasker().size() + "\nFlaskestørrelse: " + batch.getFlasker().getFirst().getFlaskeStørrelseILiter()).append("\nType: ").append(batch.getWhiskyType().getDisplay());
 
         InfoBox historikInfoBox = new InfoBox("" + historikStringbuilder);
 
@@ -66,10 +80,10 @@ public class FindHistorikVindue extends Stage {
             imageView.setPreserveRatio(true);
 
             historikInfoBox.getTitelLabel().setGraphic(imageView);
-            historikInfoBox.getTitelLabel().setContentDisplay(ContentDisplay.RIGHT);
+            historikInfoBox.getTitelLabel().setContentDisplay(ContentDisplay.BOTTOM);
         }
 
-        historikInfoBox.setPrefSize(380, 550);
+        historikInfoBox.setPrefSize(380, 800);
         pane.add(historikInfoBox, 0, 1);
 
         Label historikLabel = new Label(batch.getBatchNavn() + "'s historik: ");

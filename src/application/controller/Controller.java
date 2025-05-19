@@ -42,9 +42,10 @@ public class Controller {
         return vand;
     }
 
-    public static Påfyldning tilføjDestillat(Fad fad, Destillat destillat, double mængde) {
+    public static Påfyldning tilføjDestillat(Fad fad, Destillat destillat, double mængde, Medarbejder medarbejder) {
         Påfyldning påfyldning = new Påfyldning(fad);
         påfyldning.påfyldDestillat(destillat, mængde);
+        påfyldning.færdiggørPåfyldning(medarbejder);
         return påfyldning;
     }
 

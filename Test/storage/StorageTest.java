@@ -39,7 +39,7 @@ class StorageTest {
     void tilføjBatch() {
         ArrayList<Kornsort> kornsorter = new ArrayList<>();
         kornsorter.add(new Kornsort("Korn", "Kornsort", 23, Ristethed.IKKE_RISTET));
-        Batch batch = new Batch(kornsorter,"Eg", 12, "B89", 23, new Tapning());
+        Batch batch = new Batch(kornsorter, 12, "B89", 23, new Tapning());
         Storage.tilføjBatch(batch);
         assertTrue(Storage.getBatches().contains(batch));
     }

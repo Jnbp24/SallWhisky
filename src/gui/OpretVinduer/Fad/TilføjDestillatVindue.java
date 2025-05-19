@@ -64,7 +64,7 @@ public class TilføjDestillatVindue extends Stage {
         Button tilføjBtn = new Button("Tilføj");
         tilføjBtn.setOnMouseClicked(event -> {
             try {
-                påfyldning = Controller.tilføjDestillat(fad, destillatListView.getSelectionModel().getSelectedItem(), Double.parseDouble(mængdeFraDestillatTextfield.getText()));
+                påfyldning = Controller.tilføjDestillat(fad, destillatListView.getSelectionModel().getSelectedItem(), Double.parseDouble(mængdeFraDestillatTextfield.getText()), medarbejderListView.getSelectionModel().getSelectedItem());
                 mængdeFraDestillatTextfield.setText("0");
                 opdaterList();
 
