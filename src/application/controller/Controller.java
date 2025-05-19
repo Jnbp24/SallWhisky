@@ -53,7 +53,7 @@ public class Controller {
         påfyldning.færdiggørPåfyldning(medarbejder);
     }
 
-    public static Tapning opretTapning(){
+    public static Tapning opretTapning() {
         return new Tapning();
     }
 
@@ -88,11 +88,12 @@ public class Controller {
     public static void foretagOmhældning(Fad kildeFad, Fad destinationsFad, double omhældningsMængde) {
         if (kildeFad == null || destinationsFad == null) {
             throw new IllegalArgumentException("Vælg både kilde og destinations fad");
-        } kildeFad.omhæld(destinationsFad, omhældningsMængde);
+        }
+        kildeFad.omhæld(destinationsFad, omhældningsMængde);
     }
 
-    public static void opretLagerplads(Lager lager, String reol, int hylde) {
-        lager.opretLagerplads(reol, hylde);
+    public static Lagerplads opretLagerplads(Lager lager, String reol, int hylde) {
+        return lager.opretLagerplads(reol, hylde);
     }
 
     public static Lagerplads findFadPåFadNummer(int fadNummer) {
@@ -106,7 +107,7 @@ public class Controller {
         throw new NoSuchElementException("Dette fad er ikke på lager");
     }
 
-    public static ArrayList<Lagerplads> findFadPåNmNummer(String nmNummer){
+    public static ArrayList<Lagerplads> findFadPåNmNummer(String nmNummer) {
         ArrayList<Lagerplads> lagerpladser = new ArrayList<>();
         for (Lager lager : getLagerer()) {
             lagerpladser.addAll(lager.findFadPåNmNummer(nmNummer));
@@ -147,7 +148,7 @@ public class Controller {
         return Storage.getDestillater();
     }
 
-    public static ArrayList<Batch> getBatches(){
+    public static ArrayList<Batch> getBatches() {
         return Storage.getBatches();
     }
 

@@ -42,8 +42,16 @@ class TapningTest {
         Fad fad = new Fad(2, "Sherry", 20, 2);
         Medarbejder medarbejder = new Medarbejder(1, "Sammi");
         Batch batch = Controller.opretBatch(fad, "B109", 109, 12, 1.5, medarbejder, new Tapning());
+        String fadtype = null;
 
-        assertEquals("Sherry", batch.getFadtype());
+        for (String string : batch.getFadtyper()) {
+            if(string.equals(fad.getType())){
+                fadtype = string;
+            }
+        }
+
+
+        assertEquals("Sherry", fadtype);
         assertEquals("B109", batch.getBatchNavn());
         assertEquals(109, batch.getBatchNummer());
         assertEquals(12, batch.getFortyndelseLiter());

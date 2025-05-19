@@ -14,7 +14,7 @@ public class Lager {
         this.id = id;
     }
 
-    public void opretLagerplads(String reol, int hylde) {
+    public Lagerplads opretLagerplads(String reol, int hylde) {
         for (Lagerplads lagerplads : pladser) {
             if (lagerplads.getReol().equals(reol)) {
                 if (lagerplads.getHylde() == hylde) {
@@ -22,7 +22,9 @@ public class Lager {
                 }
             }
         }
-        pladser.add(new Lagerplads(reol, hylde, this));
+        Lagerplads lagerplads = new Lagerplads(reol, hylde, this);
+        pladser.add(lagerplads);
+        return lagerplads;
     }
 
     public Lagerplads findFadPåFadNummer(int fadNummer) {
@@ -34,12 +36,12 @@ public class Lager {
         return null;
     }
 
-    public ArrayList<Lagerplads> findFadPåNmNummer(String newMakeNummer){
+    public ArrayList<Lagerplads> findFadPåNmNummer(String newMakeNummer) {
         ArrayList<Lagerplads> pladserTilRetur = new ArrayList<>();
         for (Lagerplads lagerplads : pladser) {
-            if (lagerplads.getFad() != null){
+            if (lagerplads.getFad() != null) {
                 for (Destillat destillat : lagerplads.getFad().getDestillater()) {
-                    if (destillat.getNmNummer().equals(newMakeNummer)){
+                    if (destillat.getNmNummer().equals(newMakeNummer)) {
                         pladserTilRetur.add(lagerplads);
                     }
                 }
@@ -51,7 +53,7 @@ public class Lager {
     public ArrayList<Lagerplads> findTapklar() {
         ArrayList<Lagerplads> lagerpladser = new ArrayList<>();
         for (Lagerplads lagerplads : pladser) {
-            if (lagerplads.getFad() != null && lagerplads.getFad().getPåfyldningsDato()!=null && ChronoUnit.YEARS.between(lagerplads.getFad().getPåfyldningsDato(), LocalDate.now()) >= 3) {
+            if (lagerplads.getFad() != null && lagerplads.getFad().getPåfyldningsDato() != null && ChronoUnit.YEARS.between(lagerplads.getFad().getPåfyldningsDato(), LocalDate.now()) >= 3) {
                 lagerpladser.add(lagerplads);
             }
         }
@@ -60,6 +62,10 @@ public class Lager {
 
     public ArrayList<Lagerplads> getPladser() {
         return pladser;
+    }
+
+    public String getId() {
+        return id;
     }
 
     @Override

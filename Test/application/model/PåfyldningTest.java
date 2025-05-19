@@ -20,12 +20,6 @@ class PåfyldningTest {
     }
 
     @Test
-    void påfyldningTest() {
-
-
-    }
-
-    @Test
     void tilføjDestillatTest() {
         Fad fad = new Fad(1, "Eg", 30.0, 2);
         Kornsort kornsort = new Kornsort("korn", "kornmark", 30, Ristethed.IKKE_RISTET);
@@ -58,15 +52,5 @@ class PåfyldningTest {
         assertEquals("Sammi", fad.getPåfyldtAf());
     }
 
-    //    @org.junit.jupiter.api.Test
-    //    void fjernDestillat() {
-    //        Fad fad2 = new Fad(2, "Sherry", 20.0, 1);
-    //        Destillat destillat2 = new Destillat("NM2", 60, new Kornsort("havre", "havremark", 10, Ristethed.SVÆRT_RISTET), new Vand("havvand", "havet", 50), false);
-    //        Påfyldning påfyldning2 = new Påfyldning(fad2);
-    //
-    //
-    //        assertEquals(destillat2, fad2.getDestillater().remove(destillat2));
-    //
-    //    }
 
 }

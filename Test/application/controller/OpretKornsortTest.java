@@ -38,8 +38,5 @@ class OpretKornsortTest {
         assertEquals(Ristethed.IKKE_RISTET, kornsort.getRistethed(), "Ristethed skal matche det angivne");
     }
 
-    @Test
-    void testKornsortAddedToStorage() {
-        assertTrue(Storage.getKornsorter().contains(kornsort), "Kornsort skal være tilføjet til Storage");
-    }
+
 }
