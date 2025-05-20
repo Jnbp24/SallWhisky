@@ -5,11 +5,8 @@ import application.model.FadIndhold.Destillat;
 import application.model.FadIndhold.Fad;
 import gui.Elements.InfoBox;
 import gui.Elements.Knapper;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -60,7 +57,7 @@ public class FadTab {
             Fad valgtFad = fadListView.getSelectionModel().getSelectedItem();
             if (valgtFad != null) {
 
-                fadNummerInfo.opdaterIndhold("Fadnummer: " + valgtFad.getNummer());
+                fadNummerInfo.opdaterIndhold("Fadnummer: " + valgtFad.getFadnummer());
                 fadTypeInfo.opdaterIndhold("Fadtype: " + valgtFad.getType());
                 kapacitetInfo.opdaterIndhold("Fadstørrelse: " + valgtFad.getFadStørrelse() + " L");
                 antalGangeBrugtInfo.opdaterIndhold("Antal gange brugt: " + valgtFad.getAntalGangeBrugt());
@@ -74,14 +71,14 @@ public class FadTab {
 
                 StringBuilder påfyldningBuilderInfo = new StringBuilder();
 
-                påfyldningBuilderInfo.append(valgtFad.getTappetAf()).append(" - ").append(valgtFad.getPåfyldningsDato()).append("\n");
+                påfyldningBuilderInfo.append(valgtFad.getPåfyldtAf()).append(" - ").append(valgtFad.getPåfyldningsDato()).append("\n");
 
                 medarbejderInfo.opdaterIndhold("Påfyldt af: \n" + påfyldningBuilderInfo);
 
                 if (!valgtFad.getOmhældninger().isEmpty()){
                     StringBuilder omhældningStringBuilder = new StringBuilder("Omhældninger: \n");
                     for (Fad fad : valgtFad.getOmhældninger().keySet()) {
-                        omhældningStringBuilder.append(valgtFad.getOmhældninger().get(fad)).append(" Liter fra fad nr.F").append(fad.getNummer()).append("\n");
+                        omhældningStringBuilder.append(valgtFad.getOmhældninger().get(fad)).append(" Liter fra fad nr.F").append(fad.getFadnummer()).append("\n");
                     }
                     omhældningInfo.opdaterIndhold(omhældningStringBuilder.toString());
                 }else {

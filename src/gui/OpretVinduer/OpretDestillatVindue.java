@@ -74,7 +74,10 @@ public class OpretDestillatVindue extends Stage {
             Kornsort valgtKorn = null;
             Vand valgtVand = null;
             try {
-                String newMakeNummer = nmNummerTxtField.getText();
+                String newMakeNummer = nmNummerTxtField.getText().toUpperCase();
+                if (!newMakeNummer.startsWith("NM")){
+                    newMakeNummer = "NM" + nmNummerTxtField.getText().toUpperCase();
+                }
                 double alkoholProcent = Double.parseDouble(alkolholProcentTxtField.getText());
                 boolean erTørv = tørvBox.isSelected();
                 valgtKorn = kornsortListView.getSelectionModel().getSelectedItem();

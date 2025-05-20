@@ -29,7 +29,7 @@ public class Lager {
 
     public Lagerplads findFadPåFadNummer(int fadNummer) {
         for (Lagerplads lagerplads : pladser) {
-            if (lagerplads.getFad().getNummer() == fadNummer) {
+            if (lagerplads.getFad().getFadnummer() == fadNummer) {
                 return lagerplads;
             }
         }

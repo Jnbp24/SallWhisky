@@ -184,7 +184,6 @@ public class MainVindue extends Application {
         påfyldning2.færdiggørPåfyldning(medarbejder2);
         påfyldning3.færdiggørPåfyldning(medarbejder1);
 
-        fad3.setPåfyldningsDato(LocalDate.of(2021, 12, 5));
         ArrayList<Destillat> destillater = new ArrayList<>();
         destillater.add(destillat1);
         fad3.setDestillater(destillater);
@@ -194,30 +193,31 @@ public class MainVindue extends Application {
         Lager lager1 = Controller.opretLager("Lager 1");
         Lager lager2 = Controller.opretLager("Lager 2");
 
-        lager1.opretLagerplads("A", 1);
-        lager1.opretLagerplads("A", 2);
-        lager1.opretLagerplads("A", 3);
-        lager1.opretLagerplads("B", 1);
-        lager1.opretLagerplads("B", 2);
-        lager1.opretLagerplads("B", 3);
-        lager1.opretLagerplads("C", 1);
-        lager1.opretLagerplads("C", 2);
-        lager1.opretLagerplads("C", 3);
+        Controller.opretLagerplads(lager1,"A", 1);
+        Controller.opretLagerplads(lager1,"A", 2);
+        Controller.opretLagerplads(lager1,"A", 3);
+        Controller.opretLagerplads(lager1,"B", 1);
+        Controller.opretLagerplads(lager1,"B", 2);
+        Controller.opretLagerplads(lager1,"B", 3);
+        Controller.opretLagerplads(lager1,"C", 1);
+        Controller.opretLagerplads(lager1,"C", 2);
+        Controller.opretLagerplads(lager1,"C", 3);
 
-        lager2.opretLagerplads("A", 1);
-        lager2.opretLagerplads("A", 2);
-        lager2.opretLagerplads("A", 3);
-        lager2.opretLagerplads("B", 1);
-        lager2.opretLagerplads("B", 2);
-        lager2.opretLagerplads("B", 3);
-        lager2.opretLagerplads("C", 1);
-        lager2.opretLagerplads("C", 2);
-        lager2.opretLagerplads("C", 3);
+        Controller.opretLagerplads(lager2,"A", 1);
+        Controller.opretLagerplads(lager2,"A", 2);
+        Controller.opretLagerplads(lager2,"A", 3);
+        Controller.opretLagerplads(lager2,"B", 1);
+        Controller.opretLagerplads(lager2,"B", 2);
+        Controller.opretLagerplads(lager2,"B", 3);
+        Controller.opretLagerplads(lager2,"C", 1);
+        Controller.opretLagerplads(lager2,"C", 2);
+        Controller.opretLagerplads(lager2,"C", 3);
 
         lager1.getPladser().getFirst().placerFad(fad1);
         lager2.getPladser().getFirst().placerFad(fad3);
 
-        Controller.foretagOmhældning(fad4,fad2,40);
+        Controller.foretagOmhældning(fad4,fad3,40);
+        fad3.setPåfyldningsDato(LocalDate.of(2021, 12, 5));
 
         Controller.opretBatch(fad1, "Glød", 1, 20, 1.5, medarbejder1, Controller.opretTapning());
         Controller.opretBatch(fad2, "Mørk", 2, 10, 1.0, medarbejder1, Controller.opretTapning());
