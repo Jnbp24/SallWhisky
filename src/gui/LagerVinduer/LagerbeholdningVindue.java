@@ -125,7 +125,7 @@ public class LagerbeholdningVindue extends Stage {
         tilføjFadBtn.setOnMouseClicked(event -> {
             if (lagerpladsListView.getSelectionModel().getSelectedItem() != null && fadListView.getSelectionModel().getSelectedItem() != null) {
                 if (lagerpladsListView.getSelectionModel().getSelectedItem().getFad() == null) {
-                    lagerpladsListView.getSelectionModel().getSelectedItem().placerFad(fadListView.getSelectionModel().getSelectedItem());
+                    Controller.tilføjFadTilLagerplads(fadListView.getSelectionModel().getSelectedItem(), lagerpladsListView.getSelectionModel().getSelectedItem());
                     opdaterLagerPladsList();
                     opdaterFadList();
                 }
@@ -151,7 +151,7 @@ public class LagerbeholdningVindue extends Stage {
         fjernFadBtn.setOnMouseClicked(event -> {
             if (lagerpladsListView.getSelectionModel().getSelectedItem() != null) {
                 if (lagerpladsListView.getSelectionModel().getSelectedItem().getFad() != null) {
-                    lagerpladsListView.getSelectionModel().getSelectedItem().fjernFad();
+                    Controller.fjernFadFraLagerplads(lagerpladsListView.getSelectionModel().getSelectedItem());
                     opdaterLagerPladsList();
                     opdaterFadList();
                 }

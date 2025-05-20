@@ -108,7 +108,7 @@ public class Knapper {
         Button fuldHistorikButton = new Button("Vis fuld historik");
         fuldHistorikButton.setOnMouseClicked(event -> {
             try {
-                FindHistorikVindue historikVindue = new FindHistorikVindue("Vis historik", BatchTab.getBatch());
+                VisHistorikVindue historikVindue = new VisHistorikVindue("Vis historik", BatchTab.getBatch());
                 historikVindue.show();
             } catch (Exception e) {
                 Alert fejlAlert = new Alert(Alert.AlertType.ERROR);

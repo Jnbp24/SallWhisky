@@ -17,7 +17,7 @@ class OpretFadTest {
 
     @Test
     void testFadNummer() {
-        assertEquals(1, fad.getNummer(), "Fadnummer skal matche det angivne nummer");
+        assertEquals(1, fad.getFadnummer(), "Fadnummer skal matche det angivne nummer");
     }
 
     @Test

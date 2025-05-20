@@ -70,7 +70,7 @@ public class RaavarerTab {
             kornsortNavnInfo.opdaterIndhold("Navn på kornsort: " + valgtKornsort.getNavn());
             kornLokationInfo.opdaterIndhold("Kornsort lokation: " + valgtKornsort.getLokation());
             kornMængdeInfo.opdaterIndhold("Korn mængde: " + valgtKornsort.getMængde());
-            kornRistethed.opdaterIndhold("Ristethed: " + valgtKornsort.getRistethed());
+            kornRistethed.opdaterIndhold("Ristethed: " + valgtKornsort.getRistethed().getDisplay());
         });
 
         vandtyperListview.setOnMouseClicked(event -> {

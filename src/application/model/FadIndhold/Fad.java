@@ -4,12 +4,10 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
 
 public class Fad {
 
-    private int nummer;
+    private int fadnummer;
     private String fadType;
     private double fadStørrelse;
     private int antalGangeBrugt;
@@ -23,7 +21,7 @@ public class Fad {
     private HashMap<Fad, Double> omhældninger = new HashMap<>();
 
     public Fad(int nummer, String fadType, double fadStørrelse, int antalGangeBrugt) {
-        this.nummer = nummer;
+        this.fadnummer = nummer;
         this.fadType = fadType;
         this.fadStørrelse = fadStørrelse;
         this.antalGangeBrugt = antalGangeBrugt;
@@ -65,8 +63,8 @@ public class Fad {
     }
 
 
-    public int getNummer() {
-        return nummer;
+    public int getFadnummer() {
+        return fadnummer;
     }
 
     public ArrayList<Destillat> getDestillater() {
@@ -99,16 +97,11 @@ public class Fad {
 
     public void setPåfyldtAf(String påfyldtAf) {
         this.påfyldtAf = påfyldtAf;
-//        påfyldninger.add(this.påfyldtAf);
     }
 
     public String getPåfyldtAf() {
         return påfyldtAf;
     }
-
-//    public ArrayList<String> getPåfyldninger() {
-//        return påfyldninger;
-//    }
 
     public void setTappetAf(String tappetAf) {
         this.tappetAf = tappetAf;
@@ -155,10 +148,10 @@ public class Fad {
     @Override
     public String toString() {
         if (destillater.isEmpty()) {
-            return "Fadnummer: " + "F" + nummer + "\n" + "Fadtype: " + getType() + "\nFadstørrelse: " + fadStørrelse + " L" + "\nFadet er tomt" + "\n_________________________________________________________________________________";
+            return "Fadnummer: " + "F" + fadnummer + "\n" + "Fadtype: " + getType() + "\nFadstørrelse: " + fadStørrelse + " L" + "\nFadet er tomt" + "\n_________________________________________________________________________________";
         }
         else {
-            return "Fadnummer: " + "F" + nummer + "\n" + "Fadtype: " + getType() + "\nVæske i fad: " + mængdePåfyldt + " L" + "\nFadstørrelse: " + fadStørrelse + " L" + "\nTid på Lager: " + ChronoUnit.YEARS.between(påfyldningsDato, LocalDate.now()) + " År" + "\n_________________________________________________________________________________";
+            return "Fadnummer: " + "F" + fadnummer + "\n" + "Fadtype: " + getType() + "\nVæske i fad: " + mængdePåfyldt + " L" + "\nFadstørrelse: " + fadStørrelse + " L" + "\nTid på Lager: " + ChronoUnit.YEARS.between(påfyldningsDato, LocalDate.now()) + " År" + "\n_________________________________________________________________________________";
         }
     }
 }

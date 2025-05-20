@@ -3,7 +3,6 @@ package gui.OpretVinduer;
 import application.model.BatchIndhold.Batch;
 import application.model.FadIndhold.Destillat;
 import application.model.Raavarer.Kornsort;
-import gui.Elements.Billeder;
 import gui.Elements.InfoBox;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -14,10 +13,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
-public class FindHistorikVindue extends Stage {
+public class VisHistorikVindue extends Stage {
     private Batch batch;
 
-    public FindHistorikVindue(String title, Batch batch) {
+    public VisHistorikVindue(String title, Batch batch) {
         this.batch = batch;
         this.setResizable(false);
         this.setTitle(title);
@@ -61,7 +60,7 @@ public class FindHistorikVindue extends Stage {
 
         for (Destillat destillat : batch.getTapning().getFad().getDestillater()) {
             if (!historikStringbuilder.toString().contains(destillat.getVand().getNavn()) && !historikStringbuilder.toString().contains(destillat.getVand().getLokation())) {
-                historikStringbuilder.append(destillat.getVand().getNavn() + "\n" + destillat.getVand().getLokation() + "\n" + "Vand lokation: " + "\n");
+                historikStringbuilder.append(destillat.getVand().getNavn() + "\n" + destillat.getVand().getLokation() + "\n" + "Vand lokation: " + "\n\n");
             }
 
         }
@@ -90,9 +89,5 @@ public class FindHistorikVindue extends Stage {
         historikLabel.setAlignment(Pos.CENTER);
         historikLabel.setStyle("-fx-font-weight: bold");
         pane.add(historikLabel, 0, 0);
-
-
     }
-
-
 }

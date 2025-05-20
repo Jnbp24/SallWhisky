@@ -42,7 +42,7 @@ class LagerTest {
     @Test
     void findFad_PåFadNummer() {
         lagerplads.placerFad(fad);
-        assertEquals(lagerplads, lager.findFadPåFadNummer(fad.getNummer()));
+        assertEquals(lagerplads, lager.findFadPåFadNummer(fad.getFadnummer()));
     }
 
     @Test
